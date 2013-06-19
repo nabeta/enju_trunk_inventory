@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      inventory_manage: 蔵書点検
+    attributes:
+      inventory_manage:
+        display_name: 点検名称
+        manifestation_types: 資料区分
+        shelf_group_types: 棚分類
+        notification_dest: 処理結果通知先
+        state: 状態
+

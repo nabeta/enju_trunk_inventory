@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  display_name: MyString
+  manifestation_type_ids: MyString
+  shelves_group_ids: MyString
+  notification_dest: MyText
+  state: 1
+
+two:
+  display_name: MyString
+  manifestation_type_ids: MyString
+  shelves_group_ids: MyString
+  notification_dest: MyText
+  state: 1
