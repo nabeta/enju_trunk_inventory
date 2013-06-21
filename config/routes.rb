@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :inventory_shelf_barcodes
+
+
   resources :inventory_shelf_groups
 
 

@@ -2,11 +2,26 @@ ja:
   activerecord:
     models:
       inventory_manage: 蔵書点検
+      inventory_shelf_group: 棚分類
+      inventory_shelf_barcode: 棚バーコード定義
+      inventory_check_data: 点検データ
+      inventory_result: 点検結果
     attributes:
       inventory_manage:
         display_name: 点検名称
-        manifestation_types: 資料区分
-        shelf_group_types: 棚分類
+        manifestation_type_ids: 資料区分
+        shelf_group_ids: 棚分類
         notification_dest: 処理結果通知先
         state: 状態
+        state_name:
+          init: 初期
+          finished: 完了
+          undefined: 未定義
+      inventory_shelf_group:
+        name: ID
+        name: 棚分類ID
+        display_name: 棚分類名
+  page:
+    execute_check: 点検実行
+    manage: '%{model}の管理'
 

@@ -5,6 +5,7 @@ class InventoryManagesController < ApplicationController
   # GET /inventory_manages.json
   def index
     @inventory_manages = InventoryManage.all
+    prepare_option
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,6 +28,7 @@ class InventoryManagesController < ApplicationController
   # GET /inventory_manages/new.json
   def new
     @inventory_manage = InventoryManage.new
+    prepare_option
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,20 +39,20 @@ class InventoryManagesController < ApplicationController
   # GET /inventory_manages/1/edit
   def edit
     @inventory_manage = InventoryManage.find(params[:id])
+    prepare_option
   end
 
   # POST /inventory_manages
   # POST /inventory_manages.json
   def create
     @inventory_manage = InventoryManage.new(params[:inventory_manage])
+    prepare_option
 
     respond_to do |format|
       if @inventory_manage.save
         format.html { redirect_to @inventory_manage, notice: 'Inventory manage was successfully created.' }
-        format.json { render json: @inventory_manage, status: :created, location: @inventory_manage }
       else
         format.html { render action: "new" }
-        format.json { render json: @inventory_manage.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,14 +61,13 @@ class InventoryManagesController < ApplicationController
   # PUT /inventory_manages/1.json
   def update
     @inventory_manage = InventoryManage.find(params[:id])
+    prepare_option
 
     respond_to do |format|
       if @inventory_manage.update_attributes(params[:inventory_manage])
         format.html { redirect_to @inventory_manage, notice: 'Inventory manage was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @inventory_manage.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -81,6 +82,12 @@ class InventoryManagesController < ApplicationController
       format.html { redirect_to inventory_manages_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def prepare_option
+    @manifestation_types = ManifestationType.all 
+    @inventory_shelf_groups = InventoryShelfGroup.all || []
   end
 end
 

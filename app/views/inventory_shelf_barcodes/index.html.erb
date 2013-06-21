@@ -1,0 +1,26 @@
+<div id="content_detail" class="ui-corner-all">
+<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory_shelf_barcode')) -%></h1>
+<div id="content_list">
+
+<table class="index">
+  <tr>
+    <th><%= t('activerecord.attributes.inventory_shelf_barcode.barcode') -%> </th>
+  </tr>
+
+<%- @inventory_shelf_barcodes.each do |inventory_shelf_barcode| -%> 
+  <tr class="line<%= cycle("0", "1") -%>">
+    <td><%= inventory_shelf_barcode.barcode -%> </td>
+  </tr>
+<%- end -%> 
+</table>
+
+</div>
+</div>
+
+<div id="submenu" class="ui-corner-all">
+  <ul>
+    <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_shelf_group')), new_inventory_shelf_group_path -%></li>
+    <li><%= link_to t('page.listing', :model => t('activerecord.models.inventory_manage')), inventory_manages_path -%></li>
+  </ul>
+</div>
+
