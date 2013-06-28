@@ -32,6 +32,11 @@
   <%= inventory_manage_state(@inventory_manage) -%> 
 </p>
 
+<p>
+  <strong><%= t('activerecord.attributes.inventory_manage.bind_type') -%> :</strong>
+  <%= bind_type_name(@inventory_manage.bind_type) -%> 
+</p>
+
 </div>
 </div>
 

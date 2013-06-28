@@ -13,10 +13,13 @@ ja:
         shelf_group_ids: 棚分類
         notification_dest: 処理結果通知先
         state: 状態
+        bind_type: 棚と本棚の関係
         state_name:
           init: 初期
           finished: 完了
           undefined: 未定義
+        bind_name:
+          s0: '棚:本棚＝1:1'
       inventory_shelf_group:
         name: ID
         name: 棚分類ID

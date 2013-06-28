@@ -1,9 +1,11 @@
 class InventoryManage < ActiveRecord::Base
-  attr_accessible :display_name, :manifestation_type_ids, :notification_dest, :shelf_group_ids, :state, :shelf_groups, :manifestation_types
+  attr_accessible :display_name, :manifestation_type_ids, :notification_dest, :shelf_group_ids, :state, :shelf_groups, :manifestation_types, :bind_type
 
   validates :display_name, :presence => true
 
   validate :combined_type_is_valid
+
+  has_many :inventory_shelf_barcode
 
   def combined_type_is_valid
     if self.manifestation_type_ids.present? || self.shelf_group_ids.present?

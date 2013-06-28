@@ -2,6 +2,7 @@
   <%= f.error_messages %>
 
   <div class="field">
+    <abbr title="required">*</abbr>
     <%= f.label :display_name %><br />
     <%= f.text_field :display_name %>
   </div>
@@ -16,13 +17,20 @@
     <% @inventory_shelf_groups.collect do |c| -%>
        <%= check_box_tag 'inventory_manage[shelf_groups][]', c.id, @inventory_manage.shelf_groups.include?(c.id.to_s) -%> <%= c.display_name.localize -%> &nbsp;
     <% end %>
- 
   </div>
+
   <div class="field">
     <%= f.label :notification_dest %><br />
     <%= f.text_area :notification_dest %>
   </div>
+
+  <div class="field">
+    <%= f.label :bind_type %><br />
+    <%= f.select(:bind_type, @bind_types.collect{|m| [m.display_name, m.id]}) -%>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+<%= javascript_tag("$('#inventory_manage_display_name').focus()") -%>

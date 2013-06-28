@@ -1,4 +1,12 @@
 module InventoryManagesHelper
+
+  def bind_type_name(bind_type_id)
+    ShelfBindType.all.each do |s|
+      return s.display_name if s.try(:id) == bind_type_id
+    end
+    return ""
+  end
+
   def manifestation_type_names(manifestation_type_ids)
     s = ""
     if manifestation_type_ids.present?

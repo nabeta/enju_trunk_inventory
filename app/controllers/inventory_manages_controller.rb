@@ -1,5 +1,7 @@
 require_dependency "enju_trunk_inventory/application_controller"
 
+require 'ostruct'
+
 class InventoryManagesController < ApplicationController
   # GET /inventory_manages
   # GET /inventory_manages.json
@@ -88,6 +90,7 @@ class InventoryManagesController < ApplicationController
   def prepare_option
     @manifestation_types = ManifestationType.all 
     @inventory_shelf_groups = InventoryShelfGroup.all || []
+    @bind_types = ShelfBindType.all
   end
 end
 
