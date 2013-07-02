@@ -1,0 +1,18 @@
+<div id="content_detail" class="ui-corner-all">
+<h1 class="title"><%= t('page.finish', :model => t('activerecord.models.inventory_manage')) -%> </h1>
+<div id="content_list">
+<%= form_for(@inventory_manage, :url => {:action => 'finished'}) do |f| %>
+  <%= f.error_messages %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
+</div>
+
+<div id="submenu" class="ui-corner-all">
+  <ul>
+    <li><%= link_to t('page.show'), @inventory_manage -%> </li>
+    <li><%= link_to t('page.back_to_index'), inventory_manages_path -%> </li>
+  </ul>
+</div>

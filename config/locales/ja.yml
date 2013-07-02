@@ -5,7 +5,8 @@ ja:
       inventory_shelf_group: 棚分類
       inventory_shelf_barcode: 棚バーコード定義
       inventory_check_data: 点検データ
-      inventory_result: 点検結果
+      inventory_check_result: 点検結果
+      inventory_shelf_barcode_import_file: 棚バーコード定義のインポート用ファイル
     attributes:
       inventory_manage:
         display_name: 点検名称
@@ -27,4 +28,9 @@ ja:
   page:
     execute_check: 点検実行
     manage: '%{model}の管理'
+    confirm: '%{model}の確認'
+    finish: '%{model}の完了'
+    inventory:
+      check:
+        start: '点検実行'
 

@@ -30,4 +30,50 @@ class InventoryManage < ActiveRecord::Base
     self.shelf_group_ids = shelf_groups.join(',')
   end
 
+  def finished
+    self.finished_at = Time.now
+    self.state = 9
+    self.save!
+  end
+
+  def copy_shelves_to_inventory_shelves
+=begin
+    Shelf.all.each do |shelf|
+      sql  = "insert into inventory_shelf_barcodes "
+      sql += "(barcode, inventory_manage_id, inventory_shelf_group_id, shelf_id, created_at, updated_at) values "
+      sql += "(#{barcode}, #{self.id}, nil, #{shelf.id}, now(), now())"
+      ActiveRecord::Base.connection.insert(sql)
+    end
+=end
+  end
+
+  def phase1_check
+    notifications = []
+
+    return notifications
+  end
+
+  # import from tsv
+  def import
+    num = {:manifestation_imported => 0, :item_imported => 0, :manifestation_found => 0, :item_found => 0, :failed => 0}
+    row_num = 2
+    rows = open_import_file
+    field = rows.first
+    if [field['isbn'], field['original_title']].reject{|field| field.to_s.strip == ""}.empty?
+      raise "You should specify isbn or original_tile in the first line"
+    end
+
+    rows.each_with_index do |row, index|
+      Rails.logger.info("import block start. row_num=#{row_num} index=#{index}")
+
+      next if row['dummy'].to_s.strip.present?
+      import_result = ResourceImportResult.create!(:resource_import_file => self, :body => row.fields.join("\t"))
+
+    end
+
+    self.update_attribute(:imported_at, Time.zone.now)
+    rows.close
+    return num
+  end
+
 end

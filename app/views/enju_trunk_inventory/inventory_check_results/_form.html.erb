@@ -1,0 +1,57 @@
+<%= form_for(@inventory_check_result) do |f| %>
+  <% if @inventory_check_result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inventory_check_result.errors.count, "error") %> prohibited this inventory_check_result from being saved:</h2>
+
+      <ul>
+      <% @inventory_check_result.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :inventory_manage_id %><br />
+    <%= f.number_field :inventory_manage_id %>
+  </div>
+  <div class="field">
+    <%= f.label :status_1 %><br />
+    <%= f.number_field :status_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :status_2 %><br />
+    <%= f.number_field :status_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :status_3 %><br />
+    <%= f.number_field :status_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :status_4 %><br />
+    <%= f.number_field :status_4 %>
+  </div>
+  <div class="field">
+    <%= f.label :status_5 %><br />
+    <%= f.number_field :status_5 %>
+  </div>
+  <div class="field">
+    <%= f.label :status_6 %><br />
+    <%= f.number_field :status_6 %>
+  </div>
+  <div class="field">
+    <%= f.label :status_7 %><br />
+    <%= f.number_field :status_7 %>
+  </div>
+  <div class="field">
+    <%= f.label :status_8 %><br />
+    <%= f.number_field :status_8 %>
+  </div>
+  <div class="field">
+    <%= f.label :status_9 %><br />
+    <%= f.number_field :status_9 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

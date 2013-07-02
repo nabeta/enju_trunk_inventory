@@ -19,7 +19,8 @@
 
 <div id="submenu" class="ui-corner-all">
   <ul>
-    <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_shelf_group')), new_inventory_shelf_group_path -%></li>
+    <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_shelf_barcode')), new_inventory_manage_inventory_shelf_barcode_path -%></li>
+    <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_shelf_barcode_import_file')), new_inventory_manage_inventory_shelf_barcode_path -%></li>
     <li><%= link_to t('page.listing', :model => t('activerecord.models.inventory_manage')), inventory_manages_path -%></li>
   </ul>
 </div>

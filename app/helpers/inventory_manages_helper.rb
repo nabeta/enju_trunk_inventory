@@ -33,6 +33,8 @@ module InventoryManagesHelper
     case inventory_manage.state
     when 0
       I18n.t('activerecord.attributes.inventory_manage.state_name.init')
+    when 9
+      I18n.t('activerecord.attributes.inventory_manage.state_name.finished')
     else
       I18n.t('activerecord.attributes.inventory_manage.state_name.undefined')
     end
