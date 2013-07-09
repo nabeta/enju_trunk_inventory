@@ -67,11 +67,11 @@ class InventoryCheckDataImportFile < ActiveRecord::Base
         import_result = InventoryCheckDataImportResult.create!(:inventory_check_data_import_file => self, :body => row)
 
         begin
-          inventory_check_data = InventoryCheckData.new
-          inventory_check_data.inventory_manage_id = self.inventory_manage_id 
-          inventory_check_data.readcode = readcode
+          inventory_check_datum = InventoryCheckDatum.new
+          inventory_check_datum.inventory_manage_id = self.inventory_manage_id 
+          inventory_check_datum.readcode = readcode
 
-          if inventory_check_data.save!
+          if inventory_check_datum.save!
             #import_result.inventory_shelf_barcode_import_file = inventory_shelf_barcode
             num[:shelf_check_data_imported] += 1
           end

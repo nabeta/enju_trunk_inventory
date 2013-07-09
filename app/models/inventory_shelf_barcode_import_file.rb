@@ -3,13 +3,16 @@ class InventoryShelfBarcodeImportFile < ActiveRecord::Base
 
   include ImportFile
 
+  scope :not_imported, where(:state => 'pending', :imported_at => nil)
   default_scope :order => 'id DESC'
 
   has_attached_file :inventory_shelf_barcode_import, :path => ":rails_root/private:url"
   validates_attachment_content_type :inventory_shelf_barcode_import, :content_type => ['text/csv', 'text/plain', 'application/octet-stream']
   validates_attachment_presence :inventory_shelf_barcode_import
   belongs_to :user, :validate => true
+
   has_many :inventory_shelf_barcode_import_results
+  belongs_to :inventory_manage
 
   before_create :set_digest
 
@@ -65,7 +68,7 @@ class InventoryShelfBarcodeImportFile < ActiveRecord::Base
       raise "You should specify barcode, group or shelf_name in the first line"
     end
 
-    InventoryShelfBarcode.delete_all("inventory_manage_id=#{self.inventory_mamange_id}"
+    InventoryShelfBarcode.delete_all("inventory_manage_id=#{self.inventory_manage_id}")
 
     rows.each do |row|
       next if row['dummy'].to_s.strip.present?
@@ -77,11 +80,12 @@ class InventoryShelfBarcodeImportFile < ActiveRecord::Base
         inventory_shelf_barcode.shelf_id = Shelf.where('name = ?', row['shelf_name']).first if row['shelf_name'].present?
         inventory_shelf_barcode.inventory_shelf_group_id = InventoryShelfGroup.where('name = ?', row['shelf_group']).first if row['shelf_group'].present?
         if field['barcode'].present? && (row['shelf_name'].blank? || row['shelf_group'].blank?)
-          inventory_sehlf_barcode.barcode = field['barcode'] if field['barcode'].present? && row['shelf_name'].present? 
+          inventory_shelf_barcode.barcode = field['barcode'] if field['barcode'].present? && row['shelf_name'].present? 
         else 
-          inventory_sehlf_barcode.barcode = row['shelf_group'] + row['shelf_name'] 
+          inventory_shelf_barcode.barcode = row['shelf_group'] + row['shelf_name'] 
         end
 
+        Rails.logger.debug "@@@"
         if inventory_shelf_barcode.save!
           #import_result.inventory_shelf_barcode_import_file = inventory_shelf_barcode
           num[:shelf_barcode_imported] += 1

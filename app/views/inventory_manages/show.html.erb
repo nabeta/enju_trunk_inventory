@@ -39,7 +39,9 @@
 
 <p>
   <strong><%= t('activerecord.attributes.inventory_manage.finished_at') -%> :</strong>
+<% if @inventory_manage.finished_at.present? %> 
   <%= l(@inventory_manage.finished_at) -%> 
+<% end %>
 </p>
 
 <br />

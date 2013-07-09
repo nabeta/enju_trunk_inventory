@@ -8,6 +8,7 @@ ja:
       inventory_check_data_import_file: 点検データのインポート用ファイル
       inventory_check_result: 点検結果
       inventory_shelf_barcode_import_file: 棚バーコード定義のインポート用ファイル
+      inventory_shelf_barcode_import_result: 棚バーコード定義のインポート結果
     attributes:
       inventory_manage:
         display_name: 点検名称
@@ -36,4 +37,7 @@ ja:
       check:
         start: '点検実行'
     noselect: 未選択
+    no_have_inventory_check_data: "点検データが未登録です。"
+    no_have_inventory_shelf_barcode: "棚バーコードが未登録です。"
+    no_execute_inventory_check: "蔵書点検のチェック未処理です。"
 

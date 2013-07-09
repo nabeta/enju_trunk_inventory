@@ -21,7 +21,7 @@
   <ul>
     <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_shelf_barcode')), new_inventory_manage_inventory_shelf_barcode_path -%></li>
     <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_shelf_barcode_import_file')), url_for(:controller => :inventory_shelf_barcode_import_files, :action => :new, :inventory_manage_id => @inventory_manage_id)  -%></li>
-    <li><%= link_to t('page.listing', :model => t('activerecord.models.inventory_manage')), inventory_manages_path -%></li>
+    <li><%= link_to t('page.listing', :model => t('activerecord.models.inventory_shelf_barcode_import_file')), url_for(:controller => :inventory_shelf_barcode_import_files, :action => :index, :inventory_manage_id => @inventory_manage_id) -%></li>
   </ul>
 </div>
 
