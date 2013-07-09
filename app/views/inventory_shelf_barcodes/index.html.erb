@@ -29,6 +29,9 @@
     <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_shelf_barcode_import_file')), url_for(:controller => :inventory_shelf_barcode_import_files, :action => :new, :inventory_manage_id => @inventory_manage_id)  -%></li>
     <li><%= link_to t('page.listing', :model => t('activerecord.models.inventory_shelf_barcode_import_file')), url_for(:controller => :inventory_shelf_barcode_import_files, :action => :index, :inventory_manage_id => @inventory_manage_id) -%></li>
     <li><%= link_to t('page.output_shelf_barcode'), url_for(:action => :index, :format => :csv, :inventory_manage_id => @inventory_manage_id) -%></li>
+    <br />
+    <li><%= link_to t('page.back'), @inventory_manage -%></li>
+
   </ul>
 </div>
 

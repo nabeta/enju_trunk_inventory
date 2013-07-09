@@ -5,6 +5,7 @@ class InventoryShelfBarcodesController < ApplicationController
   # GET /inventory_shelf_barcodes.json
   def index
     @inventory_manage_id = params[:inventory_manage_id]
+    @inventory_manage = InventoryManage.find(@inventory_manage_id)
     @inventory_shelf_barcodes = InventoryShelfBarcode.where(:inventory_manage_id => @inventory_manage_id)
 
     respond_to do |format|
