@@ -1,0 +1,29 @@
+<div id="content_detail" class="ui-corner-all">
+<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory_check_data')) -%></h1>
+<div id="content_list">
+
+<table class="index">
+  <tr>
+    <th><%= t('activerecord.attributes.inventory_manage.display_name') -%> </th>
+    <th></th>
+  </tr>
+
+<%- @inventory_check_datum.each do |inventory_check_data| -%> 
+  <tr class="line<%= cycle("0", "1") -%>">
+    <td><%= link_to inventory_check_data.display_name, inventory_check_data -%> </td>
+    <td><%= link_to t('page.destroy'), inventory_manage, :confirm => t('page.are_you_sure'), :method => :delete -%></td>
+  </tr>
+<%- end -%> 
+</table>
+
+</div>
+</div>
+
+<div id="submenu" class="ui-corner-all">
+  <ul>
+    <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_check_data')), new_inventory_manage_inventory_check_datum_path -%></li>
+    <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_check_data_import_file')), url_for(:controller => :inventory_check_data_import_files, :action => :new, :inventory_manage_id => @inventory_manage_id)  -%></li>
+  </ul>
+
+</div>
+

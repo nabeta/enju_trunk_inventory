@@ -1,0 +1,29 @@
+<h1>Listing inventory_shelf_barcode_import_results</h1>
+
+<table>
+  <tr>
+    <th>Inventory shelf barcode import file</th>
+    <th>User</th>
+    <th>Body</th>
+    <th>Error msg</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @inventory_shelf_barcode_import_results.each do |inventory_shelf_barcode_import_result| %>
+  <tr>
+    <td><%= inventory_shelf_barcode_import_result.inventory_shelf_barcode_import_file_id %></td>
+    <td><%= inventory_shelf_barcode_import_result.user_id %></td>
+    <td><%= inventory_shelf_barcode_import_result.body %></td>
+    <td><%= inventory_shelf_barcode_import_result.error_msg %></td>
+    <td><%= link_to 'Show', inventory_shelf_barcode_import_result %></td>
+    <td><%= link_to 'Edit', edit_inventory_shelf_barcode_import_result_path(inventory_shelf_barcode_import_result) %></td>
+    <td><%= link_to 'Destroy', inventory_shelf_barcode_import_result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Inventory shelf barcode import result', new_inventory_shelf_barcode_import_result_path %>

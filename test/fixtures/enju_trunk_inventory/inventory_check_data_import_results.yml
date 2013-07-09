@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  inventory_check_data_import_file_id: 1
+  body: MyText
+  error_msg: MyText
+
+two:
+  inventory_check_data_import_file_id: 1
+  body: MyText
+  error_msg: MyText

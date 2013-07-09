@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Inventory check data import file:</b>
+  <%= @inventory_check_data_import_result.inventory_check_data_import_file_id %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @inventory_check_data_import_result.body %>
+</p>
+
+<p>
+  <b>Error msg:</b>
+  <%= @inventory_check_data_import_result.error_msg %>
+</p>
+
+
+<%= link_to 'Edit', edit_inventory_check_data_import_result_path(@inventory_check_data_import_result) %> |
+<%= link_to 'Back', inventory_check_data_import_results_path %>

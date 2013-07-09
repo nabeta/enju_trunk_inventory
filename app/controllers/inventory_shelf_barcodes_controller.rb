@@ -5,6 +5,7 @@ class InventoryShelfBarcodesController < ApplicationController
   # GET /inventory_shelf_barcodes.json
   def index
     @inventory_shelf_barcodes = InventoryShelfBarcode.all
+    @inventory_manage_id = params[:inventory_manage_id]
 
     respond_to do |format|
       format.html # index.html.erb

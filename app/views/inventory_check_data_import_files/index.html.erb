@@ -1,0 +1,38 @@
+<div id="content_detail" class="ui-corner-all">
+<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory_shelf_barcode_import_file')) -%></h1>
+<div id="content_list">
+
+<table class="index">
+  <tr>
+    <th>Id</th>
+    <th><%= t('activerecord.attributes.patron_import_file.patron_import_file_name') -%></th>
+    <th><%= t('activerecord.attributes.patron_import_file.imported_at') -%></th>
+    <th><%= t('activerecord.models.user') -%></th>
+    <th><%= t('activerecord.attributes.patron_import_file.state') -%></th>
+    <th></th>
+  </tr>
+
+<%- @inventory_shelf_barcode_import_files.each do |import_file| -%>
+  <tr class="line<%= cycle("0", "1") -%>">
+    <td><%= link_to import_file.id, import_file -%></td>
+    <td><%= link_to import_file.inventory_shelf_barcode_import_file_name, import_file -%></td>
+    <td><%= l(import_file.imported_at) if import_file.imported_at -%></td>
+    <td><%= link_to import_file.user.username, import_file.user if import_file.user -%></td>
+    <td><%= localized_state(import_file.state) if import_file -%></td>
+    <td>
+      <%= link_to t('page.show'), import_file -%>
+      <%= link_to t('page.destroy'), import_file, :confirm => t('page.are_you_sure'), :method => :delete -%>
+    </td>
+  </tr>
+<%- end -%>
+</table>
+
+<%= paginate(@inventory_shelf_barcode_import_files) -%>
+</div>
+</div>
+
+<div id="submenu" class="ui-corner-all">
+  <ul>
+    <li><%= link_to t('page.new', :model => t('activerecord.models.patron_import_file')), new_patron_import_file_path -%></li>
+  </ul>
+</div>

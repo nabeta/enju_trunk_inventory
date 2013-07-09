@@ -1,0 +1,30 @@
+<div id="content_detail" class="ui-corner-all">
+  <h1 class="title"><%= t('page.new', :model => t('activerecord.models.inventory_shelf_barcode_import_file')) -%></h1>
+<div id="content_list">
+
+  <%= form_tag({:action => 'create'}, {:method => :post, :multipart => true}) do  -%>
+    <% if @inventory_shelf_barcode_import_file.present? && @inventory_shelf_barcode_import_file.errors.present? %>
+      <% @inventory_shelf_barcode_import_file.errors.full_messages.each do |msg| %>
+      <div style="color: red;"><b><%= msg %></b></div>
+      <% end %>
+    <% end %>
+
+    <%= hidden_field_tag :inventory_manage_id, @inventory_manage_id -%>
+
+  <div class="field">
+    <%= label_tag t('page.file') -%><br />
+    <%= file_field_tag :inventory_shelf_barcode_import -%>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<%- end -%>
+
+</div>
+</div>
+
+<div id="submenu" class="ui-corner-all">
+  <ul>
+  </ul>
+</div>
