@@ -51,12 +51,12 @@ class InventoryManage < ActiveRecord::Base
   def phase1_check
     notifications = []
 
-    if self.inventory_shelf_barcodes
+    if self.inventory_shelf_barcodes.blank?
       n = OpenStruct.new
       n.message = I18n.t("page.no_have_inventory_shelf_barcode")
       notifications << n
     end
-    if self.inventory_check_data
+    if self.inventory_check_data.blank?
       n = OpenStruct.new
       n.message = I18n.t("page.no_have_inventory_check_data")
       notifications << n

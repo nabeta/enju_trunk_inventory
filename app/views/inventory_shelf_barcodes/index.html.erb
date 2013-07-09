@@ -5,11 +5,17 @@
 <table class="index">
   <tr>
     <th><%= t('activerecord.attributes.inventory_shelf_barcode.barcode') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_shelf_barcode.inventory_shelf_group') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_shelf_barcode.shelf') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_shelf_barcode.created_at') -%> </th>
   </tr>
 
 <%- @inventory_shelf_barcodes.each do |inventory_shelf_barcode| -%> 
   <tr class="line<%= cycle("0", "1") -%>">
     <td><%= inventory_shelf_barcode.barcode -%> </td>
+    <td><%= inventory_shelf_barcode.inventory_shelf_group_id -%> </td>
+    <td><%= inventory_shelf_barcode.shelf_id -%> </td>
+    <td><%= l(inventory_shelf_barcode.created_at) -%> </td>
   </tr>
 <%- end -%> 
 </table>
@@ -22,6 +28,7 @@
     <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_shelf_barcode')), new_inventory_manage_inventory_shelf_barcode_path -%></li>
     <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_shelf_barcode_import_file')), url_for(:controller => :inventory_shelf_barcode_import_files, :action => :new, :inventory_manage_id => @inventory_manage_id)  -%></li>
     <li><%= link_to t('page.listing', :model => t('activerecord.models.inventory_shelf_barcode_import_file')), url_for(:controller => :inventory_shelf_barcode_import_files, :action => :index, :inventory_manage_id => @inventory_manage_id) -%></li>
+    <li><%= link_to t('page.output_shelf_barcode'), url_for(:action => :index, :format => :csv, :inventory_manage_id => @inventory_manage_id) -%></li>
   </ul>
 </div>
 

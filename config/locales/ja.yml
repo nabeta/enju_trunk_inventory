@@ -28,6 +28,11 @@ ja:
         name: ID
         name: 棚分類ID
         display_name: 棚分類名
+      inventory_shelf_barcode:
+        barcode: バーコード
+        inventory_shelf_group: 棚グループ
+        shelf: 棚
+        created_at: 登録日時
   page:
     execute_check: 点検実行
     manage: '%{model}の管理'
@@ -40,4 +45,5 @@ ja:
     no_have_inventory_check_data: "点検データが未登録です。"
     no_have_inventory_shelf_barcode: "棚バーコードが未登録です。"
     no_execute_inventory_check: "蔵書点検のチェック未処理です。"
+    output_shelf_barcode: "棚バーコード定義を出力(CSV)"
 

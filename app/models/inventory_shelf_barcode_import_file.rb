@@ -54,12 +54,10 @@ class InventoryShelfBarcodeImportFile < ActiveRecord::Base
   def import_start
     sm_start!
     import
-  end
+ end
 
   def import
     self.reload
-    logger.info "@@@ import start"
-
     num = {:shelf_barcode_imported => 0, :failed => 0}
     row_num = 2
     rows = open_import_file
@@ -75,29 +73,44 @@ class InventoryShelfBarcodeImportFile < ActiveRecord::Base
       import_result = InventoryShelfBarcodeImportResult.create!(:inventory_shelf_barcode_import_file => self, :body => row.fields.join("\t"))
 
       begin
-        inventory_shelf_barcode = InventoryShelfBarcode.new
-        inventory_shelf_barcode.inventory_manage_id = self.inventory_manage_id 
-        inventory_shelf_barcode.shelf_id = Shelf.where('name = ?', row['shelf_name']).first if row['shelf_name'].present?
-        inventory_shelf_barcode.inventory_shelf_group_id = InventoryShelfGroup.where('name = ?', row['shelf_group']).first if row['shelf_group'].present?
-        if field['barcode'].present? && (row['shelf_name'].blank? || row['shelf_group'].blank?)
-          inventory_shelf_barcode.barcode = field['barcode'] if field['barcode'].present? && row['shelf_name'].present? 
-        else 
-          inventory_shelf_barcode.barcode = row['shelf_group'] + row['shelf_name'] 
+        error_occurred = false
+        group = row['group']
+        shelf_name = row['shelf_name']
+        barcode = row['barcode']
+        shelf_id = nil
+        if shelf_name.present?
+          shelf_id = Shelf.where('name = ?', shelf_name).first
+        end
+        inventory_shelf_group_id = nil
+        if group
+          group = InventoryShelfGroup.where('name = ?', group).first 
         end
 
-        Rails.logger.debug "@@@"
+        inventory_shelf_barcode = InventoryShelfBarcode.new
+        inventory_shelf_barcode.inventory_manage_id = self.inventory_manage_id 
+        inventory_shelf_barcode.shelf_id = shelf_id if shelf_id
+        inventory_shelf_barcode.inventory_shelf_group_id = group if group
+        if field['barcode'].present? && (shelf_name.blank? || group.blank?)
+          inventory_shelf_barcode.barcode = field['barcode'] if field['barcode'].present? && row['shelf_name'].present? 
+        else 
+          inventory_shelf_barcode.barcode = row['group'] + row['shelf_name'] 
+        end
+
         if inventory_shelf_barcode.save!
           #import_result.inventory_shelf_barcode_import_file = inventory_shelf_barcode
           num[:shelf_barcode_imported] += 1
         end
       rescue Exception => e
-        Rails.logger.info $!
-        Rails.logger.info $@
+        logger.info $!
+        logger.info $@
         import_result.error_msg = "FAIL[#{row_num}]: #{e}" 
-        Rails.logger.info("shelf_barcode import failed: column #{row_num}")
+        logger.info("shelf_barcode import failed: column #{row_num}")
         num[:failed] += 1
       end
     end
+    self.update_attribute(:imported_at, Time.zone.now)
+    sm_complete!
+    return num
   end
 
   def preload

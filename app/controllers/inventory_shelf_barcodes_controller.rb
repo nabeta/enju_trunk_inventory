@@ -4,11 +4,12 @@ class InventoryShelfBarcodesController < ApplicationController
   # GET /inventory_shelf_barcodes
   # GET /inventory_shelf_barcodes.json
   def index
-    @inventory_shelf_barcodes = InventoryShelfBarcode.all
     @inventory_manage_id = params[:inventory_manage_id]
+    @inventory_shelf_barcodes = InventoryShelfBarcode.where(:inventory_manage_id => @inventory_manage_id)
 
     respond_to do |format|
       format.html # index.html.erb
+      format.csv  { send_data InventoryShelfBarcode.csv(@inventory_shelf_barcodes), type: 'text/csv; charset=shift_jis', filename: "hoge.csv" }
       format.json { render json: @inventory_shelf_barcodes }
     end
   end
