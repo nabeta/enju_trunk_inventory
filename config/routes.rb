@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :inventory_shelf_groups
     resources :inventory_shelf_barcodes
 
-    resources :inventory_check_datum
+    resources :inventory_check_data
     resources :inventory_check_results
     resource :inventory_checks
 

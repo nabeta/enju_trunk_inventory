@@ -4,7 +4,7 @@ ja:
       inventory_manage: 蔵書点検
       inventory_shelf_group: 棚分類
       inventory_shelf_barcode: 棚バーコード定義
-      inventory_check_data: 点検データ
+      inventory_check_datum: 点検データ
       inventory_check_data_import_file: 点検データのインポート用ファイル
       inventory_check_result: 点検結果
       inventory_shelf_barcode_import_file: 棚バーコード定義のインポート用ファイル
@@ -33,6 +33,8 @@ ja:
         inventory_shelf_group: 棚グループ
         shelf: 棚
         created_at: 登録日時
+      inventory_check_datum:
+        readcode: コード
   page:
     execute_check: 点検実行
     manage: '%{model}の管理'

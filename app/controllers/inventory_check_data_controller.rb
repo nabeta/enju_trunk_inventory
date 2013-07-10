@@ -1,11 +1,11 @@
 require_dependency "enju_trunk_inventory/application_controller"
 
-class InventoryCheckDatumController < ApplicationController
+class InventoryCheckDataController < ApplicationController
   # GET /inventory_check_data
   # GET /inventory_check_data.json
   def index
-    @inventory_check_datum = InventoryCheckData.all
     @inventory_manage_id = params[:inventory_manage_id]
+    @inventory_check_datum = InventoryCheckDatum.where(:inventory_manage_id => @inventory_manage_id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +16,7 @@ class InventoryCheckDatumController < ApplicationController
   # GET /inventory_check_data/1
   # GET /inventory_check_data/1.json
   def show
-    @inventory_check_data = InventoryCheckData.find(params[:id])
+    @inventory_check_data = InventoryCheckDatum.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,7 +27,9 @@ class InventoryCheckDatumController < ApplicationController
   # GET /inventory_check_data/new
   # GET /inventory_check_data/new.json
   def new
-    @inventory_check_data = InventoryCheckData.new
+    @inventory_manage_id = params[:inventory_manage_id]
+    @inventory_manage = InventoryManage.find(@inventory_manage_id)
+    @inventory_check_datum = InventoryCheckDatum.new(:inventory_manage_id => @inventory_manage_id)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,29 +39,26 @@ class InventoryCheckDatumController < ApplicationController
 
   # GET /inventory_check_data/1/edit
   def edit
-    @inventory_check_data = InventoryCheckData.find(params[:id])
+    @inventory_check_data = InventoryCheckDatum.find(params[:id])
   end
 
   # POST /inventory_check_data
   # POST /inventory_check_data.json
   def create
-    @inventory_check_data = InventoryCheckData.new(params[:inventory_check_data])
+    @inventory_check_datum = InventoryCheckDatum.new(params[:inventory_check_datum])
+    @inventory_manage = InventoryManage.find(@inventory_check_datum.id)
 
-    respond_to do |format|
-      if @inventory_check_datum.save
-        format.html { redirect_to @inventory_check_datum, notice: 'Inventory check datum was successfully created.' }
-        format.json { render json: @inventory_check_datum, status: :created, location: @inventory_check_datum }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @inventory_check_datum.errors, status: :unprocessable_entity }
-      end
+    if @inventory_check_datum.save
+      redirect_to [@inventory_manage, @inventory_check_datum], notice: 'Inventory check datum was successfully created.' 
+    else
+      render action: "new" 
     end
   end
 
   # PUT /inventory_check_data/1
   # PUT /inventory_check_data/1.json
   def update
-    @inventory_check_data = InventoryCheckData.find(params[:id])
+    @inventory_check_data = InventoryCheckDatum.find(params[:id])
 
     respond_to do |format|
       if @inventory_check_data.update_attributes(params[:inventory_check_data])

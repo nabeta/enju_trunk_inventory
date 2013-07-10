@@ -10,8 +10,8 @@
 
 <%- @inventory_check_datum.each do |inventory_check_data| -%> 
   <tr class="line<%= cycle("0", "1") -%>">
-    <td><%= link_to inventory_check_data.display_name, inventory_check_data -%> </td>
-    <td><%= link_to t('page.destroy'), inventory_manage, :confirm => t('page.are_you_sure'), :method => :delete -%></td>
+    <td><%= link_to inventory_check_data.readcode, inventory_check_data -%> </td>
+    <td><%= link_to t('page.destroy'), inventory_check_data, :confirm => t('page.are_you_sure'), :method => :delete -%></td>
   </tr>
 <%- end -%> 
 </table>
