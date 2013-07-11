@@ -1,5 +1,5 @@
 <div id="content_detail" class="ui-corner-all">
-<h1 class="title"><%= t('page.showing', :model => t('activerecord.models.inventory_manage')) -%></h1>
+<h1 class="title"><%= t('page.exec_inventory_check') -%></h1>
 <div id="content_list">
 
 <p>
@@ -39,9 +39,9 @@
 
 <p>
   <strong><%= t('activerecord.attributes.inventory_manage.finished_at') -%> :</strong>
-<% if @inventory_manage.finished_at.present? %> 
-  <%= l(@inventory_manage.finished_at) -%> 
-<% end %>
+  <% if @inventory_manage.finished_at.present? %>
+    <%= l(@inventory_manage.finished_at) -%>
+  <% end %>
 </p>
 
 <br />
@@ -52,24 +52,17 @@
   </p>
 <%- end -%>
 
+<br />
+
+<%= form_tag :url => {:action => ''} do %>
+  <%= submit_tag %>
+<% end %>
+
 </div>
 </div>
 
 <div id="submenu" class="ui-corner-all">
   <ul>
-    <li><%= link_to t('page.edit'), edit_inventory_manage_path(@inventory_manage) -%> </li>
-    <li><%= link_to t('page.destroy'), @inventory_manage, :confirm => t('page.are_you_sure'), :method => :delete -%>
     <li><%= link_to t('page.back_to_index'), inventory_manages_path -%> </li>
-  </ul>
-  <br />
-  <ul>
-    <li><%= link_to t('page.manage', :model => t('activerecord.models.inventory_shelf_barcode')), inventory_manage_inventory_shelf_barcodes_path(@inventory_manage) -%></li>
-    <li><%= link_to t('page.manage', :model => t('activerecord.models.inventory_check_datum')), inventory_manage_inventory_check_data_path(@inventory_manage) -%></li>
-    <li><%= link_to t('page.inventory.check.start'), inventory_manage_inventory_checks_path(@inventory_manage) -%></li>
-    <li><%= link_to t('page.confirm', :model => t('activerecord.models.inventory_check_result')), inventory_manage_inventory_check_results_path(@inventory_manage) -%></li>
-  </ul>
-  <br />
-  <ul>
-    <li><%= link_to t('page.finish', :model => t('activerecord.models.inventory_manage')), finish_inventory_manage_path(@inventory_manage) -%> </li>
   </ul>
 </div>

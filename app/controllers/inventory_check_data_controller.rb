@@ -5,6 +5,7 @@ class InventoryCheckDataController < ApplicationController
   # GET /inventory_check_data.json
   def index
     @inventory_manage_id = params[:inventory_manage_id]
+    @inventory_manage = InventoryManage.find(@inventory_manage_id)
     @inventory_check_datum = InventoryCheckDatum.where(:inventory_manage_id => @inventory_manage_id)
 
     respond_to do |format|

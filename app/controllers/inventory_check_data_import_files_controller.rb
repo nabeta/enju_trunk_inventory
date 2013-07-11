@@ -4,7 +4,7 @@ class InventoryCheckDataImportFilesController < ApplicationController
   # GET /inventory_check_data_import_files
   # GET /inventory_check_data_import_files.json
   def index
-    @inventory_check_data_import_files = InventoryCheckDataImportFile.all
+    @inventory_check_data_import_files = InventoryCheckDataImportFile.page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,8 +26,9 @@ class InventoryCheckDataImportFilesController < ApplicationController
   # GET /inventory_check_data_import_files/new
   # GET /inventory_check_data_import_files/new.json
   def new
-    @inventory_check_data_import_file = InventoryCheckDataImportFile.new
     @inventory_manage_id = params[:inventory_manage_id]
+    @inventory_manage = InventoryManage.find(@inventory_manage_id)
+    @inventory_check_data_import_file = InventoryCheckDataImportFile.new
 
     respond_to do |format|
       format.html # new.html.erb

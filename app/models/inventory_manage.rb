@@ -7,6 +7,7 @@ class InventoryManage < ActiveRecord::Base
 
   has_many :inventory_shelf_barcodes
   has_many :inventory_check_data
+  has_many :inventory_check_results
 
   def combined_type_is_valid
     if self.manifestation_type_ids.present? || self.shelf_group_ids.present?
@@ -60,6 +61,12 @@ class InventoryManage < ActiveRecord::Base
       n = OpenStruct.new
       n.message = I18n.t("page.no_have_inventory_check_data")
       notifications << n
+    end
+    if notifications.size == 0 && self.inventory_check_results.blank?
+      n = OpenStruct.new
+      n.message = I18n.t("page.no_execute_inventory_check")
+      notifications << n
+ 
     end
 
     return notifications

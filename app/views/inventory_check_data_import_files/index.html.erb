@@ -1,5 +1,5 @@
 <div id="content_detail" class="ui-corner-all">
-<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory_shelf_barcode_import_file')) -%></h1>
+<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory_check_data_import_file')) -%></h1>
 <div id="content_list">
 
 <table class="index">
@@ -12,10 +12,10 @@
     <th></th>
   </tr>
 
-<%- @inventory_shelf_barcode_import_files.each do |import_file| -%>
+<%- @inventory_check_data_import_files.each do |import_file| -%>
   <tr class="line<%= cycle("0", "1") -%>">
     <td><%= link_to import_file.id, import_file -%></td>
-    <td><%= link_to import_file.inventory_shelf_barcode_import_file_name, import_file -%></td>
+    <td><%= link_to import_file.inventory_check_data_import_file_name, import_file -%></td>
     <td><%= l(import_file.imported_at) if import_file.imported_at -%></td>
     <td><%= link_to import_file.user.username, import_file.user if import_file.user -%></td>
     <td><%= localized_state(import_file.state) if import_file -%></td>
@@ -27,7 +27,7 @@
 <%- end -%>
 </table>
 
-<%= paginate(@inventory_shelf_barcode_import_files) -%>
+<%= paginate(@inventory_check_data_import_files) -%>
 </div>
 </div>
 

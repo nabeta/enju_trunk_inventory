@@ -3,6 +3,7 @@ class InventoryCheckDataImportFile < ActiveRecord::Base
 
   include ImportFile
 
+  scope :not_imported, where(:state => 'pending', :imported_at => nil)
   default_scope :order => 'id DESC'
 
   has_attached_file :inventory_check_data_import, :path => ":rails_root/private:url"
@@ -55,10 +56,9 @@ class InventoryCheckDataImportFile < ActiveRecord::Base
 
   def import
     self.reload
-    logger.info "@@@ import start"
 
     num = {:shelf_check_data_imported => 0, :failed => 0}
-    filename = self.inventory_shelf_barcode_import.path
+    filename = self.inventory_check_data_import.path
     open(filename, "rb:Shift_JIS:UTF-8", undef: :replace) do |f|
       CSV.new(f).each do |row|
         next if row.to_s.strip.present?
@@ -76,15 +76,19 @@ class InventoryCheckDataImportFile < ActiveRecord::Base
             num[:shelf_check_data_imported] += 1
           end
         rescue Exception => e
-          Rails.logger.info $!
-          Rails.logger.info $@
+          logger.info $!
+          logger.info $@
           import_result.error_msg = "FAIL[#{row_num}]: #{e}"
-          Rails.logger.info("check_data import failed: column #{row_num}")
+          logger.info("check_data import failed: column #{row_num}")
           num[:failed] += 1
         end
 
       end
     end
+
+    self.update_attribute(:imported_at, Time.zone.now)
+    sm_complete!
+    return num
   end
 
 
