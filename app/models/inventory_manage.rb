@@ -1,3 +1,4 @@
+# coding: utf-8 
 class InventoryManage < ActiveRecord::Base
   attr_accessible :display_name, :manifestation_type_ids, :notification_dest, :shelf_group_ids, :state, :shelf_groups, :manifestation_types, :bind_type
 
@@ -36,6 +37,46 @@ class InventoryManage < ActiveRecord::Base
     self.finished_at = Time.now
     self.state = 9
     self.save!
+  end
+
+  def check
+    check_start 
+   
+    #manifestation_type_ids
+    #shelf_group_ids
+    #InventoryShelfBarcode 
+    shelf_groups = InventoryShelfGroup.find(self.shelf_group_ids)
+    shelf_barcode_shelf_ids = InventoryShelfBarcode.where(:inventory_shelf_group_id => shelf_groups_ids).select("shelf_id")
+    
+    # check1(所在不明)
+    # システム内に存在するのに、点検データには存在しない。
+    item_item_identifiers = Shelf.find(shelf_barcode_shelf_ids).items.pluck("item_identifier")
+    readcodes = InventoryCheckDatum.pluck(:readcode)
+    check1_list = item_item_identifiers - readcodes
+    
+    # check2(配架間違い)
+    # 指定資料区分以外の資料が点検データに存在した。
+    # システム内の棚と点検データの棚が一致しない。
+    readcode_items = Item.find_by_item_identifier(readcodes).manifestation.pluck(:manifestation_type_id)
+
+
+    
+    # check3(乱れ)
+    # 棚内の請求記号１桁目で割合の少ない点検データを検出
+    
+    # check4(貸出中)
+    
+    # check5(未返却)
+    
+    # check6(発見)
+    
+    # check7(製本不備)
+    
+    # check8(製本中)
+    
+    # check9(未登録)
+    
+    check_finish
   end
 
   def copy_shelves_to_inventory_shelves
@@ -93,6 +134,20 @@ class InventoryManage < ActiveRecord::Base
     self.update_attribute(:imported_at, Time.zone.now)
     rows.close
     return num
+  end
+
+  private
+  def chehk_start
+    self.check_started_at = Time.now
+    self.check_finished_at = nil
+    self.state = 7
+    self.save!
+  end
+
+  def check_finish
+    self.check_finished_at = Time.now
+    self.state = 8
+    self.save!
   end
 
 end

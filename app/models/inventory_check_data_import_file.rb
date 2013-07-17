@@ -57,12 +57,24 @@ class InventoryCheckDataImportFile < ActiveRecord::Base
   def import
     self.reload
 
+    logger.info "#{Time.zone.now} importing inventory_check_data start"
+
     num = {:shelf_check_data_imported => 0, :failed => 0}
     filename = self.inventory_check_data_import.path
-    open(filename, "rb:Shift_JIS:UTF-8", undef: :replace) do |f|
+
+    logger.info "#{Time.zone.now} importing filename=#{filename}"
+
+    open(filename, "rb") do |f|
       CSV.new(f).each do |row|
-        next if row.to_s.strip.present?
-        readcode = row.to_s
+        logger.info "#{Time.zone.now} importing @@@1"
+        logger.info "#{Time.zone.now} importing @@@2 row=#{row} row.class=#{row.class}"
+
+        next if row.blank?
+        readcode = ""
+        readcode = row.first if row.class == Array
+
+        logger.info "#{Time.zone.now} importing @@@10"
+        logger.info "#{Time.zone.now} importing @@@11 readcode=#{readcode}"
 
         import_result = InventoryCheckDataImportResult.create!(:inventory_check_data_import_file => self, :body => row)
 
@@ -87,7 +99,7 @@ class InventoryCheckDataImportFile < ActiveRecord::Base
     end
 
     self.update_attribute(:imported_at, Time.zone.now)
-    sm_complete!
+    #sm_complete!
     return num
   end
 

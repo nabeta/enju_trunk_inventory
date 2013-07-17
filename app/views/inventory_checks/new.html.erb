@@ -1,12 +1,15 @@
 <div id="content_detail" class="ui-corner-all">
-<h1 class="title"><%= t('page.new', :model => t('activerecord.models.inventory_check_datum')) -%> </h1>
+<h1 class="title"><%= t('page.new', :model => t('activerecord.models.inventory_check')) -%> </h1>
 <div id="content_list">
-  <%= render 'form' %>
+  <%= t('inventory_page.execute_check_description') %>
+  <%= form_tag inventory_manage_inventory_checks_path do %>
+    <%= submit_tag t('inventory_page.execute_check') %>
+  <% end %>
   </div>
 </div>
 
 <div id="submenu" class="ui-corner-all">
   <ul>
-    <li><%= link_to t('page.back'), inventory_manages_path -%> </li>
+    <li><%= link_to t('page.back'), @inventory_manage -%> </li>
   </ul>
 </div>

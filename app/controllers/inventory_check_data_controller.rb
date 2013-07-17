@@ -78,9 +78,6 @@ class InventoryCheckDataController < ApplicationController
     @inventory_check_datum = InventoryCheckDatum.find(params[:id])
     @inventory_check_datum.destroy
 
-    respond_to do |format|
-      format.html { redirect_to inventory_check_data_url }
-      format.json { head :no_content }
-    end
+    redirect_to inventory_manage_inventory_check_data_url
   end
 end

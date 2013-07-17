@@ -7,6 +7,7 @@ ja:
       inventory_check_datum: 点検データ
       inventory_check_data_import_file: 点検データのインポート用ファイル
       inventory_check_data_import_result: 点検データのインポート結果
+      inventory_check: 蔵書点検
       inventory_check_result: 点検結果
       inventory_shelf_barcode_import_file: 棚バーコード定義のインポート用ファイル
       inventory_shelf_barcode_import_result: 棚バーコード定義のインポート結果
@@ -36,8 +37,13 @@ ja:
         created_at: 登録日時
       inventory_check_datum:
         readcode: コード
+        read_at: 読取日時
+        created_at: 登録日時
+
+  inventory_page:
+    execute_check: "点検実行"
+    execute_check_description: "点検実行を開始します。"
   page:
-    execute_check: 点検実行
     manage: '%{model}の管理'
     confirm: '%{model}の確認'
     finish: '%{model}の完了'

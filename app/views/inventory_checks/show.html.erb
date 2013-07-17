@@ -1,5 +1,5 @@
 <div id="content_detail" class="ui-corner-all">
-<h1 class="title"><%= t('page.exec_inventory_check') -%></h1>
+<h1 class="title"><%= t('activerecord.models.inventory_check') -%></h1>
 <div id="content_list">
 
 <p>
@@ -55,7 +55,7 @@
 <br />
 
 <%= form_tag :url => {:action => ''} do %>
-  <%= submit_tag %>
+  <%= submit_tag t('page.entry') %>
 <% end %>
 
 </div>

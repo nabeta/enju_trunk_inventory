@@ -5,12 +5,22 @@
 <table class="index">
   <tr>
     <th><%= t('activerecord.attributes.inventory_check_datum.readcode') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_datum.read_at') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_datum.created_at') -%> </th>
     <th></th>
   </tr>
 
 <%- @inventory_check_datum.each do |inventory_check_data| -%> 
   <tr class="line<%= cycle("0", "1") -%>">
     <td><%= link_to inventory_check_data.readcode, [@inventory_manage, inventory_check_data] -%> </td>
+    <td>
+    <% if inventory_check_data.read_at %>
+    <%= l(inventory_check_data.read_at) -%> 
+    <% else %>
+      &nbsp;
+    <% end %>
+    </td>
+    <td><%= l(inventory_check_data.created_at) -%> </td>
     <td><%= link_to t('page.destroy'), [@inventory_manage, inventory_check_data], :confirm => t('page.are_you_sure'), :method => :delete -%></td>
   </tr>
 <%- end -%> 
