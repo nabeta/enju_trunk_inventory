@@ -51,15 +51,31 @@ class InventoryManage < ActiveRecord::Base
     # check1(所在不明)
     # システム内に存在するのに、点検データには存在しない。
     item_item_identifiers = Shelf.find(shelf_barcode_shelf_ids).items.pluck("item_identifier")
-    readcodes = InventoryCheckDatum.pluck(:readcode)
+    readcodes = InventoryCheckDatum..where(:inventory_manage_id => self.id).pluck(:readcode)
     check1_list = item_item_identifiers - readcodes
     
     # check2(配架間違い)
-    # 指定資料区分以外の資料が点検データに存在した。
-    # システム内の棚と点検データの棚が一致しない。
-    readcode_items = Item.find_by_item_identifier(readcodes).manifestation.pluck(:manifestation_type_id)
+    # 2-1:指定資料区分以外の資料が点検データに存在した。
+    check21_list = []
+    if manifestation_type_ids.presnet?
+      readcode_items = Item.joins(:manifestation).where("item_identifier IN (?)", readcodes)
+      readcode_items.each do |i|
+        unless manifestation_type_ids.include?(i.manifestation.manifestation_id) 
+          check21_list << i
+        end
+      end
+    end
 
+    # 2-2:システム内の棚と点検データの棚が一致しない。
+    check22_list = []
+    check_data = InventoryCheckDatum..where(:inventory_manage_id => self.id)
+    check_data.each do |datum|
+      barcode_shelf = InventoryShelfBarcode.find_by_barcode(shelf_name) 
+      if barcode_shelf
+         
+      end
 
+    end
     
     # check3(乱れ)
     # 棚内の請求記号１桁目で割合の少ない点検データを検出

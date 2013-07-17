@@ -13,8 +13,14 @@
 <%- @inventory_shelf_barcodes.each do |inventory_shelf_barcode| -%> 
   <tr class="line<%= cycle("0", "1") -%>">
     <td><%= inventory_shelf_barcode.barcode -%> </td>
-    <td><%= inventory_shelf_barcode.inventory_shelf_group_id -%> </td>
-    <td><%= inventory_shelf_barcode.shelf_id -%> </td>
+    <td>
+      <%= inventory_shelf_barcode.inventory_shelf_group.name -%> 
+      (<%= inventory_shelf_barcode.inventory_shelf_group.display_name -%>)
+    </td>
+    <td>
+      <%= inventory_shelf_barcode.shelf.name -%> 
+      (<%= inventory_shelf_barcode.shelf.display_name -%>)
+    </td>
     <td><%= l(inventory_shelf_barcode.created_at) -%> </td>
   </tr>
 <%- end -%> 

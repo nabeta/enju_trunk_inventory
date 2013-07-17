@@ -67,6 +67,7 @@ class InventoryShelfBarcodeImportFile < ActiveRecord::Base
     end
 
     InventoryShelfBarcode.delete_all("inventory_manage_id=#{self.inventory_manage_id}")
+    shelf_groups = InventoryShelfGroup.all
 
     rows.each do |row|
       next if row['dummy'].to_s.strip.present?
@@ -77,21 +78,35 @@ class InventoryShelfBarcodeImportFile < ActiveRecord::Base
         group = row['group']
         shelf_name = row['shelf_name']
         barcode = row['barcode']
-        shelf_id = nil
+
+        shelf = nil
+        inventory_shelf_group = nil
+
         if shelf_name.present?
-          shelf_id = Shelf.where('name = ?', shelf_name).first
+          shelf = Shelf.where('name = ?', shelf_name).first
         end
-        inventory_shelf_group_id = nil
-        if group
-          group = InventoryShelfGroup.where('name = ?', group).first 
+        if group.present?
+          inventory_shelf_group = InventoryShelfGroup.where('name = ?', group).first 
+        end
+
+        if barcode.present?
+          shelf = nil
+          inventory_shelf_group = nil
+
+          inventory_shelf_group = shelf_groups.find {|g| barcode.index(g.name) == 0 }
+          if inventory_shelf_group
+            pickup_shelf_name = barcode.gsub(/^#{inventory_shelf_group.name}/,'')  
+            logger.info("barcode_prsent pickup_shelf_name=#{pickup_shelf_name}")
+            shelf = Shelf.find_by_name(pickup_shelf_name)
+          end
         end
 
         inventory_shelf_barcode = InventoryShelfBarcode.new
         inventory_shelf_barcode.inventory_manage_id = self.inventory_manage_id 
-        inventory_shelf_barcode.shelf_id = shelf_id if shelf_id
-        inventory_shelf_barcode.inventory_shelf_group_id = group if group
-        if field['barcode'].present? && (shelf_name.blank? || group.blank?)
-          inventory_shelf_barcode.barcode = field['barcode'] if field['barcode'].present? && row['shelf_name'].present? 
+        inventory_shelf_barcode.shelf_id = shelf.id if shelf
+        inventory_shelf_barcode.inventory_shelf_group_id = inventory_shelf_group.id if inventory_shelf_group
+        if row['barcode'].present? && (shelf_name.blank? || group.blank?)
+          inventory_shelf_barcode.barcode = row['barcode'] if row['barcode'].present? && row['shelf_name'].present? 
         else 
           inventory_shelf_barcode.barcode = row['group'] + row['shelf_name'] 
         end

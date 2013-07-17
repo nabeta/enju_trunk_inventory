@@ -5,6 +5,8 @@ class InventoryShelfBarcode < ActiveRecord::Base
   default_scope order('barcode')
 
   belongs_to :inventory_manage
+  belongs_to :inventory_shelf_group
+  belongs_to :shelf
 
   def self.csv(barcodes)
     require 'csv'

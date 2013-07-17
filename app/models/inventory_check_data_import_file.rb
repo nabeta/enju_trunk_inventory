@@ -59,13 +59,18 @@ class InventoryCheckDataImportFile < ActiveRecord::Base
 
     logger.info "#{Time.zone.now} importing inventory_check_data start"
 
+    row_num = 0
     num = {:shelf_check_data_imported => 0, :failed => 0}
     filename = self.inventory_check_data_import.path
 
     logger.info "#{Time.zone.now} importing filename=#{filename}"
 
+    shelf_barcodes = InventoryShelfBarcode.pluck(:barcode)
+    shelf_name = ""
+
     open(filename, "rb") do |f|
       CSV.new(f).each do |row|
+        row_num = row_num + 1
         logger.info "#{Time.zone.now} importing @@@1"
         logger.info "#{Time.zone.now} importing @@@2 row=#{row} row.class=#{row.class}"
 
@@ -80,8 +85,15 @@ class InventoryCheckDataImportFile < ActiveRecord::Base
 
         begin
           inventory_check_datum = InventoryCheckDatum.new
+
+          if shelf_barcodes.include?(readcode)
+            inventory_check_datum.shelf_flag = 1 
+            shelf_name = readcode
+          end
+
           inventory_check_datum.inventory_manage_id = self.inventory_manage_id 
           inventory_check_datum.readcode = readcode
+          inventory_check_datum.shelf_name = shelf_name if shelf_name.present?
 
           if inventory_check_datum.save!
             #import_result.inventory_shelf_barcode_import_file = inventory_shelf_barcode
