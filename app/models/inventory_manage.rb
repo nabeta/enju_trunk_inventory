@@ -41,12 +41,13 @@ class InventoryManage < ActiveRecord::Base
 
   def check
     check_start 
+
    
     #manifestation_type_ids
     #shelf_group_ids
     #InventoryShelfBarcode 
     shelf_groups = InventoryShelfGroup.find(self.shelf_group_ids)
-    shelf_barcode_shelf_ids = InventoryShelfBarcode.where(:inventory_shelf_group_id => shelf_groups_ids).select("shelf_id")
+    shelf_barcode_shelf_ids = InventoryShelfBarcode.where(:inventory_shelf_group_id => shelf_groups_ids).pluck(:shelf_id)
     
     # check1(所在不明)
     # システム内に存在するのに、点検データには存在しない。
@@ -68,42 +69,119 @@ class InventoryManage < ActiveRecord::Base
 
     # 2-2:システム内の棚と点検データの棚が一致しない。
     check22_list = []
-    check_data = InventoryCheckDatum..where(:inventory_manage_id => self.id)
+    check_data = InventoryCheckDatum.where(:inventory_manage_id => self.id)
     check_data.each do |datum|
-      barcode_shelf = InventoryShelfBarcode.find_by_barcode(shelf_name) 
-      if barcode_shelf
-         
+      invalid_flag = true
+      barcode_shelf = InventoryShelfBarcode.find_by_barcode(datum.shelf_name) 
+      if barcode_shelf.try(:shelf)
+        shelf = barcode_shelf.shelf
+        item = Item.find_by_item_identifier(datum.readcode)
+        if item.try(:shelf)
+          item_shelf = item.shelf
+          if item_shelf.id == shelf.id
+            invalid_flag = false
+          end
+        end
       end
-
+      if invalid_flag
+        check22_list << datum.readcode
+      end
     end
     
     # check3(乱れ)
     # 棚内の請求記号１桁目で割合の少ない点検データを検出
-    
+    check3_list = []
+    check_data = InventoryCheckDatum.where(:inventory_manage_id => self.id, :shelf_flag => 0)
+    check_data.each do |datum|
+
+    end
+
+    check_data = InventoryCheckDatum.where(:inventory_manage_id => self.id, :shelf_flag => 0).pluck(:readcode)
+
     # check4(貸出中)
-    
+    # システムでは貸出中であり、点検データには存在しない場合。
+    check4_list = check4(self.id, shelf_barcode_shelf_ids, check_data)
+
     # check5(未返却)
-    
+    check5_list = check5(self.id, shelf_barcode_shelf_ids, check_data)
+
     # check6(発見)
-    
+    check6_list = check6(self.id, shelf_barcode_shelf_ids, check_data)
+
     # check7(製本不備)
+    # システム内では、「製本済み」であり、点検データの存在する場合。
+    check7_list = check7(self.id, shelf_barcode_shelf_ids, check_data)
     
     # check8(製本中)
-    
+    check8_list = check8(self.id, shelf_barcode_shelf_ids, check_data)
+
     # check9(未登録)
-    
+    check9_list = check9(self.id)
+
     check_finish
   end
 
+  # check4(貸出中)
+  # システムでは貸出中であり、点検データには存在しない場合。
+  #
+  def check4(manage_id, shelf_barcode_shelf_ids, check_data)
+    status_id_on_loan =  CirculationStatus.find_by_name("On Loan").id 
+    checkout_item_identifiers = Item.where(:circulation_status_id => status_id_on_loan, :shelf_id => shelf_barcode_shelf_ids).pluck(:item_identifier)
+    check_list = checkout_item_identifiers - check_data
+    return check_list
+  end
+
+
+  # check5(未返却)
+  # システムでは貸出中であり、点検データには存在する場合。
+  #
+  def check5(manage_id, shelf_barcode_shelf_ids, check_data)
+    status_id_on_loan =  CirculationStatus.find_by_name("On Loan").id 
+    checkout_item_identifiers = Item.where(:circulation_status_id => status_id_on_loan, :shelf_id => shelf_barcode_shelf_ids).pluck(:item_identifier)
+    check_list = checkout_item_identifiers & check_data
+    return check_list
+  end
+
+  # check6(発見)
+  # システムでは、不明、紛失、除籍であるのに点検データに存在する場合。
+  # 
+  def check6(manage_id, shelf_barcode_shelf_ids, check_data)
+    status_ids_on_lost = CirculationStatus.where(:name => ["Circulation Status Undefined", "Lost", "Removed"]).pluck(:id)
+    lost_item_identifiers = Item.where(:circulation_status_id => status_ids_on_lost, :shelf_id => shelf_barcode_shelf_ids).pluck(:item_identifier)
+    check_list = lost_item_identifiers & check_data
+    return check_list
+  end
+
+  # check7(製本不備)
+  # システム内では、「製本済み」であり、点検データの存在する場合。
+  #
+  def check7(manage_id, shelf_barcode_shelf_ids, check_data)
+    status_ids_on_binded = CirculationStatus.where(:name => ["Binded"]).pluck(:id)
+    binded_item_identifiers = Item.where(:circulation_status_id => status_ids_on_binded, :shelf_id => shelf_barcode_shelf_ids).pluck(:item_identifier)
+    check_list = binded_item_identifiers & check_data
+    return check_list
+  end
+
+  # check8(製本中)
+  # システム内では、「製本または修理中」であり、点検データに存在しない場合。
+  def check8(manage_id, shelf_barcode_shelf_ids, check_data)
+    status_ids_in_factory = CirculationStatus.where(:name => ["In Factory"]).pluck(:id)
+    in_factory_item_identifiers = Item.where(:circulation_status_id => status_ids_in_factory, :shelf_id => shelf_barcode_shelf_ids).pluck(:item_identifier)
+    checklist = check_data - in_factory_item_identifiers
+    return checklist
+  end
+
+  # check9(未登録)
+  # システム内の所蔵情報には存在しない点検データコード。
+  # 
+  def check9(manage_id)
+    check_data = InventoryCheckDatum.where(:inventory_manage_id => manage_id, :shelf_flag => 0).pluck(:readcode)
+    item_identifiers = Item.pluck(:item_identifier)
+    checklist = check_data - item_identifiers
+    return checklist
+  end
+
   def copy_shelves_to_inventory_shelves
-=begin
-    Shelf.all.each do |shelf|
-      sql  = "insert into inventory_shelf_barcodes "
-      sql += "(barcode, inventory_manage_id, inventory_shelf_group_id, shelf_id, created_at, updated_at) values "
-      sql += "(#{barcode}, #{self.id}, nil, #{shelf.id}, now(), now())"
-      ActiveRecord::Base.connection.insert(sql)
-    end
-=end
   end
 
   def phase1_check
