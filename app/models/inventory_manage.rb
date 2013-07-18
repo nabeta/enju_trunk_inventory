@@ -40,36 +40,110 @@ class InventoryManage < ActiveRecord::Base
   end
 
   def check
+    logger.info("start check")
     check_start 
 
+    check_list = {}
+
+    InventoryCheckResult.delete_all(["inventory_manage_id = ?", self.id])
    
-    #manifestation_type_ids
-    #shelf_group_ids
-    #InventoryShelfBarcode 
-    shelf_groups = InventoryShelfGroup.find(self.shelf_group_ids)
+    #shelf_groups_ids = InventoryShelfGroup.where(:id => self.shelf_group_ids).pluck(:id)
+    shelf_groups_ids = self.shelf_group_ids.split
     shelf_barcode_shelf_ids = InventoryShelfBarcode.where(:inventory_shelf_group_id => shelf_groups_ids).pluck(:shelf_id)
     
     # check1(所在不明)
     # システム内に存在するのに、点検データには存在しない。
-    item_item_identifiers = Shelf.find(shelf_barcode_shelf_ids).items.pluck("item_identifier")
-    readcodes = InventoryCheckDatum..where(:inventory_manage_id => self.id).pluck(:readcode)
-    check1_list = item_item_identifiers - readcodes
+    check_list[:status_1] = check1(self.id, shelf_barcode_shelf_ids)
     
     # check2(配架間違い)
-    # 2-1:指定資料区分以外の資料が点検データに存在した。
-    check21_list = []
-    if manifestation_type_ids.presnet?
-      readcode_items = Item.joins(:manifestation).where("item_identifier IN (?)", readcodes)
-      readcode_items.each do |i|
-        unless manifestation_type_ids.include?(i.manifestation.manifestation_id) 
-          check21_list << i
-        end
+    check21_list = check21(self.id, self.manifestation_type_ids) 
+    check22_list = check22(self.id) 
+    check_list[:status_2] = check21_list + check22_list
+   
+    # check3(乱れ)
+    check_list[:status_3] = check3(self.id)
+    
+    check_data = InventoryCheckDatum.where(:inventory_manage_id => self.id, :shelf_flag => 0).pluck(:readcode)
+
+    # check4(貸出中)
+    # システムでは貸出中であり、点検データには存在しない場合。
+    check_list[:status_4] = check4(self.id, shelf_barcode_shelf_ids, check_data)
+
+    # check5(未返却)
+    check_list[:status_5] = check5(self.id, shelf_barcode_shelf_ids, check_data)
+
+    # check6(発見)
+    check_list[:status_6] = check6(self.id, shelf_barcode_shelf_ids, check_data)
+
+    # check7(製本不備)
+    # システム内では、「製本済み」であり、点検データの存在する場合。
+    check_list[:status_7] = check7(self.id, shelf_barcode_shelf_ids, check_data)
+    
+    # check8(製本中)
+    check_list[:status_8] = check8(self.id, shelf_barcode_shelf_ids, check_data)
+
+    # check9(未登録)
+    check_list[:status_9] = check9(self.id)
+
+    # 結果データの作成
+    generate_check_results(self.id, check_list, shelf_barcode_shelf_ids)
+
+    check_finish
+    logger.info("end check")
+  end
+
+  #
+  #
+  #
+  def generate_check_results(manage_id, check_list, shelf_barcode_shelf_ids)
+    item_item_identifiers = Item.where(:shelf_id => shelf_barcode_shelf_ids).pluck("item_identifier")
+    check_data = InventoryCheckDatum.where(:inventory_manage_id => self.id, :shelf_flag => 0).pluck(:readcode)
+    merged_list = item_item_identifiers + check_data
+    merged_list.each do |item_identifier|
+      r = InventoryCheckResult.new({:inventory_manage_id => self.id, :item_identifier => item_identifier})
+      r.save!
+    end
+
+    %w(status_1 status_2 status_3 status_4 status_5 status_6 status_7 status_8 status_9).each do |s|
+      if check_list[s.to_sym].present?
+        InventoryCheckResult.update_all("#{s} = 1", ["item_identifier IN (?)", check_list[s.to_sym]])
       end
     end
 
-    # 2-2:システム内の棚と点検データの棚が一致しない。
-    check22_list = []
-    check_data = InventoryCheckDatum.where(:inventory_manage_id => self.id)
+  end
+
+  # check1(所在不明)
+  # システム内に存在するのに、点検データには存在しない。
+  # 
+  def check1(manage_id, shelf_barcode_shelf_ids)
+    item_item_identifiers = Item.where(:shelf_id => shelf_barcode_shelf_ids).pluck("item_identifier")
+    readcodes = InventoryCheckDatum.where(:inventory_manage_id => self.id, :shelf_flag => 0).pluck(:readcode)
+    check_list = item_item_identifiers - readcodes
+    return check_list
+  end
+
+  # check2(配架間違い)
+  # 2-1:指定資料区分以外の資料が点検データに存在した。
+  #    
+  def check21(manage_id, manifestation_type_ids)
+    check_list = []
+    if manifestation_type_ids.present?
+      readcode_items = Item.joins(:manifestation).where("item_identifier IN (?)", readcodes)
+      readcode_items.each do |i|
+        unless manifestation_type_ids.include?(i.manifestation.manifestation_id) 
+          check_list << i
+        end
+      end
+    end
+    return check_list 
+  end
+
+  # check2(配架間違い)
+  # 2-2:システム内の棚と点検データの棚が一致しない。
+  #
+  def check22(manage_id)
+    check_list = []
+    check_data = InventoryCheckDatum.where(:inventory_manage_id => self.id, :shelf_flag => 0)
     check_data.each do |datum|
       invalid_flag = true
       barcode_shelf = InventoryShelfBarcode.find_by_barcode(datum.shelf_name) 
@@ -84,41 +158,22 @@ class InventoryManage < ActiveRecord::Base
         end
       end
       if invalid_flag
-        check22_list << datum.readcode
+        check_list << datum.readcode
       end
     end
-    
-    # check3(乱れ)
-    # 棚内の請求記号１桁目で割合の少ない点検データを検出
-    check3_list = []
-    check_data = InventoryCheckDatum.where(:inventory_manage_id => self.id, :shelf_flag => 0)
+    return check_list 
+  end
+
+  # check3(乱れ)
+  # 棚内の請求記号１桁目で割合の少ない点検データを検出
+  # 
+  def check3(manage_id)
+    check_list = []
+    check_data = InventoryCheckDatum.where(:inventory_manage_id => manage_id, :shelf_flag => 0)
     check_data.each do |datum|
 
     end
-
-    check_data = InventoryCheckDatum.where(:inventory_manage_id => self.id, :shelf_flag => 0).pluck(:readcode)
-
-    # check4(貸出中)
-    # システムでは貸出中であり、点検データには存在しない場合。
-    check4_list = check4(self.id, shelf_barcode_shelf_ids, check_data)
-
-    # check5(未返却)
-    check5_list = check5(self.id, shelf_barcode_shelf_ids, check_data)
-
-    # check6(発見)
-    check6_list = check6(self.id, shelf_barcode_shelf_ids, check_data)
-
-    # check7(製本不備)
-    # システム内では、「製本済み」であり、点検データの存在する場合。
-    check7_list = check7(self.id, shelf_barcode_shelf_ids, check_data)
-    
-    # check8(製本中)
-    check8_list = check8(self.id, shelf_barcode_shelf_ids, check_data)
-
-    # check9(未登録)
-    check9_list = check9(self.id)
-
-    check_finish
+    return check_list
   end
 
   # check4(貸出中)
@@ -231,7 +286,7 @@ class InventoryManage < ActiveRecord::Base
   end
 
   private
-  def chehk_start
+  def check_start
     self.check_started_at = Time.now
     self.check_finished_at = nil
     self.state = 7
