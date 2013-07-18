@@ -1,41 +1,39 @@
-<h1>Listing inventory_check_results</h1>
+<div id="content_detail" class="ui-corner-all">
+<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory_manage')) -%></h1>
+<div id="content_list">
 
-<table>
+<table class="index">
   <tr>
-    <th>Inventory manage</th>
-    <th>Status 1</th>
-    <th>Status 2</th>
-    <th>Status 3</th>
-    <th>Status 4</th>
-    <th>Status 5</th>
-    <th>Status 6</th>
-    <th>Status 7</th>
-    <th>Status 8</th>
-    <th>Status 9</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th><%= t('activerecord.attributes.inventory_check_result.item_identifier') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_result.status_1') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_result.status_2') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_result.status_3') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_result.status_4') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_result.status_5') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_result.status_6') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_result.status_7') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_result.status_8') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_result.status_9') -%> </th>
   </tr>
 
-<% @inventory_check_results.each do |inventory_check_result| %>
-  <tr>
-    <td><%= inventory_check_result.inventory_manage_id %></td>
-    <td><%= inventory_check_result.status_1 %></td>
-    <td><%= inventory_check_result.status_2 %></td>
-    <td><%= inventory_check_result.status_3 %></td>
-    <td><%= inventory_check_result.status_4 %></td>
-    <td><%= inventory_check_result.status_5 %></td>
-    <td><%= inventory_check_result.status_6 %></td>
-    <td><%= inventory_check_result.status_7 %></td>
-    <td><%= inventory_check_result.status_8 %></td>
-    <td><%= inventory_check_result.status_9 %></td>
-    <td><%= link_to 'Show', inventory_check_result %></td>
-    <td><%= link_to 'Edit', edit_inventory_check_result_path(inventory_check_result) %></td>
-    <td><%= link_to 'Destroy', inventory_check_result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<%- @inventory_check_results.each do |inventory_result| -%> 
+  <tr class="line<%= cycle("0", "1") -%>">
+    <td><%= inventory_result.item_identifier -%> </td>
+    <td><%= inventory_result.status_1 -%> </td>
+    <td><%= inventory_result.status_2 -%> </td>
+    <td><%= inventory_result.status_3 -%> </td>
+    <td><%= inventory_result.status_4 -%> </td>
+    <td><%= inventory_result.status_5 -%> </td>
+    <td><%= inventory_result.status_6 -%> </td>
+    <td><%= inventory_result.status_7 -%> </td>
+    <td><%= inventory_result.status_8 -%> </td>
+    <td><%= inventory_result.status_9 -%> </td>
   </tr>
-<% end %>
+<%- end -%> 
 </table>
 
-<br />
+</div>
+</div>
 
-<%= link_to 'New Inventory check result', new_inventory_check_result_path %>
+</div>
+

@@ -21,6 +21,8 @@ ja:
         bind_type: 棚と本棚の関係
         state_name:
           init: 初期
+          check_start: 点検処理実行中
+          check_finish: 点検処理実行済み
           finished: 完了
           undefined: 未定義
         bind_name:
@@ -39,6 +41,17 @@ ja:
         readcode: コード
         read_at: 読取日時
         created_at: 登録日時
+      inventory_check_result:
+        item_identifier: 所蔵情報ID
+        status_1: 所在不明
+        status_2: 配架間違
+        status_3: 乱れ
+        status_4: 貸出中
+        status_5: 未返却
+        status_6: 発見
+        status_7: 製本不備
+        status_8: 製本中
+        status_9: 未登録
 
   inventory_page:
     execute_check: "点検実行"
