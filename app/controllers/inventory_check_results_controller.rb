@@ -5,6 +5,17 @@ class InventoryCheckResultsController < ApplicationController
   # GET /inventory_check_results.json
   def index
     @inventory_check_results = InventoryCheckResult.where(:inventory_manage_id => params[:inventory_manage_id])
+    #puts params[:status_types]
+    if params[:status_types].present?
+      #logger.info "@@@@@10"
+      c = []
+      params[:status_types].keys.each do |k|
+        c <<  "status_#{k} = 1"
+      end
+      append_sql = "(" + c.join(" OR ") + ")"
+      @inventory_check_results = @inventory_check_results.where(append_sql)
+    end
+    prepare
 
     respond_to do |format|
       format.html # index.html.erb
@@ -34,52 +45,11 @@ class InventoryCheckResultsController < ApplicationController
     end
   end
 
-  # GET /inventory_check_results/1/edit
-  def edit
-    @inventory_check_result = InventoryCheckResult.find(params[:id])
-  end
-
-  # POST /inventory_check_results
-  # POST /inventory_check_results.json
-  def create
-    @inventory_check_result = InventoryCheckResult.new(params[:inventory_check_result])
-
-    respond_to do |format|
-      if @inventory_check_result.save
-        format.html { redirect_to @inventory_check_result, notice: 'Inventory check result was successfully created.' }
-        format.json { render json: @inventory_check_result, status: :created, location: @inventory_check_result }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @inventory_check_result.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /inventory_check_results/1
-  # PUT /inventory_check_results/1.json
-  def update
-    @inventory_check_result = InventoryCheckResult.find(params[:id])
-
-    respond_to do |format|
-      if @inventory_check_result.update_attributes(params[:inventory_check_result])
-        format.html { redirect_to @inventory_check_result, notice: 'Inventory check result was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @inventory_check_result.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /inventory_check_results/1
-  # DELETE /inventory_check_results/1.json
-  def destroy
-    @inventory_check_result = InventoryCheckResult.find(params[:id])
-    @inventory_check_result.destroy
-
-    respond_to do |format|
-      format.html { redirect_to inventory_check_results_url }
-      format.json { head :no_content }
+  def prepare
+    @status_types = []
+    for n in (1..9)
+      s = OpenStruct.new({:id => n, :display_name => I18n.t("activerecord.attributes.inventory_check_result.status_#{n}")})
+      @status_types << s
     end
   end
 end

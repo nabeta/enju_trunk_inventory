@@ -43,6 +43,7 @@ ja:
         created_at: 登録日時
       inventory_check_result:
         item_identifier: 所蔵情報ID
+        status: 状態
         status_1: 所在不明
         status_2: 配架間違
         status_3: 乱れ
@@ -52,18 +53,22 @@ ja:
         status_7: 製本不備
         status_8: 製本中
         status_9: 未登録
+        all_select: 全選択
+        all_deselect: 全選択解除
+        description_item_identifier: "前方一致で検索します。"
 
   inventory_page:
     execute_check: "点検実行"
     execute_check_description: "点検実行を開始します。"
+    search: "検索"
+    check:
+      start: '点検実行'
+ 
   page:
     manage: '%{model}の管理'
     confirm: '%{model}の確認'
     finish: '%{model}の完了'
-    inventory:
-      check:
-        start: '点検実行'
-    noselect: 未選択
+    noselect: "未選択"
     no_have_inventory_check_data: "点検データが未登録です。"
     no_have_inventory_shelf_barcode: "棚バーコードが未登録です。"
     no_execute_inventory_check: "蔵書点検のチェック未処理です。"

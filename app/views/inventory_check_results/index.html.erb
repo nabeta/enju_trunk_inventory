@@ -2,6 +2,51 @@
 <h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory_manage')) -%></h1>
 <div id="content_list">
 
+
+<script type="text/javascript">
+function all_select_status_types() {
+  $("#status_types_1").attr("checked", true);
+  $("#status_types_2").attr("checked", true);
+  $("#status_types_3").attr("checked", true);
+  $("#status_types_4").attr("checked", true);
+  $("#status_types_5").attr("checked", true);
+  $("#status_types_6").attr("checked", true);
+  $("#status_types_7").attr("checked", true);
+  $("#status_types_8").attr("checked", true);
+  $("#status_types_9").attr("checked", true);
+}
+function all_deselect_status_types() {
+  $("#status_types_1").attr("checked", false);
+  $("#status_types_2").attr("checked", false);
+  $("#status_types_3").attr("checked", false);
+  $("#status_types_4").attr("checked", false);
+  $("#status_types_5").attr("checked", false);
+  $("#status_types_6").attr("checked", false);
+  $("#status_types_7").attr("checked", false);
+  $("#status_types_8").attr("checked", false);
+  $("#status_types_9").attr("checked", false);
+}
+</script>
+
+
+  <%= form_tag({:action=>"index"}, {:method=>"get"}) do %>
+  <div class="field">
+    <b><%= t('activerecord.attributes.inventory_check_result.item_identifier') %></b>
+    <%= text_field_tag 'item_identifier' %>
+    &nbsp; <%= t('activerecord.attributes.inventory_check_result.description_item_identifier') %>
+    <br />
+    <b><%= t('activerecord.attributes.inventory_check_result.status') %></b>
+    <%- @status_types.each do |status_type| -%>
+      <%= check_box 'status_types', status_type.id, {:checked => true}, true, false %><%= status_type.display_name -%>
+    <%- end -%>
+    <%= button_to_function t('activerecord.attributes.inventory_check_result.all_select'), 'all_select_status_types();' -%>
+    <%= button_to_function t('activerecord.attributes.inventory_check_result.all_deselect'), 'all_deselect_status_types();' -%>
+    <br />
+    <%= submit_tag t('inventory_page.search')  -%>
+  </div>
+
+<% end %>
+
 <table class="index">
   <tr>
     <th><%= t('activerecord.attributes.inventory_check_result.item_identifier') -%> </th>
