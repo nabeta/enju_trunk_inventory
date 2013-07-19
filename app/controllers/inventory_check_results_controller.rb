@@ -5,15 +5,22 @@ class InventoryCheckResultsController < ApplicationController
   # GET /inventory_check_results.json
   def index
     @inventory_check_results = InventoryCheckResult.where(:inventory_manage_id => params[:inventory_manage_id])
+    @status_type_selected = []
+    @item_identifier = ""
     #puts params[:status_types]
     if params[:status_types].present?
-      #logger.info "@@@@@10"
+      @status_type_selected = params[:status_types].keys
       c = []
       params[:status_types].keys.each do |k|
         c <<  "status_#{k} = 1"
       end
       append_sql = "(" + c.join(" OR ") + ")"
       @inventory_check_results = @inventory_check_results.where(append_sql)
+    end
+    if params[:item_identifier].present?
+      @item_identifier = params[:item_identifier]
+      q = "%#{@item_identifier}%"
+      @inventory_check_results = @inventory_check_results.where(["item_identifier like ?", q])
     end
     prepare
 

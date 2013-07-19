@@ -1,5 +1,5 @@
 <div id="content_detail" class="ui-corner-all">
-<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory_manage')) -%></h1>
+<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory_check_result')) -%></h1>
 <div id="content_list">
 
 
@@ -26,23 +26,33 @@ function all_deselect_status_types() {
   $("#status_types_8").attr("checked", false);
   $("#status_types_9").attr("checked", false);
 }
+function error_select_status_types() {
+  $("#status_types_1").attr("checked", true);
+  $("#status_types_5").attr("checked", true);
+  $("#status_types_6").attr("checked", true);
+  $("#status_types_7").attr("checked", true);
+  $("#status_types_9").attr("checked", true);
+}
 </script>
 
 
   <%= form_tag({:action=>"index"}, {:method=>"get"}) do %>
   <div class="field">
     <b><%= t('activerecord.attributes.inventory_check_result.item_identifier') %></b>
-    <%= text_field_tag 'item_identifier' %>
+    <%= text_field_tag 'item_identifier', @item_identifier %>
     &nbsp; <%= t('activerecord.attributes.inventory_check_result.description_item_identifier') %>
     <br />
     <b><%= t('activerecord.attributes.inventory_check_result.status') %></b>
     <%- @status_types.each do |status_type| -%>
-      <%= check_box 'status_types', status_type.id, {:checked => true}, true, false %><%= status_type.display_name -%>
+      <%= check_box 'status_types', status_type.id, {:checked => @status_type_selected.include?(status_type.id.to_s)}, true, false %><%= status_type.display_name -%>
     <%- end -%>
     <%= button_to_function t('activerecord.attributes.inventory_check_result.all_select'), 'all_select_status_types();' -%>
     <%= button_to_function t('activerecord.attributes.inventory_check_result.all_deselect'), 'all_deselect_status_types();' -%>
+    <%= button_to_function t('activerecord.attributes.inventory_check_result.error_select'), 'error_select_status_types();' -%>
     <br />
     <%= submit_tag t('inventory_page.search')  -%>
+    <%= submit_tag t('activerecord.attributes.inventory_check_result.output_check_list')  -%>
+    <%= submit_tag t('activerecord.attributes.inventory_check_result.output_check_error_list')  -%>
   </div>
 
 <% end %>
@@ -59,20 +69,22 @@ function all_deselect_status_types() {
     <th><%= t('activerecord.attributes.inventory_check_result.status_7') -%> </th>
     <th><%= t('activerecord.attributes.inventory_check_result.status_8') -%> </th>
     <th><%= t('activerecord.attributes.inventory_check_result.status_9') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_result.skip_flag') -%> </th>
   </tr>
 
 <%- @inventory_check_results.each do |inventory_result| -%> 
   <tr class="line<%= cycle("0", "1") -%>">
     <td><%= inventory_result.item_identifier -%> </td>
-    <td><%= inventory_result.status_1 -%> </td>
-    <td><%= inventory_result.status_2 -%> </td>
-    <td><%= inventory_result.status_3 -%> </td>
-    <td><%= inventory_result.status_4 -%> </td>
-    <td><%= inventory_result.status_5 -%> </td>
-    <td><%= inventory_result.status_6 -%> </td>
-    <td><%= inventory_result.status_7 -%> </td>
-    <td><%= inventory_result.status_8 -%> </td>
-    <td><%= inventory_result.status_9 -%> </td>
+    <td><%= mark(inventory_result.status_1) -%> </td>
+    <td><%= mark(inventory_result.status_2) -%> </td>
+    <td><%= mark(inventory_result.status_3) -%> </td>
+    <td><%= mark(inventory_result.status_4) -%> </td>
+    <td><%= mark(inventory_result.status_5) -%> </td>
+    <td><%= mark(inventory_result.status_6) -%> </td>
+    <td><%= mark(inventory_result.status_7) -%> </td>
+    <td><%= mark(inventory_result.status_8) -%> </td>
+    <td><%= mark(inventory_result.status_9) -%> </td>
+    <td><%= mark(inventory_result.skip_flag) -%> </td>
   </tr>
 <%- end -%> 
 </table>

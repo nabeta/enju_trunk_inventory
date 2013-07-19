@@ -55,7 +55,13 @@ ja:
         status_9: 未登録
         all_select: 全選択
         all_deselect: 全選択解除
+        error_select: エラー項目選択
         description_item_identifier: "前方一致で検索します。"
+        skip_flag: スキップ
+        result_on_mark: "*"
+        result_skip_mark: "$"
+        output_check_list: "指定の条件で点検リストを出力する"
+        output_check_error_list: "点検エラーリストを出力する"
 
   inventory_page:
     execute_check: "点検実行"
