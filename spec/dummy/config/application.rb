@@ -57,3 +57,7 @@ module Dummy
   end
 end
 
+require 'enju_core'
+require 'paperclip'
+require 'state_machine'
+require 'vcr'

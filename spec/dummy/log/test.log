@@ -1,3 +1,195 @@
 Connecting to database specified by database.yml
   [1m[36m (0.3ms)[0m  [1mbegin transaction[0m
   [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (2.6ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateEnjuTrunkInventoryInventoryManages (20130617094558)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "inventory_manages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "display_name" varchar(255), "manifestation_type_ids" varchar(255), "shelf_group_ids" varchar(255), "notification_dest" text, "state" integer DEFAULT 0 NOT NULL, "finished_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130617094558')[0m
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to CreateEnjuTrunkInventoryInventoryShelfGroups (20130618043123)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "inventory_shelf_groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "display_name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130618043123')[0m
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to AddInitrecordsToInventoryShelfGroups (20130621043814)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mInventoryShelfGroup Exists (0.1ms)[0m  SELECT 1 AS one FROM "inventory_shelf_groups" WHERE "inventory_shelf_groups"."name" = 'S1' LIMIT 1
+  [1m[36mSQL (3.7ms)[0m  [1mINSERT INTO "inventory_shelf_groups" ("created_at", "display_name", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Mon, 22 Jul 2013 07:33:21 UTC +00:00], ["display_name", "図書"], ["name", "S1"], ["updated_at", Mon, 22 Jul 2013 07:33:21 UTC +00:00]]
+  [1m[35mInventoryShelfGroup Exists (0.1ms)[0m  SELECT 1 AS one FROM "inventory_shelf_groups" WHERE "inventory_shelf_groups"."name" = 'S2' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "inventory_shelf_groups" ("created_at", "display_name", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Mon, 22 Jul 2013 07:33:21 UTC +00:00], ["display_name", "雑誌"], ["name", "S2"], ["updated_at", Mon, 22 Jul 2013 07:33:21 UTC +00:00]]
+  [1m[35mInventoryShelfGroup Exists (0.1ms)[0m  SELECT 1 AS one FROM "inventory_shelf_groups" WHERE "inventory_shelf_groups"."name" = 'S3' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "inventory_shelf_groups" ("created_at", "display_name", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Mon, 22 Jul 2013 07:33:21 UTC +00:00], ["display_name", "資料"], ["name", "S3"], ["updated_at", Mon, 22 Jul 2013 07:33:21 UTC +00:00]]
+  [1m[35mInventoryShelfGroup Exists (0.1ms)[0m  SELECT 1 AS one FROM "inventory_shelf_groups" WHERE "inventory_shelf_groups"."name" = 'S4' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "inventory_shelf_groups" ("created_at", "display_name", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Mon, 22 Jul 2013 07:33:21 UTC +00:00], ["display_name", "短期"], ["name", "S4"], ["updated_at", Mon, 22 Jul 2013 07:33:21 UTC +00:00]]
+  [1m[35mInventoryShelfGroup Exists (0.1ms)[0m  SELECT 1 AS one FROM "inventory_shelf_groups" WHERE "inventory_shelf_groups"."name" = 'S5' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "inventory_shelf_groups" ("created_at", "display_name", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Mon, 22 Jul 2013 07:33:21 UTC +00:00], ["display_name", "予備"], ["name", "S5"], ["updated_at", Mon, 22 Jul 2013 07:33:21 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130621043814')
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateEnjuTrunkInventoryInventoryShelfBarcodes (20130621071413)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "inventory_shelf_barcodes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "barcode" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130621071413')
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddColumnShelfBindTypeToInventoryManage (20130624061938)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "inventory_manages" ADD "bind_type" varchar(255) DEFAULT '0' NOT NULL[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130624061938')
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddCloumnInventoryManageIdToInventoryShelfBarcode (20130624091715)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "inventory_shelf_barcodes" ADD "inventory_manage_id" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "inventory_shelf_barcodes" ADD "inventory_shelf_group_id" integer
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130624091715')[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to AddColumnShelfIdToInventoryShelfBarcode (20130701022803)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "inventory_shelf_barcodes" ADD "shelf_id" integer
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130701022803')[0m
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to CreateEnjuTrunkInventoryInventoryCheckResults (20130702023924)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "inventory_check_results" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "inventory_manage_id" integer, "status_1" integer, "status_2" integer, "status_3" integer, "status_4" integer, "status_5" integer, "status_6" integer, "status_7" integer, "status_8" integer, "status_9" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130702023924')[0m
+  [1m[35m (0.8ms)[0m  commit transaction
+Migrating to CreateEnjuTrunkInventoryInventoryCheckData (20130702040135)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "inventory_check_data" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "inventory_manage_id" integer NOT NULL, "readcode" varchar(255) NOT NULL, "read_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130702040135')[0m
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to CreateEnjuTrunkInventoryInventoryShelfBarcodeImportFiles (20130702111905)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "inventory_shelf_barcode_import_files" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content_type" varchar(255), "size" integer, "file_hash" varchar(255), "user_id" integer, "note" text, "imported_at" datetime, "state" varchar(255), "inventory_shelf_barcode_import_file_name" varchar(255), "inventory_shelf_barcode_import_content_type" varchar(255), "inventory_shelf_barcode_import_file_size" integer, "inventory_shelf_barcode_import_updated_at" datetime, "edit_mode" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130702111905')[0m
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to CreateEnjuTrunkInventoryInventoryShelfBarcodeImportResults (20130703063929)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "inventory_shelf_barcode_import_results" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "inventory_shelf_barcode_import_file_id" integer, "user_id" integer, "body" text, "error_msg" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130703063929')[0m
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to AddColumnInventoryManageIdToInventoryShelfBarcodeImportFile (20130703120028)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "inventory_shelf_barcode_import_files" ADD "inventory_manage_id" integer
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130703120028')[0m
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to CreateEnjuTrunkInventoryInventoryCheckDataImportFiles (20130706074259)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "inventory_check_data_import_files" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content_type" varchar(255), "size" integer, "file_hash" varchar(255), "user_id" integer, "note" text, "imported_at" datetime, "state" varchar(255), "inventory_check_data_import_file_name" varchar(255), "inventory_check_data_import_content_type" varchar(255), "inventory_check_data_import_file_size" integer, "inventory_check_data_import_updated_at" datetime, "edit_mode" varchar(255), "inventory_manage_id" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130706074259')[0m
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to CreateEnjuTrunkInventoryInventoryCheckDataImportResults (20130706080720)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "enju_trunk_inventory_inventory_check_data_import_results" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "inventory_check_data_import_file_id" integer, "body" text, "error_msg" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130706080720')[0m
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to CreateInventoryCheckDataImportResults (20130711034908)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "inventory_check_data_import_results" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "inventory_check_data_import_file_id" integer, "user_id" integer, "body" text, "error_msg" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130711034908')[0m
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to AddColumnToInventoryManage (20130712043634)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "inventory_manages" ADD "check_started_at" datetime
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "inventory_manages" ADD "check_finished_at" datetime[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130712043634')
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddColumnShelfFlagAndShelfNameToInventoryCheckData (20130717072719)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "inventory_check_data" ADD "shelf_flag" integer DEFAULT 0[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "inventory_check_data" ADD "shelf_name" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130717072719')[0m
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to AddColumnItemIdentifierToInventoryCheckResults (20130718080004)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "inventory_check_results" ADD "item_identifier" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_inventory_check_results_on_item_identifier" ON "inventory_check_results" ("item_identifier")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130718080004')
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to AddColumnSkipFlagToInventoryCheckResults (20130719103823)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "inventory_check_results" ADD "skip_flag" integer DEFAULT 0[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_inventory_check_results_on_skip_flag" ON "inventory_check_results" ("skip_flag")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "inventory_check_results_index_1" ON "inventory_check_results" ("status_1", "status_2", "status_3", "status_4", "status_5", "status_6", "status_7", "status_8", "status_9")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130719103823')
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction

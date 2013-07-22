@@ -1,10 +1,7 @@
-require_dependency "enju_trunk_inventory/application_controller"
-
-require 'ostruct'
-
 class InventoryManagesController < ApplicationController
-  # GET /inventory_manages
-  # GET /inventory_manages.json
+  before_filter :authenticate_user!
+  before_filter :check_librarian
+
   def index
     @inventory_manages = InventoryManage.all
     prepare_option
@@ -15,8 +12,6 @@ class InventoryManagesController < ApplicationController
     end
   end
 
-  # GET /inventory_manages/1
-  # GET /inventory_manages/1.json
   def show
     @inventory_manage = InventoryManage.find(params[:id])
     @inventory_notifications = @inventory_manage.phase1_check
@@ -27,8 +22,6 @@ class InventoryManagesController < ApplicationController
     end
   end
 
-  # GET /inventory_manages/new
-  # GET /inventory_manages/new.json
   def new
     @inventory_manage = InventoryManage.new
     prepare_option
@@ -39,14 +32,11 @@ class InventoryManagesController < ApplicationController
     end
   end
 
-  # GET /inventory_manages/1/edit
   def edit
     @inventory_manage = InventoryManage.find(params[:id])
     prepare_option
   end
 
-  # POST /inventory_manages
-  # POST /inventory_manages.json
   def create
     @inventory_manage = InventoryManage.new(params[:inventory_manage])
     prepare_option
@@ -61,8 +51,6 @@ class InventoryManagesController < ApplicationController
     end
   end
 
-  # PUT /inventory_manages/1
-  # PUT /inventory_manages/1.json
   def update
     @inventory_manage = InventoryManage.find(params[:id])
     prepare_option
@@ -76,8 +64,6 @@ class InventoryManagesController < ApplicationController
     end
   end
 
-  # DELETE /inventory_manages/1
-  # DELETE /inventory_manages/1.json
   def destroy
     @inventory_manage = InventoryManage.find(params[:id])
     @inventory_manage.destroy
