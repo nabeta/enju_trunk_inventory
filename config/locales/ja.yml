@@ -28,6 +28,7 @@ ja:
         bind_name:
           s0: '棚:本棚＝1:1'
         finished_at: 完了日時
+        has_error_combined_type_is_valid: "資料区分もしくは棚区分のいずれかに１つ以上のチェックが必要です。"
       inventory_shelf_group:
         name: ID
         name: 棚分類ID
@@ -43,6 +44,7 @@ ja:
         created_at: 登録日時
       inventory_check_result:
         item_identifier: 所蔵情報ID
+        original_title: タイトル
         status: 状態
         status_1: 所在不明
         status_2: 配架間違
@@ -69,15 +71,16 @@ ja:
     search: "検索"
     check:
       start: '点検実行'
- 
-  page:
-    manage: '%{model}の管理'
-    confirm: '%{model}の確認'
-    finish: '%{model}の完了'
-    noselect: "未選択"
     no_have_inventory_check_data: "点検データが未登録です。"
     no_have_inventory_shelf_barcode: "棚バーコードが未登録です。"
     no_execute_inventory_check: "蔵書点検のチェック未処理です。"
     output_shelf_barcode: "棚バーコード定義を出力(CSV)"
     exec_inventory_check: "蔵書点検のチェック実行"
+    has_error_check_results: "点検エラーがあります。"
+
+  page:
+    manage: '%{model}の管理'
+    confirm: '%{model}の確認'
+    finish: '%{model}の完了'
+    noselect: "未選択"
 

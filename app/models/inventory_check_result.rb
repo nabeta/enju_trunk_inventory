@@ -2,4 +2,64 @@ class InventoryCheckResult < ActiveRecord::Base
   attr_accessible :inventory_manage_id, :status_1, :status_2, :status_3, :status_4, :status_5, :status_6, :status_7, :status_8, :status_9, :item_identifier
 
   default_scope order('item_identifier')
+
+  def self.has_error?(manage_id)
+    error_count = InventoryCheckResult.where("inventory_manage_id = ? and (status_1 = 1 or status_5 = 1 or status_6 = 1 or status_7 = 1 or status_9 = 1)", manage_id).count
+    return (error_count > 0)?(true):(false)
+  end
+
+  def self.get_result_list_tsv(results, options)
+    data = String.new
+    data << "\xEF\xBB\xBF".force_encoding("UTF-8") + "\n"
+=begin
+    # manifestation_checkout_stat
+    # term
+    data << '"' + I18n.t('activerecord.attributes.manifestation_checkout_stat.start_date') + "\"\n"
+    data << '"' + manifestation_checkout_stat.start_date.to_s + "\"\n"
+    data << '"' + I18n.t('activerecord.attributes.manifestation_checkout_stat.end_date') + "\"\n"
+    data << '"' + manifestation_checkout_stat.end_date.to_s + "\"\n"
+    # state
+    data << '"' + I18n.t('activerecord.attributes.manifestation_checkout_stat.state') + "\"\n"
+    data << '"' + manifestation_checkout_stat.state + "\"\n"
+    # note
+    data << '"' + I18n.t('activerecord.attributes.manifestation_checkout_stat.note') + "\"\n"
+    data << '"' + manifestation_checkout_stat.note + "\"\n"
+    data << "\n"
+=end
+
+    columns = [
+      [:item_identifier, 'activerecord.attributes.inventory_check_result.item_identifier'],
+      [:original_title, 'activerecord.attributes.inventory_check_result.original_title'],
+      [:status_1, 'activerecord.attributes.inventory_check_result.status_1'],
+      [:status_2, 'activerecord.attributes.inventory_check_result.status_2'],
+      [:status_3, 'activerecord.attributes.inventory_check_result.status_3'],
+      [:status_4, 'activerecord.attributes.inventory_check_result.status_4'],
+      [:status_5, 'activerecord.attributes.inventory_check_result.status_5'],
+      [:status_6, 'activerecord.attributes.inventory_check_result.status_6'],
+      [:status_7, 'activerecord.attributes.inventory_check_result.status_7'],
+      [:status_8, 'activerecord.attributes.inventory_check_result.status_8'],
+      [:status_9, 'activerecord.attributes.inventory_check_result.status_9'],
+      [:skip_flag, 'activerecord.attributes.inventory_check_result.skip_flag'],
+    ]
+    # title column
+    row = columns.map {|column| I18n.t(column[1])}
+    data << '"'+row.join("\"\t\"")+"\"\n"
+
+    results.each do |r|
+      row = []
+      columns.each do |column|
+        case column[0]
+        when :original_title
+          manifestation = ""
+          #nmanifestation = stat.manifestation.original_title if stat.manifestation
+          row << manifestation
+        when :item_identifier, :status_1, :status_2, :status_3, :status_4, :status_5,
+              :status_6, :status_7, :status_8, :status_9, :skip_flag
+          row << r.__send__(column[0])
+        end
+      end
+      data << '"' + row.join("\"\t\"") + "\"\n"
+    end
+    return data
+  end
 end

@@ -30,6 +30,10 @@
 <p>
   <strong><%= t('activerecord.attributes.inventory_manage.state') -%> :</strong>
   <%= inventory_manage_state(@inventory_manage) -%> 
+  <br />
+  <% @inventory_check_errors.each do |msg| -%>
+    <%= msg -%>
+  <% end -%>
 </p>
 
 <p>

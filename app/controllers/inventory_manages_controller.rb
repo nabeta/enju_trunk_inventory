@@ -15,6 +15,10 @@ class InventoryManagesController < ApplicationController
   def show
     @inventory_manage = InventoryManage.find(params[:id])
     @inventory_notifications = @inventory_manage.phase1_check
+    @inventory_check_errors = []
+    if InventoryCheckResult.has_error?(params[:id])
+      @inventory_check_errors << I18n.t("inventory_page.has_error_check_results")
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -76,6 +80,9 @@ class InventoryManagesController < ApplicationController
 
   def finish
     @inventory_manage = InventoryManage.find(params[:id])
+    if InventoryCheckResult.has_error?(params[:id])
+      @inventory_manage.errors[:base] << I18n.t("inventory_page.has_error_check_results")
+    end
     prepare_option
   end
 

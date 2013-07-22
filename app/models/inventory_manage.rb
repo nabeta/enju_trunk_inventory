@@ -1,4 +1,6 @@
 # coding: utf-8 
+class EnjuTrunkInventoryCheckError < StandardError ; end
+
 class InventoryManage < ActiveRecord::Base
   attr_accessible :display_name, :manifestation_type_ids, :notification_dest, :shelf_group_ids, :state, :shelf_groups, :manifestation_types, :bind_type
 
@@ -14,6 +16,7 @@ class InventoryManage < ActiveRecord::Base
     if self.manifestation_type_ids.present? || self.shelf_group_ids.present?
       return true 
     end
+    errors[:base] << I18n.t("activerecord.attributes.inventory_manage.has_error_combined_type_is_valid")
     false
   end
 
@@ -47,9 +50,12 @@ class InventoryManage < ActiveRecord::Base
 
     InventoryCheckResult.delete_all(["inventory_manage_id = ?", self.id])
    
-    #shelf_groups_ids = InventoryShelfGroup.where(:id => self.shelf_group_ids).pluck(:id)
     shelf_groups_ids = self.shelf_group_ids.split
-    shelf_barcode_shelf_ids = InventoryShelfBarcode.where(:inventory_shelf_group_id => shelf_groups_ids).pluck(:shelf_id)
+    shelf_barcode_shelf_ids = InventoryShelfBarcode.where(:inventory_manage_id => self.id, :inventory_shelf_group_id => shelf_groups_ids).pluck(:shelf_id)
+
+    if shelf_barcode_shelf_ids.empty?
+      raise EnjuTrunkInventoryCheckError("ShelfBarcode is empry.")
+    end
     
     # check1(所在不明)
     # システム内に存在するのに、点検データには存在しない。
@@ -98,8 +104,8 @@ class InventoryManage < ActiveRecord::Base
   def generate_check_results(manage_id, check_list, shelf_barcode_shelf_ids)
     item_item_identifiers = Item.where(:shelf_id => shelf_barcode_shelf_ids).pluck("item_identifier")
     check_data = InventoryCheckDatum.where(:inventory_manage_id => self.id, :shelf_flag => 0).pluck(:readcode)
-    merged_list = item_item_identifiers + check_data
-    merged_list.each do |item_identifier|
+    merged_list = item_item_identifiers | check_data
+    merged_list.sort.each do |item_identifier|
       r = InventoryCheckResult.new({:inventory_manage_id => self.id, :item_identifier => item_identifier})
       r.save!
     end
@@ -244,17 +250,17 @@ class InventoryManage < ActiveRecord::Base
 
     if self.inventory_shelf_barcodes.blank?
       n = OpenStruct.new
-      n.message = I18n.t("page.no_have_inventory_shelf_barcode")
+      n.message = I18n.t("inventory_page.no_have_inventory_shelf_barcode")
       notifications << n
     end
     if self.inventory_check_data.blank?
       n = OpenStruct.new
-      n.message = I18n.t("page.no_have_inventory_check_data")
+      n.message = I18n.t("inventory_page.no_have_inventory_check_data")
       notifications << n
     end
     if notifications.size == 0 && self.inventory_check_results.blank?
       n = OpenStruct.new
-      n.message = I18n.t("page.no_execute_inventory_check")
+      n.message = I18n.t("inventory_page.no_execute_inventory_check")
       notifications << n
  
     end

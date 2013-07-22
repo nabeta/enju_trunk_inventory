@@ -1,8 +1,6 @@
 require_dependency "enju_trunk_inventory/application_controller"
 
 class InventoryCheckResultsController < ApplicationController
-  # GET /inventory_check_results
-  # GET /inventory_check_results.json
   def index
     @inventory_check_results = InventoryCheckResult.where(:inventory_manage_id => params[:inventory_manage_id])
     @status_type_selected = []
@@ -22,6 +20,12 @@ class InventoryCheckResultsController < ApplicationController
       q = "%#{@item_identifier}%"
       @inventory_check_results = @inventory_check_results.where(["item_identifier like ?", q])
     end
+
+    if params[:output_check_error_list] || params[:output_check_list]
+      send_data InventoryCheckResult.get_result_list_tsv(@inventory_check_results, params) , :filename => "inventory_check_resul"
+      return
+    end
+
     prepare
 
     respond_to do |format|
@@ -30,8 +34,6 @@ class InventoryCheckResultsController < ApplicationController
     end
   end
 
-  # GET /inventory_check_results/1
-  # GET /inventory_check_results/1.json
   def show
     @inventory_check_result = InventoryCheckResult.find(params[:id])
 

@@ -14,14 +14,14 @@
       <img src="./assets/0.7.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2013-07-22T17:41:08+09:00">2013-07-22T17:41:08+09:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2013-07-22T19:32:34+09:00">2013-07-22T19:32:34+09:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">27.01%</span></span>
+    (<span class="covered_percent"><span class="red">27.12%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
@@ -32,9 +32,9 @@
   <a name="AllFiles"></a>
   <div>
     <b>37</b> files in total.
-    <b>881</b> relevant lines. 
-    <span class="green"><b>238</b> lines covered</span> and
-    <span class="red"><b>643</b> lines missed </span>
+    <b>885</b> relevant lines. 
+    <span class="green"><b>240</b> lines covered</span> and
+    <span class="red"><b>645</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -322,12 +322,12 @@
       
       <tr>
         <td class="strong"><a href="#639bb27d3141937faa77566a842985fc2f453c20" class="src_link" title="app/models/inventory_manage.rb">app/models/inventory_manage.rb</a></td>
-        <td class="red strong">20.75 %</td>
-        <td>302</td>
-        <td>159</td>
-        <td>33</td>
-        <td>126</td>
-        <td>0.2</td>
+        <td class="red strong">21.47 %</td>
+        <td>308</td>
+        <td>163</td>
+        <td>35</td>
+        <td>128</td>
+        <td>0.3</td>
       </tr>
       
       <tr>
@@ -576,20 +576,20 @@
           <div class="file_list_container" id="Models">
   <h2>
     <span class="group_name">Models</span>
-    (<span class="covered_percent"><span class="red">29.26%</span></span>
+    (<span class="covered_percent"><span class="red">29.47%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.69
+         0.7
        </span>
     </span> hits/line)
   </h2>
   <a name="Models"></a>
   <div>
     <b>11</b> files in total.
-    <b>376</b> relevant lines. 
-    <span class="green"><b>110</b> lines covered</span> and
-    <span class="red"><b>266</b> lines missed </span>
+    <b>380</b> relevant lines. 
+    <span class="green"><b>112</b> lines covered</span> and
+    <span class="red"><b>268</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -647,12 +647,12 @@
       
       <tr>
         <td class="strong"><a href="#639bb27d3141937faa77566a842985fc2f453c20" class="src_link" title="app/models/inventory_manage.rb">app/models/inventory_manage.rb</a></td>
-        <td class="red strong">20.75 %</td>
-        <td>302</td>
-        <td>159</td>
-        <td>33</td>
-        <td>126</td>
-        <td>0.2</td>
+        <td class="red strong">21.47 %</td>
+        <td>308</td>
+        <td>163</td>
+        <td>35</td>
+        <td>128</td>
+        <td>0.3</td>
       </tr>
       
       <tr>
@@ -8069,11 +8069,11 @@
         <div class="source_table" id="639bb27d3141937faa77566a842985fc2f453c20">
   <div class="header">
     <h3>app/models/inventory_manage.rb</h3>
-    <h4><span class="red">20.75 %</span> covered</h4>
+    <h4><span class="red">21.47 %</span> covered</h4>
     <div>
-      <b>159</b> relevant lines. 
-      <span class="green"><b>33</b> lines covered</span> and
-      <span class="red"><b>126</b> lines missed.</span>
+      <b>163</b> relevant lines. 
+      <span class="green"><b>35</b> lines covered</span> and
+      <span class="red"><b>128</b> lines missed.</span>
     </div>
   </div>
   
@@ -8089,25 +8089,25 @@
         <li class="covered" data-hits="1" data-linenumber="2">
           <span class="hits">1</span>
           
-          <code class="ruby">class InventoryManage &lt; ActiveRecord::Base</code>
+          <code class="ruby">class EnjuTrunkInventoryCheckError &lt; StandardError ; end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="3">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  attr_accessible :display_name, :manifestation_type_ids, :notification_dest, :shelf_group_ids, :state, :shelf_groups, :manifestation_types, :bind_type</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="4">
+        <li class="never" data-hits="" data-linenumber="3">
           
           
           <code class="ruby"></code>
         </li>
       
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class InventoryManage &lt; ActiveRecord::Base</code>
+        </li>
+      
         <li class="covered" data-hits="1" data-linenumber="5">
           <span class="hits">1</span>
           
-          <code class="ruby">  validates :display_name, :presence =&gt; true</code>
+          <code class="ruby">  attr_accessible :display_name, :manifestation_type_ids, :notification_dest, :shelf_group_ids, :state, :shelf_groups, :manifestation_types, :bind_type</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="6">
@@ -8119,7 +8119,7 @@
         <li class="covered" data-hits="1" data-linenumber="7">
           <span class="hits">1</span>
           
-          <code class="ruby">  validate :combined_type_is_valid</code>
+          <code class="ruby">  validates :display_name, :presence =&gt; true</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="8">
@@ -8131,409 +8131,409 @@
         <li class="covered" data-hits="1" data-linenumber="9">
           <span class="hits">1</span>
           
-          <code class="ruby">  has_many :inventory_shelf_barcodes</code>
+          <code class="ruby">  validate :combined_type_is_valid</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="10">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="10">
           
-          <code class="ruby">  has_many :inventory_check_data</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="11">
           <span class="hits">1</span>
           
-          <code class="ruby">  has_many :inventory_check_results</code>
+          <code class="ruby">  has_many :inventory_shelf_barcodes</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="12">
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">  has_many :inventory_check_data</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="13">
           <span class="hits">1</span>
           
+          <code class="ruby">  has_many :inventory_check_results</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="15">
+          <span class="hits">1</span>
+          
           <code class="ruby">  def combined_type_is_valid</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="14">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="16">
+          <span class="hits">4</span>
           
           <code class="ruby">    if self.manifestation_type_ids.present? || self.shelf_group_ids.present?</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="15">
+        <li class="missed" data-hits="0" data-linenumber="17">
           
           
           <code class="ruby">      return true </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="16">
+        <li class="never" data-hits="" data-linenumber="18">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="17">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="19">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    errors[:base] &lt;&lt; I18n.t(&quot;activerecord.attributes.inventory_manage.has_error_combined_type_is_valid&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="20">
+          <span class="hits">4</span>
           
           <code class="ruby">    false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="18">
+        <li class="never" data-hits="" data-linenumber="21">
           
           
           <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="19">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="20">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def manifestation_types</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="21">
-          
-          
-          <code class="ruby">    self.manifestation_type_ids.split(',') rescue []</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="22">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="23">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="24">
+        <li class="covered" data-hits="1" data-linenumber="23">
           <span class="hits">1</span>
           
-          <code class="ruby">  def manifestation_types=(manifestation_types)</code>
+          <code class="ruby">  def manifestation_types</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="25">
+        <li class="missed" data-hits="0" data-linenumber="24">
           
           
-          <code class="ruby">    self.manifestation_type_ids = manifestation_types.join(',')</code>
+          <code class="ruby">    self.manifestation_type_ids.split(',') rescue []</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="25">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="26">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="27">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="28">
+        <li class="covered" data-hits="1" data-linenumber="27">
           <span class="hits">1</span>
           
-          <code class="ruby">  def shelf_groups</code>
+          <code class="ruby">  def manifestation_types=(manifestation_types)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="29">
+        <li class="missed" data-hits="0" data-linenumber="28">
           
           
-          <code class="ruby">    self.shelf_group_ids.split(',') rescue []</code>
+          <code class="ruby">    self.manifestation_type_ids = manifestation_types.join(',')</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="29">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="30">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="31">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="32">
+        <li class="covered" data-hits="1" data-linenumber="31">
           <span class="hits">1</span>
           
-          <code class="ruby">  def shelf_groups=(shelf_groups)</code>
+          <code class="ruby">  def shelf_groups</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="33">
+        <li class="missed" data-hits="0" data-linenumber="32">
           
           
-          <code class="ruby">    self.shelf_group_ids = shelf_groups.join(',')</code>
+          <code class="ruby">    self.shelf_group_ids.split(',') rescue []</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="33">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="34">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="35">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def shelf_groups=(shelf_groups)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="36">
+          
+          
+          <code class="ruby">    self.shelf_group_ids = shelf_groups.join(',')</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="37">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="35">
+        <li class="never" data-hits="" data-linenumber="38">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="36">
+        <li class="covered" data-hits="1" data-linenumber="39">
           <span class="hits">1</span>
           
           <code class="ruby">  def finished</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="37">
+        <li class="missed" data-hits="0" data-linenumber="40">
           
           
           <code class="ruby">    self.finished_at = Time.now</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="38">
+        <li class="missed" data-hits="0" data-linenumber="41">
           
           
           <code class="ruby">    self.state = 9</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="39">
+        <li class="missed" data-hits="0" data-linenumber="42">
           
           
           <code class="ruby">    self.save!</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="40">
+        <li class="never" data-hits="" data-linenumber="43">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="41">
+        <li class="never" data-hits="" data-linenumber="44">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="42">
+        <li class="covered" data-hits="1" data-linenumber="45">
           <span class="hits">1</span>
           
           <code class="ruby">  def check</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="43">
+        <li class="missed" data-hits="0" data-linenumber="46">
           
           
           <code class="ruby">    logger.info(&quot;start check&quot;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="44">
+        <li class="missed" data-hits="0" data-linenumber="47">
           
           
           <code class="ruby">    check_start </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="45">
+        <li class="never" data-hits="" data-linenumber="48">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="46">
+        <li class="missed" data-hits="0" data-linenumber="49">
           
           
           <code class="ruby">    check_list = {}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="47">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="48">
-          
-          
-          <code class="ruby">    InventoryCheckResult.delete_all([&quot;inventory_manage_id = ?&quot;, self.id])</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="49">
-          
-          
-          <code class="ruby">   </code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="50">
           
           
-          <code class="ruby">    #shelf_groups_ids = InventoryShelfGroup.where(:id =&gt; self.shelf_group_ids).pluck(:id)</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="51">
           
           
-          <code class="ruby">    shelf_groups_ids = self.shelf_group_ids.split</code>
+          <code class="ruby">    InventoryCheckResult.delete_all([&quot;inventory_manage_id = ?&quot;, self.id])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="52">
-          
-          
-          <code class="ruby">    shelf_barcode_shelf_ids = InventoryShelfBarcode.where(:inventory_shelf_group_id =&gt; shelf_groups_ids).pluck(:shelf_id)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="53">
-          
-          
-          <code class="ruby">    </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="54">
-          
-          
-          <code class="ruby">    # check1(所在不明)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="55">
-          
-          
-          <code class="ruby">    # システム内に存在するのに、点検データには存在しない。</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="56">
-          
-          
-          <code class="ruby">    check_list[:status_1] = check1(self.id, shelf_barcode_shelf_ids)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="57">
-          
-          
-          <code class="ruby">    </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="58">
-          
-          
-          <code class="ruby">    # check2(配架間違い)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="59">
-          
-          
-          <code class="ruby">    check21_list = check21(self.id, self.manifestation_type_ids) </code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="60">
-          
-          
-          <code class="ruby">    check22_list = check22(self.id) </code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="61">
-          
-          
-          <code class="ruby">    check_list[:status_2] = check21_list + check22_list</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="62">
+        <li class="never" data-hits="" data-linenumber="52">
           
           
           <code class="ruby">   </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="63">
+        <li class="missed" data-hits="0" data-linenumber="53">
           
           
-          <code class="ruby">    # check3(乱れ)</code>
+          <code class="ruby">    shelf_groups_ids = self.shelf_group_ids.split</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="64">
+        <li class="missed" data-hits="0" data-linenumber="54">
           
           
-          <code class="ruby">    check_list[:status_3] = check3(self.id)</code>
+          <code class="ruby">    shelf_barcode_shelf_ids = InventoryShelfBarcode.where(:inventory_manage_id =&gt; self.id, :inventory_shelf_group_id =&gt; shelf_groups_ids).pluck(:shelf_id)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="65">
+        <li class="never" data-hits="" data-linenumber="55">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="56">
+          
+          
+          <code class="ruby">    if shelf_barcode_shelf_ids.empty?</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="57">
+          
+          
+          <code class="ruby">      raise EnjuTrunkInventoryCheckError(&quot;ShelfBarcode is empry.&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="58">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="59">
           
           
           <code class="ruby">    </code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="60">
+          
+          
+          <code class="ruby">    # check1(所在不明)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="61">
+          
+          
+          <code class="ruby">    # システム内に存在するのに、点検データには存在しない。</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="62">
+          
+          
+          <code class="ruby">    check_list[:status_1] = check1(self.id, shelf_barcode_shelf_ids)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="63">
+          
+          
+          <code class="ruby">    </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="64">
+          
+          
+          <code class="ruby">    # check2(配架間違い)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="65">
+          
+          
+          <code class="ruby">    check21_list = check21(self.id, self.manifestation_type_ids) </code>
+        </li>
+      
         <li class="missed" data-hits="0" data-linenumber="66">
           
           
-          <code class="ruby">    check_data = InventoryCheckDatum.where(:inventory_manage_id =&gt; self.id, :shelf_flag =&gt; 0).pluck(:readcode)</code>
+          <code class="ruby">    check22_list = check22(self.id) </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="67">
+        <li class="missed" data-hits="0" data-linenumber="67">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    check_list[:status_2] = check21_list + check22_list</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="68">
           
           
-          <code class="ruby">    # check4(貸出中)</code>
+          <code class="ruby">   </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="69">
           
           
-          <code class="ruby">    # システムでは貸出中であり、点検データには存在しない場合。</code>
+          <code class="ruby">    # check3(乱れ)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="70">
           
           
-          <code class="ruby">    check_list[:status_4] = check4(self.id, shelf_barcode_shelf_ids, check_data)</code>
+          <code class="ruby">    check_list[:status_3] = check3(self.id)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="71">
           
           
+          <code class="ruby">    </code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="72">
+          
+          
+          <code class="ruby">    check_data = InventoryCheckDatum.where(:inventory_manage_id =&gt; self.id, :shelf_flag =&gt; 0).pluck(:readcode)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="73">
+          
+          
           <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="72">
-          
-          
-          <code class="ruby">    # check5(未返却)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="73">
-          
-          
-          <code class="ruby">    check_list[:status_5] = check5(self.id, shelf_barcode_shelf_ids, check_data)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="74">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    # check4(貸出中)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="75">
           
           
-          <code class="ruby">    # check6(発見)</code>
+          <code class="ruby">    # システムでは貸出中であり、点検データには存在しない場合。</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="76">
           
           
-          <code class="ruby">    check_list[:status_6] = check6(self.id, shelf_barcode_shelf_ids, check_data)</code>
+          <code class="ruby">    check_list[:status_4] = check4(self.id, shelf_barcode_shelf_ids, check_data)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="77">
@@ -8545,73 +8545,73 @@
         <li class="never" data-hits="" data-linenumber="78">
           
           
-          <code class="ruby">    # check7(製本不備)</code>
+          <code class="ruby">    # check5(未返却)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="79">
+        <li class="missed" data-hits="0" data-linenumber="79">
           
           
-          <code class="ruby">    # システム内では、「製本済み」であり、点検データの存在する場合。</code>
+          <code class="ruby">    check_list[:status_5] = check5(self.id, shelf_barcode_shelf_ids, check_data)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="80">
+        <li class="never" data-hits="" data-linenumber="80">
           
           
-          <code class="ruby">    check_list[:status_7] = check7(self.id, shelf_barcode_shelf_ids, check_data)</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="81">
           
           
-          <code class="ruby">    </code>
+          <code class="ruby">    # check6(発見)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="82">
+        <li class="missed" data-hits="0" data-linenumber="82">
           
           
-          <code class="ruby">    # check8(製本中)</code>
+          <code class="ruby">    check_list[:status_6] = check6(self.id, shelf_barcode_shelf_ids, check_data)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="83">
+        <li class="never" data-hits="" data-linenumber="83">
           
           
-          <code class="ruby">    check_list[:status_8] = check8(self.id, shelf_barcode_shelf_ids, check_data)</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="84">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    # check7(製本不備)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="85">
           
           
-          <code class="ruby">    # check9(未登録)</code>
+          <code class="ruby">    # システム内では、「製本済み」であり、点検データの存在する場合。</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="86">
           
           
-          <code class="ruby">    check_list[:status_9] = check9(self.id)</code>
+          <code class="ruby">    check_list[:status_7] = check7(self.id, shelf_barcode_shelf_ids, check_data)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="87">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="88">
           
           
-          <code class="ruby">    # 結果データの作成</code>
+          <code class="ruby">    # check8(製本中)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="89">
           
           
-          <code class="ruby">    generate_check_results(self.id, check_list, shelf_barcode_shelf_ids)</code>
+          <code class="ruby">    check_list[:status_8] = check8(self.id, shelf_barcode_shelf_ids, check_data)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="90">
@@ -8620,124 +8620,124 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="91">
+        <li class="never" data-hits="" data-linenumber="91">
           
           
-          <code class="ruby">    check_finish</code>
+          <code class="ruby">    # check9(未登録)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="92">
           
           
-          <code class="ruby">    logger.info(&quot;end check&quot;)</code>
+          <code class="ruby">    check_list[:status_9] = check9(self.id)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="93">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="94">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    # 結果データの作成</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="95">
+        <li class="missed" data-hits="0" data-linenumber="95">
           
           
-          <code class="ruby">  #</code>
+          <code class="ruby">    generate_check_results(self.id, check_list, shelf_barcode_shelf_ids)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="96">
           
           
-          <code class="ruby">  #</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="97">
+        <li class="missed" data-hits="0" data-linenumber="97">
           
           
-          <code class="ruby">  #</code>
+          <code class="ruby">    check_finish</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="98">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="98">
           
-          <code class="ruby">  def generate_check_results(manage_id, check_list, shelf_barcode_shelf_ids)</code>
+          
+          <code class="ruby">    logger.info(&quot;end check&quot;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="99">
+        <li class="never" data-hits="" data-linenumber="99">
           
           
-          <code class="ruby">    item_item_identifiers = Item.where(:shelf_id =&gt; shelf_barcode_shelf_ids).pluck(&quot;item_identifier&quot;)</code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="100">
-          
-          
-          <code class="ruby">    check_data = InventoryCheckDatum.where(:inventory_manage_id =&gt; self.id, :shelf_flag =&gt; 0).pluck(:readcode)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="101">
-          
-          
-          <code class="ruby">    merged_list = item_item_identifiers + check_data</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="102">
-          
-          
-          <code class="ruby">    merged_list.each do |item_identifier|</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="103">
-          
-          
-          <code class="ruby">      r = InventoryCheckResult.new({:inventory_manage_id =&gt; self.id, :item_identifier =&gt; item_identifier})</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="104">
-          
-          
-          <code class="ruby">      r.save!</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="105">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="106">
+        <li class="never" data-hits="" data-linenumber="100">
           
           
           <code class="ruby"></code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="101">
+          
+          
+          <code class="ruby">  #</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="102">
+          
+          
+          <code class="ruby">  #</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="103">
+          
+          
+          <code class="ruby">  #</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="104">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def generate_check_results(manage_id, check_list, shelf_barcode_shelf_ids)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="105">
+          
+          
+          <code class="ruby">    item_item_identifiers = Item.where(:shelf_id =&gt; shelf_barcode_shelf_ids).pluck(&quot;item_identifier&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="106">
+          
+          
+          <code class="ruby">    check_data = InventoryCheckDatum.where(:inventory_manage_id =&gt; self.id, :shelf_flag =&gt; 0).pluck(:readcode)</code>
+        </li>
+      
         <li class="missed" data-hits="0" data-linenumber="107">
           
           
-          <code class="ruby">    %w(status_1 status_2 status_3 status_4 status_5 status_6 status_7 status_8 status_9).each do |s|</code>
+          <code class="ruby">    merged_list = item_item_identifiers + check_data</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="108">
           
           
-          <code class="ruby">      if check_list[s.to_sym].present?</code>
+          <code class="ruby">    merged_list.each do |item_identifier|</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="109">
           
           
-          <code class="ruby">        InventoryCheckResult.update_all(&quot;#{s} = 1&quot;, [&quot;item_identifier IN (?)&quot;, check_list[s.to_sym]])</code>
+          <code class="ruby">      r = InventoryCheckResult.new({:inventory_manage_id =&gt; self.id, :item_identifier =&gt; item_identifier})</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="110">
+        <li class="missed" data-hits="0" data-linenumber="110">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">      r.save!</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="111">
@@ -8752,790 +8752,790 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="113">
+        <li class="missed" data-hits="0" data-linenumber="113">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    %w(status_1 status_2 status_3 status_4 status_5 status_6 status_7 status_8 status_9).each do |s|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="114">
+        <li class="missed" data-hits="0" data-linenumber="114">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      if check_list[s.to_sym].present?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="115">
+        <li class="missed" data-hits="0" data-linenumber="115">
           
           
-          <code class="ruby">  # check1(所在不明)</code>
+          <code class="ruby">        InventoryCheckResult.update_all(&quot;#{s} = 1&quot;, [&quot;item_identifier IN (?)&quot;, check_list[s.to_sym]])</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="116">
           
           
-          <code class="ruby">  # システム内に存在するのに、点検データには存在しない。</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="117">
           
           
-          <code class="ruby">  # </code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="118">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="118">
           
-          <code class="ruby">  def check1(manage_id, shelf_barcode_shelf_ids)</code>
+          
+          <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="119">
+        <li class="never" data-hits="" data-linenumber="119">
           
           
-          <code class="ruby">    item_item_identifiers = Item.where(:shelf_id =&gt; shelf_barcode_shelf_ids).pluck(&quot;item_identifier&quot;)</code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="120">
+        <li class="never" data-hits="" data-linenumber="120">
           
           
-          <code class="ruby">    readcodes = InventoryCheckDatum.where(:inventory_manage_id =&gt; self.id, :shelf_flag =&gt; 0).pluck(:readcode)</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="121">
+        <li class="never" data-hits="" data-linenumber="121">
           
           
-          <code class="ruby">    check_list = item_item_identifiers - readcodes</code>
+          <code class="ruby">  # check1(所在不明)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="122">
+        <li class="never" data-hits="" data-linenumber="122">
           
           
-          <code class="ruby">    return check_list</code>
+          <code class="ruby">  # システム内に存在するのに、点検データには存在しない。</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="123">
           
           
+          <code class="ruby">  # </code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="124">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def check1(manage_id, shelf_barcode_shelf_ids)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="125">
+          
+          
+          <code class="ruby">    item_item_identifiers = Item.where(:shelf_id =&gt; shelf_barcode_shelf_ids).pluck(&quot;item_identifier&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="126">
+          
+          
+          <code class="ruby">    readcodes = InventoryCheckDatum.where(:inventory_manage_id =&gt; self.id, :shelf_flag =&gt; 0).pluck(:readcode)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="127">
+          
+          
+          <code class="ruby">    check_list = item_item_identifiers - readcodes</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="128">
+          
+          
+          <code class="ruby">    return check_list</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="129">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="124">
+        <li class="never" data-hits="" data-linenumber="130">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="125">
+        <li class="never" data-hits="" data-linenumber="131">
           
           
           <code class="ruby">  # check2(配架間違い)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="126">
+        <li class="never" data-hits="" data-linenumber="132">
           
           
           <code class="ruby">  # 2-1:指定資料区分以外の資料が点検データに存在した。</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="127">
+        <li class="never" data-hits="" data-linenumber="133">
           
           
           <code class="ruby">  #    </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="128">
+        <li class="covered" data-hits="1" data-linenumber="134">
           <span class="hits">1</span>
           
           <code class="ruby">  def check21(manage_id, manifestation_type_ids)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="129">
+        <li class="missed" data-hits="0" data-linenumber="135">
           
           
           <code class="ruby">    check_list = []</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="130">
+        <li class="missed" data-hits="0" data-linenumber="136">
           
           
           <code class="ruby">    if manifestation_type_ids.present?</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="131">
+        <li class="missed" data-hits="0" data-linenumber="137">
           
           
           <code class="ruby">      readcode_items = Item.joins(:manifestation).where(&quot;item_identifier IN (?)&quot;, readcodes)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="132">
+        <li class="missed" data-hits="0" data-linenumber="138">
           
           
           <code class="ruby">      readcode_items.each do |i|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="133">
+        <li class="missed" data-hits="0" data-linenumber="139">
           
           
           <code class="ruby">        unless manifestation_type_ids.include?(i.manifestation.manifestation_id) </code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="134">
+        <li class="missed" data-hits="0" data-linenumber="140">
           
           
           <code class="ruby">          check_list &lt;&lt; i</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="135">
-          
-          
-          <code class="ruby">        end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="136">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="137">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="138">
-          
-          
-          <code class="ruby">    return check_list </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="139">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="140">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="141">
           
           
-          <code class="ruby">  # check2(配架間違い)</code>
+          <code class="ruby">        end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="142">
           
           
-          <code class="ruby">  # 2-2:システム内の棚と点検データの棚が一致しない。</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="143">
           
           
-          <code class="ruby">  #</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="144">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def check22(manage_id)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="145">
-          
-          
-          <code class="ruby">    check_list = []</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="146">
-          
-          
-          <code class="ruby">    check_data = InventoryCheckDatum.where(:inventory_manage_id =&gt; self.id, :shelf_flag =&gt; 0)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="147">
-          
-          
-          <code class="ruby">    check_data.each do |datum|</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="148">
-          
-          
-          <code class="ruby">      invalid_flag = true</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="149">
-          
-          
-          <code class="ruby">      barcode_shelf = InventoryShelfBarcode.find_by_barcode(datum.shelf_name) </code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="150">
-          
-          
-          <code class="ruby">      if barcode_shelf.try(:shelf)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="151">
-          
-          
-          <code class="ruby">        shelf = barcode_shelf.shelf</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="152">
-          
-          
-          <code class="ruby">        item = Item.find_by_item_identifier(datum.readcode)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="153">
-          
-          
-          <code class="ruby">        if item.try(:shelf)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="154">
-          
-          
-          <code class="ruby">          item_shelf = item.shelf</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="155">
-          
-          
-          <code class="ruby">          if item_shelf.id == shelf.id</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="156">
-          
-          
-          <code class="ruby">            invalid_flag = false</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="157">
-          
-          
-          <code class="ruby">          end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="158">
-          
-          
-          <code class="ruby">        end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="159">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="160">
-          
-          
-          <code class="ruby">      if invalid_flag</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="161">
-          
-          
-          <code class="ruby">        check_list &lt;&lt; datum.readcode</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="162">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="163">
-          
-          
           <code class="ruby">    end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="164">
+        <li class="missed" data-hits="0" data-linenumber="144">
           
           
           <code class="ruby">    return check_list </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="165">
+        <li class="never" data-hits="" data-linenumber="145">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="166">
+        <li class="never" data-hits="" data-linenumber="146">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="167">
+        <li class="never" data-hits="" data-linenumber="147">
           
           
-          <code class="ruby">  # check3(乱れ)</code>
+          <code class="ruby">  # check2(配架間違い)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="168">
+        <li class="never" data-hits="" data-linenumber="148">
           
           
-          <code class="ruby">  # 棚内の請求記号１桁目で割合の少ない点検データを検出</code>
+          <code class="ruby">  # 2-2:システム内の棚と点検データの棚が一致しない。</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="169">
+        <li class="never" data-hits="" data-linenumber="149">
           
           
-          <code class="ruby">  # </code>
+          <code class="ruby">  #</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="170">
+        <li class="covered" data-hits="1" data-linenumber="150">
           <span class="hits">1</span>
           
-          <code class="ruby">  def check3(manage_id)</code>
+          <code class="ruby">  def check22(manage_id)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="171">
+        <li class="missed" data-hits="0" data-linenumber="151">
           
           
           <code class="ruby">    check_list = []</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="172">
+        <li class="missed" data-hits="0" data-linenumber="152">
           
           
-          <code class="ruby">    check_data = InventoryCheckDatum.where(:inventory_manage_id =&gt; manage_id, :shelf_flag =&gt; 0)</code>
+          <code class="ruby">    check_data = InventoryCheckDatum.where(:inventory_manage_id =&gt; self.id, :shelf_flag =&gt; 0)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="173">
+        <li class="missed" data-hits="0" data-linenumber="153">
           
           
           <code class="ruby">    check_data.each do |datum|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="174">
+        <li class="missed" data-hits="0" data-linenumber="154">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      invalid_flag = true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="175">
+        <li class="missed" data-hits="0" data-linenumber="155">
+          
+          
+          <code class="ruby">      barcode_shelf = InventoryShelfBarcode.find_by_barcode(datum.shelf_name) </code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="156">
+          
+          
+          <code class="ruby">      if barcode_shelf.try(:shelf)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="157">
+          
+          
+          <code class="ruby">        shelf = barcode_shelf.shelf</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="158">
+          
+          
+          <code class="ruby">        item = Item.find_by_item_identifier(datum.readcode)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="159">
+          
+          
+          <code class="ruby">        if item.try(:shelf)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="160">
+          
+          
+          <code class="ruby">          item_shelf = item.shelf</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="161">
+          
+          
+          <code class="ruby">          if item_shelf.id == shelf.id</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="162">
+          
+          
+          <code class="ruby">            invalid_flag = false</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="163">
+          
+          
+          <code class="ruby">          end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="164">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="165">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="166">
+          
+          
+          <code class="ruby">      if invalid_flag</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="167">
+          
+          
+          <code class="ruby">        check_list &lt;&lt; datum.readcode</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="168">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="169">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="176">
+        <li class="missed" data-hits="0" data-linenumber="170">
           
           
-          <code class="ruby">    return check_list</code>
+          <code class="ruby">    return check_list </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="177">
+        <li class="never" data-hits="" data-linenumber="171">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="178">
+        <li class="never" data-hits="" data-linenumber="172">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="179">
+        <li class="never" data-hits="" data-linenumber="173">
           
           
-          <code class="ruby">  # check4(貸出中)</code>
+          <code class="ruby">  # check3(乱れ)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="174">
+          
+          
+          <code class="ruby">  # 棚内の請求記号１桁目で割合の少ない点検データを検出</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="175">
+          
+          
+          <code class="ruby">  # </code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="176">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def check3(manage_id)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="177">
+          
+          
+          <code class="ruby">    check_list = []</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="178">
+          
+          
+          <code class="ruby">    check_data = InventoryCheckDatum.where(:inventory_manage_id =&gt; manage_id, :shelf_flag =&gt; 0)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="179">
+          
+          
+          <code class="ruby">    check_data.each do |datum|</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="180">
           
           
-          <code class="ruby">  # システムでは貸出中であり、点検データには存在しない場合。</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="181">
           
           
-          <code class="ruby">  #</code>
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="182">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def check4(manage_id, shelf_barcode_shelf_ids, check_data)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="183">
-          
-          
-          <code class="ruby">    status_id_on_loan =  CirculationStatus.find_by_name(&quot;On Loan&quot;).id </code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="184">
-          
-          
-          <code class="ruby">    checkout_item_identifiers = Item.where(:circulation_status_id =&gt; status_id_on_loan, :shelf_id =&gt; shelf_barcode_shelf_ids).pluck(:item_identifier)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="185">
-          
-          
-          <code class="ruby">    check_list = checkout_item_identifiers - check_data</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="186">
+        <li class="missed" data-hits="0" data-linenumber="182">
           
           
           <code class="ruby">    return check_list</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="183">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="184">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="185">
+          
+          
+          <code class="ruby">  # check4(貸出中)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="186">
+          
+          
+          <code class="ruby">  # システムでは貸出中であり、点検データには存在しない場合。</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="187">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="188">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="189">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="190">
-          
-          
-          <code class="ruby">  # check5(未返却)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="191">
-          
-          
-          <code class="ruby">  # システムでは貸出中であり、点検データには存在する場合。</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="192">
-          
-          
           <code class="ruby">  #</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="193">
+        <li class="covered" data-hits="1" data-linenumber="188">
           <span class="hits">1</span>
           
-          <code class="ruby">  def check5(manage_id, shelf_barcode_shelf_ids, check_data)</code>
+          <code class="ruby">  def check4(manage_id, shelf_barcode_shelf_ids, check_data)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="194">
+        <li class="missed" data-hits="0" data-linenumber="189">
           
           
           <code class="ruby">    status_id_on_loan =  CirculationStatus.find_by_name(&quot;On Loan&quot;).id </code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="195">
+        <li class="missed" data-hits="0" data-linenumber="190">
           
           
           <code class="ruby">    checkout_item_identifiers = Item.where(:circulation_status_id =&gt; status_id_on_loan, :shelf_id =&gt; shelf_barcode_shelf_ids).pluck(:item_identifier)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="196">
+        <li class="missed" data-hits="0" data-linenumber="191">
           
           
-          <code class="ruby">    check_list = checkout_item_identifiers &amp; check_data</code>
+          <code class="ruby">    check_list = checkout_item_identifiers - check_data</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="197">
+        <li class="missed" data-hits="0" data-linenumber="192">
           
           
           <code class="ruby">    return check_list</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="193">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="194">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="195">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="196">
+          
+          
+          <code class="ruby">  # check5(未返却)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="197">
+          
+          
+          <code class="ruby">  # システムでは貸出中であり、点検データには存在する場合。</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="198">
           
           
+          <code class="ruby">  #</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="199">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def check5(manage_id, shelf_barcode_shelf_ids, check_data)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="200">
+          
+          
+          <code class="ruby">    status_id_on_loan =  CirculationStatus.find_by_name(&quot;On Loan&quot;).id </code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="201">
+          
+          
+          <code class="ruby">    checkout_item_identifiers = Item.where(:circulation_status_id =&gt; status_id_on_loan, :shelf_id =&gt; shelf_barcode_shelf_ids).pluck(:item_identifier)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="202">
+          
+          
+          <code class="ruby">    check_list = checkout_item_identifiers &amp; check_data</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="203">
+          
+          
+          <code class="ruby">    return check_list</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="204">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="199">
+        <li class="never" data-hits="" data-linenumber="205">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="200">
+        <li class="never" data-hits="" data-linenumber="206">
           
           
           <code class="ruby">  # check6(発見)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="201">
+        <li class="never" data-hits="" data-linenumber="207">
           
           
           <code class="ruby">  # システムでは、不明、紛失、除籍であるのに点検データに存在する場合。</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="202">
+        <li class="never" data-hits="" data-linenumber="208">
           
           
           <code class="ruby">  # </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="203">
+        <li class="covered" data-hits="1" data-linenumber="209">
           <span class="hits">1</span>
           
           <code class="ruby">  def check6(manage_id, shelf_barcode_shelf_ids, check_data)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="204">
+        <li class="missed" data-hits="0" data-linenumber="210">
           
           
           <code class="ruby">    status_ids_on_lost = CirculationStatus.where(:name =&gt; [&quot;Circulation Status Undefined&quot;, &quot;Lost&quot;, &quot;Removed&quot;]).pluck(:id)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="205">
+        <li class="missed" data-hits="0" data-linenumber="211">
           
           
           <code class="ruby">    lost_item_identifiers = Item.where(:circulation_status_id =&gt; status_ids_on_lost, :shelf_id =&gt; shelf_barcode_shelf_ids).pluck(:item_identifier)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="206">
+        <li class="missed" data-hits="0" data-linenumber="212">
           
           
           <code class="ruby">    check_list = lost_item_identifiers &amp; check_data</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="207">
+        <li class="missed" data-hits="0" data-linenumber="213">
           
           
           <code class="ruby">    return check_list</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="208">
+        <li class="never" data-hits="" data-linenumber="214">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="209">
+        <li class="never" data-hits="" data-linenumber="215">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="210">
+        <li class="never" data-hits="" data-linenumber="216">
           
           
           <code class="ruby">  # check7(製本不備)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="211">
+        <li class="never" data-hits="" data-linenumber="217">
           
           
           <code class="ruby">  # システム内では、「製本済み」であり、点検データの存在する場合。</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="212">
+        <li class="never" data-hits="" data-linenumber="218">
           
           
           <code class="ruby">  #</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="213">
+        <li class="covered" data-hits="1" data-linenumber="219">
           <span class="hits">1</span>
           
           <code class="ruby">  def check7(manage_id, shelf_barcode_shelf_ids, check_data)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="214">
+        <li class="missed" data-hits="0" data-linenumber="220">
           
           
           <code class="ruby">    status_ids_on_binded = CirculationStatus.where(:name =&gt; [&quot;Binded&quot;]).pluck(:id)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="215">
+        <li class="missed" data-hits="0" data-linenumber="221">
           
           
           <code class="ruby">    binded_item_identifiers = Item.where(:circulation_status_id =&gt; status_ids_on_binded, :shelf_id =&gt; shelf_barcode_shelf_ids).pluck(:item_identifier)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="216">
+        <li class="missed" data-hits="0" data-linenumber="222">
           
           
           <code class="ruby">    check_list = binded_item_identifiers &amp; check_data</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="217">
+        <li class="missed" data-hits="0" data-linenumber="223">
           
           
           <code class="ruby">    return check_list</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="218">
+        <li class="never" data-hits="" data-linenumber="224">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="219">
+        <li class="never" data-hits="" data-linenumber="225">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="220">
+        <li class="never" data-hits="" data-linenumber="226">
           
           
           <code class="ruby">  # check8(製本中)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="221">
+        <li class="never" data-hits="" data-linenumber="227">
           
           
           <code class="ruby">  # システム内では、「製本または修理中」であり、点検データに存在しない場合。</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="222">
+        <li class="covered" data-hits="1" data-linenumber="228">
           <span class="hits">1</span>
           
           <code class="ruby">  def check8(manage_id, shelf_barcode_shelf_ids, check_data)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="223">
+        <li class="missed" data-hits="0" data-linenumber="229">
           
           
           <code class="ruby">    status_ids_in_factory = CirculationStatus.where(:name =&gt; [&quot;In Factory&quot;]).pluck(:id)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="224">
+        <li class="missed" data-hits="0" data-linenumber="230">
           
           
           <code class="ruby">    in_factory_item_identifiers = Item.where(:circulation_status_id =&gt; status_ids_in_factory, :shelf_id =&gt; shelf_barcode_shelf_ids).pluck(:item_identifier)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="225">
+        <li class="missed" data-hits="0" data-linenumber="231">
           
           
           <code class="ruby">    checklist = check_data - in_factory_item_identifiers</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="226">
+        <li class="missed" data-hits="0" data-linenumber="232">
           
           
           <code class="ruby">    return checklist</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="227">
+        <li class="never" data-hits="" data-linenumber="233">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="228">
+        <li class="never" data-hits="" data-linenumber="234">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="229">
+        <li class="never" data-hits="" data-linenumber="235">
           
           
           <code class="ruby">  # check9(未登録)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="230">
+        <li class="never" data-hits="" data-linenumber="236">
           
           
           <code class="ruby">  # システム内の所蔵情報には存在しない点検データコード。</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="231">
+        <li class="never" data-hits="" data-linenumber="237">
           
           
           <code class="ruby">  # </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="232">
+        <li class="covered" data-hits="1" data-linenumber="238">
           <span class="hits">1</span>
           
           <code class="ruby">  def check9(manage_id)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="233">
+        <li class="missed" data-hits="0" data-linenumber="239">
           
           
           <code class="ruby">    check_data = InventoryCheckDatum.where(:inventory_manage_id =&gt; manage_id, :shelf_flag =&gt; 0).pluck(:readcode)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="234">
+        <li class="missed" data-hits="0" data-linenumber="240">
           
           
           <code class="ruby">    item_identifiers = Item.pluck(:item_identifier)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="235">
+        <li class="missed" data-hits="0" data-linenumber="241">
           
           
           <code class="ruby">    checklist = check_data - item_identifiers</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="236">
+        <li class="missed" data-hits="0" data-linenumber="242">
           
           
           <code class="ruby">    return checklist</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="237">
+        <li class="never" data-hits="" data-linenumber="243">
           
           
           <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="238">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="239">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def copy_shelves_to_inventory_shelves</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="240">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="241">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="242">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def phase1_check</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="243">
-          
-          
-          <code class="ruby">    notifications = []</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="244">
@@ -9544,94 +9544,94 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="245">
+        <li class="covered" data-hits="1" data-linenumber="245">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    if self.inventory_shelf_barcodes.blank?</code>
+          <code class="ruby">  def copy_shelves_to_inventory_shelves</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="246">
+        <li class="never" data-hits="" data-linenumber="246">
           
           
-          <code class="ruby">      n = OpenStruct.new</code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="247">
+        <li class="never" data-hits="" data-linenumber="247">
           
           
-          <code class="ruby">      n.message = I18n.t(&quot;page.no_have_inventory_shelf_barcode&quot;)</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="248">
+        <li class="covered" data-hits="1" data-linenumber="248">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">      notifications &lt;&lt; n</code>
+          <code class="ruby">  def phase1_check</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="249">
+        <li class="missed" data-hits="0" data-linenumber="249">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">    notifications = []</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="250">
+        <li class="never" data-hits="" data-linenumber="250">
           
           
-          <code class="ruby">    if self.inventory_check_data.blank?</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="251">
           
           
-          <code class="ruby">      n = OpenStruct.new</code>
+          <code class="ruby">    if self.inventory_shelf_barcodes.blank?</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="252">
           
           
-          <code class="ruby">      n.message = I18n.t(&quot;page.no_have_inventory_check_data&quot;)</code>
+          <code class="ruby">      n = OpenStruct.new</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="253">
           
           
+          <code class="ruby">      n.message = I18n.t(&quot;page.no_have_inventory_shelf_barcode&quot;)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="254">
+          
+          
           <code class="ruby">      notifications &lt;&lt; n</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="254">
+        <li class="never" data-hits="" data-linenumber="255">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="255">
-          
-          
-          <code class="ruby">    if notifications.size == 0 &amp;&amp; self.inventory_check_results.blank?</code>
-        </li>
-      
         <li class="missed" data-hits="0" data-linenumber="256">
           
           
-          <code class="ruby">      n = OpenStruct.new</code>
+          <code class="ruby">    if self.inventory_check_data.blank?</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="257">
           
           
-          <code class="ruby">      n.message = I18n.t(&quot;page.no_execute_inventory_check&quot;)</code>
+          <code class="ruby">      n = OpenStruct.new</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="258">
           
           
-          <code class="ruby">      notifications &lt;&lt; n</code>
+          <code class="ruby">      n.message = I18n.t(&quot;page.no_have_inventory_check_data&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="259">
+        <li class="missed" data-hits="0" data-linenumber="259">
           
           
-          <code class="ruby"> </code>
+          <code class="ruby">      notifications &lt;&lt; n</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="260">
@@ -9640,118 +9640,118 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="261">
+        <li class="missed" data-hits="0" data-linenumber="261">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    if notifications.size == 0 &amp;&amp; self.inventory_check_results.blank?</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="262">
           
           
-          <code class="ruby">    return notifications</code>
+          <code class="ruby">      n = OpenStruct.new</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="263">
+        <li class="missed" data-hits="0" data-linenumber="263">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">      n.message = I18n.t(&quot;page.no_execute_inventory_check&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="264">
+        <li class="missed" data-hits="0" data-linenumber="264">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      notifications &lt;&lt; n</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="265">
           
           
-          <code class="ruby">  # import from tsv</code>
+          <code class="ruby"> </code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="266">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def import</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="267">
-          
-          
-          <code class="ruby">    num = {:manifestation_imported =&gt; 0, :item_imported =&gt; 0, :manifestation_found =&gt; 0, :item_found =&gt; 0, :failed =&gt; 0}</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="268">
-          
-          
-          <code class="ruby">    row_num = 2</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="269">
-          
-          
-          <code class="ruby">    rows = open_import_file</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="270">
-          
-          
-          <code class="ruby">    field = rows.first</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="271">
-          
-          
-          <code class="ruby">    if [field['isbn'], field['original_title']].reject{|field| field.to_s.strip == &quot;&quot;}.empty?</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="272">
-          
-          
-          <code class="ruby">      raise &quot;You should specify isbn or original_tile in the first line&quot;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="273">
+        <li class="never" data-hits="" data-linenumber="266">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="274">
+        <li class="never" data-hits="" data-linenumber="267">
           
           
           <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="268">
+          
+          
+          <code class="ruby">    return notifications</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="269">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="270">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="271">
+          
+          
+          <code class="ruby">  # import from tsv</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="272">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def import</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="273">
+          
+          
+          <code class="ruby">    num = {:manifestation_imported =&gt; 0, :item_imported =&gt; 0, :manifestation_found =&gt; 0, :item_found =&gt; 0, :failed =&gt; 0}</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="274">
+          
+          
+          <code class="ruby">    row_num = 2</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="275">
           
           
-          <code class="ruby">    rows.each_with_index do |row, index|</code>
+          <code class="ruby">    rows = open_import_file</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="276">
           
           
-          <code class="ruby">      Rails.logger.info(&quot;import block start. row_num=#{row_num} index=#{index}&quot;)</code>
+          <code class="ruby">    field = rows.first</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="277">
+        <li class="missed" data-hits="0" data-linenumber="277">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    if [field['isbn'], field['original_title']].reject{|field| field.to_s.strip == &quot;&quot;}.empty?</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="278">
           
           
-          <code class="ruby">      next if row['dummy'].to_s.strip.present?</code>
+          <code class="ruby">      raise &quot;You should specify isbn or original_tile in the first line&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="279">
+        <li class="never" data-hits="" data-linenumber="279">
           
           
-          <code class="ruby">      import_result = ResourceImportResult.create!(:resource_import_file =&gt; self, :body =&gt; row.fields.join(&quot;\t&quot;))</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="280">
@@ -9760,112 +9760,112 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="281">
+        <li class="missed" data-hits="0" data-linenumber="281">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">    rows.each_with_index do |row, index|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="282">
+        <li class="missed" data-hits="0" data-linenumber="282">
+          
+          
+          <code class="ruby">      Rails.logger.info(&quot;import block start. row_num=#{row_num} index=#{index}&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="283">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="283">
-          
-          
-          <code class="ruby">    self.update_attribute(:imported_at, Time.zone.now)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="284">
           
           
-          <code class="ruby">    rows.close</code>
+          <code class="ruby">      next if row['dummy'].to_s.strip.present?</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="285">
           
           
-          <code class="ruby">    return num</code>
+          <code class="ruby">      import_result = ResourceImportResult.create!(:resource_import_file =&gt; self, :body =&gt; row.fields.join(&quot;\t&quot;))</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="286">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="287">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="288">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="288">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="289">
           
-          <code class="ruby">  private</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="289">
-          <span class="hits">1</span>
           
-          <code class="ruby">  def check_start</code>
+          <code class="ruby">    self.update_attribute(:imported_at, Time.zone.now)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="290">
           
           
-          <code class="ruby">    self.check_started_at = Time.now</code>
+          <code class="ruby">    rows.close</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="291">
           
           
-          <code class="ruby">    self.check_finished_at = nil</code>
+          <code class="ruby">    return num</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="292">
-          
-          
-          <code class="ruby">    self.state = 7</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="293">
-          
-          
-          <code class="ruby">    self.save!</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="294">
+        <li class="never" data-hits="" data-linenumber="292">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="295">
+        <li class="never" data-hits="" data-linenumber="293">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="296">
+        <li class="covered" data-hits="1" data-linenumber="294">
           <span class="hits">1</span>
           
-          <code class="ruby">  def check_finish</code>
+          <code class="ruby">  private</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="295">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def check_start</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="296">
+          
+          
+          <code class="ruby">    self.check_started_at = Time.now</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="297">
           
           
-          <code class="ruby">    self.check_finished_at = Time.now</code>
+          <code class="ruby">    self.check_finished_at = nil</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="298">
           
           
-          <code class="ruby">    self.state = 8</code>
+          <code class="ruby">    self.state = 7</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="299">
@@ -9886,7 +9886,43 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="302">
+        <li class="covered" data-hits="1" data-linenumber="302">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def check_finish</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="303">
+          
+          
+          <code class="ruby">    self.check_finished_at = Time.now</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="304">
+          
+          
+          <code class="ruby">    self.state = 8</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="305">
+          
+          
+          <code class="ruby">    self.save!</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="306">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="307">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="308">
           
           
           <code class="ruby">end</code>

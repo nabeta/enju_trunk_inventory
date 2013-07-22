@@ -50,9 +50,9 @@ function error_select_status_types() {
     <%= button_to_function t('activerecord.attributes.inventory_check_result.all_deselect'), 'all_deselect_status_types();' -%>
     <%= button_to_function t('activerecord.attributes.inventory_check_result.error_select'), 'error_select_status_types();' -%>
     <br />
-    <%= submit_tag t('inventory_page.search')  -%>
-    <%= submit_tag t('activerecord.attributes.inventory_check_result.output_check_list')  -%>
-    <%= submit_tag t('activerecord.attributes.inventory_check_result.output_check_error_list')  -%>
+    <%= submit_tag t('inventory_page.search'), :name => 'search'  -%>
+    <%= submit_tag t('activerecord.attributes.inventory_check_result.output_check_list'), :name => 'output_check_list' -%>
+    <%= submit_tag t('activerecord.attributes.inventory_check_result.output_check_error_list'), :name => 'output_check_error_list' -%>
   </div>
 
 <% end %>
@@ -74,16 +74,16 @@ function error_select_status_types() {
 
 <%- @inventory_check_results.each do |inventory_result| -%> 
   <tr class="line<%= cycle("0", "1") -%>">
-    <td><%= inventory_result.item_identifier -%> </td>
-    <td><%= mark(inventory_result.status_1) -%> </td>
-    <td><%= mark(inventory_result.status_2) -%> </td>
-    <td><%= mark(inventory_result.status_3) -%> </td>
-    <td><%= mark(inventory_result.status_4) -%> </td>
-    <td><%= mark(inventory_result.status_5) -%> </td>
-    <td><%= mark(inventory_result.status_6) -%> </td>
-    <td><%= mark(inventory_result.status_7) -%> </td>
-    <td><%= mark(inventory_result.status_8) -%> </td>
-    <td><%= mark(inventory_result.status_9) -%> </td>
+    <td class="inventory_result"><%= inventory_result.item_identifier -%> </td>
+    <td class="inventory_result"><%= mark(inventory_result.status_1) -%> </td>
+    <td class="inventory_result"><%= mark(inventory_result.status_2) -%> </td>
+    <td class="inventory_result"><%= mark(inventory_result.status_3) -%> </td>
+    <td class="inventory_result"><%= mark(inventory_result.status_4) -%> </td>
+    <td class="inventory_result"><%= mark(inventory_result.status_5) -%> </td>
+    <td class="inventory_result"><%= mark(inventory_result.status_6) -%> </td>
+    <td class="inventory_result"><%= mark(inventory_result.status_7) -%> </td>
+    <td class="inventory_result"><%= mark(inventory_result.status_8) -%> </td>
+    <td class="inventory_result"><%= mark(inventory_result.status_9) -%> </td>
     <td><%= mark(inventory_result.skip_flag) -%> </td>
   </tr>
 <%- end -%> 
