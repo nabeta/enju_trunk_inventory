@@ -10,6 +10,10 @@ td.inventory_result_mark {
   width: 30px;
 }
 
+td.inventory_result_item_identifier {
+  text-align: left;
+  width: 80px;
+}
 p.inventory_result_mark {
   color: red;
   font-weight: bold;

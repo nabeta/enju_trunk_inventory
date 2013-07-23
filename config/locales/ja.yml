@@ -45,6 +45,7 @@ ja:
         item_identifier: 所蔵情報ID
         original_title: タイトル
         status: 状態
+        status_0: エラー無し
         status_1: 所在不明
         status_2: 配架間違
         status_3: 乱れ
@@ -54,11 +55,30 @@ ja:
         status_7: 製本不備
         status_8: 製本中
         status_9: 未登録
+        status_1_short: 不明
+        status_2_short: 間違
+        status_3_short: 乱れ
+        status_4_short: 貸出
+        status_5_short: 未返
+        status_6_short: 発見
+        status_7_short: 製不
+        status_8_short: 製中
+        status_9_short: 未登
+        status_1_desc: "システム内に存在するのに、点検データには存在しない場合。"
+        status_2_desc: "指定した資料区分以外の資料が点検データに存在した場合、システム内の本棚と点検データの棚が一致しない場合。"
+        status_3_desc: "棚内を対象に割合の少ない請求記号の資料の場合。請求記号の1ケタ目で検出。"
+        status_4_desc: "システム内では、貸出中であり、点検データには存在しない場合。"
+        status_5_desc: "システム内では、貸出中であるのに、点検データに存在する場合。"
+        status_6_desc: "システム内の貸出状態が、不明、紛失、除籍であるのに、点検データに存在する場合。"
+        status_7_desc: "システム内の貸出状態が、製本済みであるのに、点検データに存在する場合。"
+        status_8_desc: "システム内の貸出状態が、「製本または修理中」であり、点検データに存在しない場合。"
+        status_9_desc: "システム内の所蔵情報に存在しないIDが、点検データに存在する場合。"
         all_select: 全選択
         all_deselect: 全選択解除
         error_select: エラー項目選択
         description_item_identifier: "前方一致で検索します。"
         skip_flag: スキップ
+        shelf_barcodes: 棚バーコード
         result_on_mark: "*"
         result_skip_mark: "$"
         output_check_list: "指定の条件で点検リストを出力する"
@@ -79,6 +99,8 @@ ja:
     confirm_message_complete: "点検エラーがありますが、完了にします。よろしいでしょうか？"
     submenu_show: "サブメニューを表示"
     submenu_hide: "サブメニューを非表示"
+    output_condition: "出力条件"
+    condition_none: "(条件無し)"
   page:
     manage: '%{model}の管理'
     confirm: '%{model}の確認'

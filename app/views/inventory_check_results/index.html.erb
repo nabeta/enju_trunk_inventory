@@ -25,6 +25,7 @@ $(function(){
 });
 
 function all_select_status_types() {
+  $("#status_types_0").attr("checked", true);
   $("#status_types_1").attr("checked", true);
   $("#status_types_2").attr("checked", true);
   $("#status_types_3").attr("checked", true);
@@ -36,6 +37,7 @@ function all_select_status_types() {
   $("#status_types_9").attr("checked", true);
 }
 function all_deselect_status_types() {
+  $("#status_types_0").attr("checked", false);
   $("#status_types_1").attr("checked", false);
   $("#status_types_2").attr("checked", false);
   $("#status_types_3").attr("checked", false);
@@ -79,23 +81,25 @@ function error_select_status_types() {
 
 <table class="index">
   <tr>
-    <th><%= t('activerecord.attributes.inventory_check_result.item_identifier') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_result.item_identifier') -%></th>
+    <th><%= t('activerecord.attributes.inventory_check_result.shelf_barcodes') -%> </th>
     <th><%= t('activerecord.attributes.inventory_check_result.original_title') -%> </th>
-    <th><%= t('activerecord.attributes.inventory_check_result.status_1') -%> </th>
-    <th><%= t('activerecord.attributes.inventory_check_result.status_2') -%> </th>
-    <th><%= t('activerecord.attributes.inventory_check_result.status_3') -%> </th>
-    <th><%= t('activerecord.attributes.inventory_check_result.status_4') -%> </th>
-    <th><%= t('activerecord.attributes.inventory_check_result.status_5') -%> </th>
-    <th><%= t('activerecord.attributes.inventory_check_result.status_6') -%> </th>
-    <th><%= t('activerecord.attributes.inventory_check_result.status_7') -%> </th>
-    <th><%= t('activerecord.attributes.inventory_check_result.status_8') -%> </th>
-    <th><%= t('activerecord.attributes.inventory_check_result.status_9') -%> </th>
+    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_1_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_1_short') -%> </span></th>
+    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_2_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_2_short') -%> </span></th>
+    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_3_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_3_short') -%> </span></th>
+    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_4_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_4_short') -%> </span></th>
+    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_5_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_5_short') -%> </span></th>
+    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_6_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_6_short') -%> </span></th>
+    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_7_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_7_short') -%> </span></th>
+    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_8_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_8_short') -%> </span></th>
+    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_9_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_9_short') -%> </span></th>
     <th><%= t('activerecord.attributes.inventory_check_result.skip_flag') -%> </th>
   </tr>
 
 <%- @inventory_check_results.each do |inventory_result| -%> 
   <tr class="line<%= cycle("0", "1") -%>">
     <td class="inventory_result_item_identifier"><%= inventory_result.item_identifier -%> </td>
+    <td><%= inventory_result.shelf_group_names -%> </td>
     <td><%= inventory_result.original_title -%> </td>
     <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result.status_1) -%></p></td>
     <td class="inventory_result_mark"><%= mark(inventory_result.status_2) -%> </td>

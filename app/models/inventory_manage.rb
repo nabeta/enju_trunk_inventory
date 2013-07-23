@@ -106,12 +106,19 @@ class InventoryManage < ActiveRecord::Base
     check_data = InventoryCheckDatum.where(:inventory_manage_id => self.id, :shelf_flag => 0).pluck(:readcode)
     merged_list = item_item_identifiers | check_data
     merged_list.sort.each do |item_identifier|
+      # 書誌の名称
       original_title = ""
       item = Item.find_by_item_identifier(item_identifier)
-      if item
-        original_title = item.manifestation.original_title
+      original_title = item.manifestation.original_title if item
+
+      # 棚バーコード
+      code_names = ""
+      check_data = InventoryCheckDatum.where(:shelf_flag => 0, :readcode => item_identifier).pluck(:shelf_name)
+      if check_data
+        code_names = check_data.join(',')
       end
-      r = InventoryCheckResult.new({:inventory_manage_id => self.id, :item_identifier => item_identifier, :original_title => original_title})
+
+      r = InventoryCheckResult.new({:inventory_manage_id => self.id, :item_identifier => item_identifier, :original_title => original_title, :shelf_group_names => code_names})
       r.save!
     end
 

@@ -6,12 +6,17 @@ class InventoryCheckResultsController < ApplicationController
     @inventory_check_results = InventoryCheckResult.where(:inventory_manage_id => params[:inventory_manage_id])
     @status_type_selected = []
     @item_identifier = ""
-    #puts params[:status_types]
     if params[:status_types].present?
       @status_type_selected = params[:status_types].keys
       c = []
       params[:status_types].keys.each do |k|
-        c <<  "status_#{k} = 1"
+        if k =~ /\d+/ and k != "0"
+          c <<  "status_#{k} = 1"
+        end
+      end
+      if @status_type_selected.include?("0")
+        output_status_green_condition = true
+        c << "(status_1 = 0 and status_2 = 0 and status_3 = 0 and status_4 = 0 and status_5 = 0 and status_6 = 0 and status_7 = 0 and status_8 = 0 and status_9 = 0)"
       end
       append_sql = "(" + c.join(" OR ") + ")"
       @inventory_check_results = @inventory_check_results.where(append_sql)
@@ -57,7 +62,7 @@ class InventoryCheckResultsController < ApplicationController
 
   def prepare
     @status_types = []
-    for n in (1..9)
+    for n in (0..9)
       s = OpenStruct.new({:id => n, :display_name => I18n.t("activerecord.attributes.inventory_check_result.status_#{n}")})
       @status_types << s
     end
