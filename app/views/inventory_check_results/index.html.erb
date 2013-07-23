@@ -1,9 +1,29 @@
 <%= stylesheet_link_tag "enju_trunk_inventory/application", :media => "all" %>
-<div id="content_detail_wide" class="ui-corner-all">
+<div id="content_detail_wide" style="position: relative;" class="ui-corner-all">
 <h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory_check_result')) -%></h1>
+<span id="disp_submenu" style="position: absolute; top: 10px; left: 780px; z-index: 0;">
+  <a href="#" id="submenu_show" style="color: white;"><%= t('inventory_page.submenu_show') -%></a>
+  <a href="#" id="submenu_hide" style="color: white; display: none;"><%= t('inventory_page.submenu_hide') -%></a>
+</span>
+
 <div id="content_list">
 
 <script type="text/javascript">
+$(function(){
+  $("#submenu_show").click(function(){
+    $("#submenu").show();
+    $("#submenu_show").hide();
+    $("#submenu_hide").show();
+    return false;
+  });
+  $("#submenu_hide").click(function(){
+    $("#submenu").hide();
+    $("#submenu_show").show();
+    $("#submenu_hide").hide();
+    return false;
+  });
+});
+
 function all_select_status_types() {
   $("#status_types_1").attr("checked", true);
   $("#status_types_2").attr("checked", true);
@@ -60,6 +80,7 @@ function error_select_status_types() {
 <table class="index">
   <tr>
     <th><%= t('activerecord.attributes.inventory_check_result.item_identifier') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_result.original_title') -%> </th>
     <th><%= t('activerecord.attributes.inventory_check_result.status_1') -%> </th>
     <th><%= t('activerecord.attributes.inventory_check_result.status_2') -%> </th>
     <th><%= t('activerecord.attributes.inventory_check_result.status_3') -%> </th>
@@ -74,7 +95,8 @@ function error_select_status_types() {
 
 <%- @inventory_check_results.each do |inventory_result| -%> 
   <tr class="line<%= cycle("0", "1") -%>">
-    <td><%= inventory_result.item_identifier -%> </td>
+    <td class="inventory_result_item_identifier"><%= inventory_result.item_identifier -%> </td>
+    <td><%= inventory_result.original_title -%> </td>
     <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result.status_1) -%></p></td>
     <td class="inventory_result_mark"><%= mark(inventory_result.status_2) -%> </td>
     <td class="inventory_result_mark"><%= mark(inventory_result.status_3) -%> </td>
@@ -90,7 +112,14 @@ function error_select_status_types() {
 </table>
 
 </div>
-</div>
 
+<!-- submenu start -->
+<div id="submenu" class="ui-corner-all" style="position: absolute; top: 40px; left: 693px; z-index: 0; background:#ffffff; display: none;">
+  <%= link_to t('page.back'), @inventory_manage -%>
+  <br />
+</div>
+<!-- submenu end -->
+
+</div>
 </div>
 

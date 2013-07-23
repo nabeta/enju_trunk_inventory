@@ -77,7 +77,8 @@ ja:
     exec_inventory_check: "蔵書点検のチェック実行"
     has_error_check_results: "点検エラーがあります。"
     confirm_message_complete: "点検エラーがありますが、完了にします。よろしいでしょうか？"
-
+    submenu_show: "サブメニューを表示"
+    submenu_hide: "サブメニューを非表示"
   page:
     manage: '%{model}の管理'
     confirm: '%{model}の確認'

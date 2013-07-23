@@ -2,6 +2,7 @@ require_dependency "enju_trunk_inventory/application_controller"
 
 class InventoryCheckResultsController < ApplicationController
   def index
+    @inventory_manage = InventoryManage.find(params[:inventory_manage_id])
     @inventory_check_results = InventoryCheckResult.where(:inventory_manage_id => params[:inventory_manage_id])
     @status_type_selected = []
     @item_identifier = ""
