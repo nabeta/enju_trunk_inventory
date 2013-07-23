@@ -30,7 +30,6 @@ ja:
         finished_at: 完了日時
         has_error_combined_type_is_valid: "資料区分もしくは棚区分のいずれかに１つ以上のチェックが必要です。"
       inventory_shelf_group:
-        name: ID
         name: 棚分類ID
         display_name: 棚分類名
       inventory_shelf_barcode:
@@ -77,6 +76,7 @@ ja:
     output_shelf_barcode: "棚バーコード定義を出力(CSV)"
     exec_inventory_check: "蔵書点検のチェック実行"
     has_error_check_results: "点検エラーがあります。"
+    confirm_message_complete: "点検エラーがありますが、完了にします。よろしいでしょうか？"
 
   page:
     manage: '%{model}の管理'

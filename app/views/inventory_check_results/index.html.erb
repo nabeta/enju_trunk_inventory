@@ -1,7 +1,7 @@
-<div id="content_detail" class="ui-corner-all">
+<%= stylesheet_link_tag "enju_trunk_inventory/application", :media => "all" %>
+<div id="content_detail_wide" class="ui-corner-all">
 <h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory_check_result')) -%></h1>
 <div id="content_list">
-
 
 <script type="text/javascript">
 function all_select_status_types() {
@@ -74,17 +74,17 @@ function error_select_status_types() {
 
 <%- @inventory_check_results.each do |inventory_result| -%> 
   <tr class="line<%= cycle("0", "1") -%>">
-    <td class="inventory_result"><%= inventory_result.item_identifier -%> </td>
-    <td class="inventory_result"><%= mark(inventory_result.status_1) -%> </td>
-    <td class="inventory_result"><%= mark(inventory_result.status_2) -%> </td>
-    <td class="inventory_result"><%= mark(inventory_result.status_3) -%> </td>
-    <td class="inventory_result"><%= mark(inventory_result.status_4) -%> </td>
-    <td class="inventory_result"><%= mark(inventory_result.status_5) -%> </td>
-    <td class="inventory_result"><%= mark(inventory_result.status_6) -%> </td>
-    <td class="inventory_result"><%= mark(inventory_result.status_7) -%> </td>
-    <td class="inventory_result"><%= mark(inventory_result.status_8) -%> </td>
-    <td class="inventory_result"><%= mark(inventory_result.status_9) -%> </td>
-    <td><%= mark(inventory_result.skip_flag) -%> </td>
+    <td><%= inventory_result.item_identifier -%> </td>
+    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result.status_1) -%></p></td>
+    <td class="inventory_result_mark"><%= mark(inventory_result.status_2) -%> </td>
+    <td class="inventory_result_mark"><%= mark(inventory_result.status_3) -%> </td>
+    <td class="inventory_result_mark"><%= mark(inventory_result.status_4) -%> </td>
+    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result.status_5) -%></p></td>
+    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result.status_6) -%></p></td>
+    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result.status_7) -%></p></td>
+    <td class="inventory_result_mark"><%= mark(inventory_result.status_8) -%> </td>
+    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result.status_9) -%></p></td>
+    <td class="inventory_result_mark"><%= mark(inventory_result.skip_flag) -%> </td>
   </tr>
 <%- end -%> 
 </table>

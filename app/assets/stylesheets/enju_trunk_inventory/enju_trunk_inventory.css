@@ -1,0 +1,16 @@
+div#content_detail_wide {
+  width: 915px;
+  float: left;
+  margin-bottom: 5px;
+  border: 1px solid #5970B2;
+}
+
+td.inventory_result_mark {
+  text-align: center;
+  width: 30px;
+}
+
+p.inventory_result_mark {
+  color: red;
+  font-weight: bold;
+}
