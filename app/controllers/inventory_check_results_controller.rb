@@ -1,6 +1,7 @@
-require_dependency "enju_trunk_inventory/application_controller"
-
 class InventoryCheckResultsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :check_librarian
+
   def index
     @inventory_manage = InventoryManage.find(params[:inventory_manage_id])
     @inventory_check_results = InventoryCheckResult.where(:inventory_manage_id => params[:inventory_manage_id])

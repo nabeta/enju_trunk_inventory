@@ -11,6 +11,7 @@ ja:
       inventory_check_result: 点検結果
       inventory_shelf_barcode_import_file: 棚バーコード定義のインポート用ファイル
       inventory_shelf_barcode_import_result: 棚バーコード定義のインポート結果
+      inventory_update_items: 一括修正　
     attributes:
       inventory_manage:
         display_name: 点検名称
@@ -83,6 +84,23 @@ ja:
         result_skip_mark: "$"
         output_check_list: "指定の条件で点検リストを出力する"
         output_check_error_list: "点検エラーリストを出力する"
+      inventory_update_items:
+        shelf_barcode: 棚バーコード
+        result_status: 点検結果区分
+        circulation_statuses: 貸出状態
+        shelf: 本棚
+        skip_flag: スキップフラグ
+        screen_description_1: "一括更新を行う棚バーコードと点検区分選択してください。"
+        screen_description_2: "指定した任意の貸出状態、本棚番号、スキップフラグで更新します。"
+        screen_description_3: "貸出状態、本棚番号、スキップフラグが空の場合は、何もしません。"
+        screen_unit_description_1: "画面に表示されている所蔵情報IDの情報を変更します。"
+        screen_unit_description_2: "指定した任意の貸出状態、本棚番号、スキップフラグで更新します。"
+        screen_unit_description_2: "指定した任意の貸出状態、本棚番号、スキップフラグで更新します。"
+        screen_unit_description_3: "貸出状態、本棚番号、スキップフラグが空の場合は、何もしません。"
+        item_identifier: "所蔵情報ID"
+        invalid_input_circulation_status: "貸出状態が不正です。"
+        invalid_input_shelf: "棚名が不正です。"
+        success_update: "更新しました。"
 
   inventory_page:
     execute_check: "点検実行"
@@ -101,6 +119,8 @@ ja:
     submenu_hide: "サブメニューを非表示"
     output_condition: "出力条件"
     condition_none: "(条件無し)"
+    bulk_update: "一括修正"
+    unit_update: "個別修正"
   page:
     manage: '%{model}の管理'
     confirm: '%{model}の確認'

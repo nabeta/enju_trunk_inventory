@@ -17,6 +17,13 @@ Rails.application.routes.draw do
     resources :inventory_check_data
     resources :inventory_check_results
     resource :inventory_checks
+    resource :inventory_update_items do
+      get :index, :on => :member
+      get :bulk_edit, :on => :member
+      post :bulk_update, :on => :member
+      get :unit_edit, :on => :member
+      post :unit_update, :on => :member
+    end
 
     get :finish, :on => :member
     put :finished, :on => :member

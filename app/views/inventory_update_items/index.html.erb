@@ -1,0 +1,30 @@
+<div id="content_detail" class="ui-corner-all">
+<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory_manage')) -%></h1>
+<div id="content_list">
+
+<table class="index">
+  <tr>
+    <th><%= t('activerecord.attributes.inventory_manage.display_name') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_manage.state') -%> </th>
+    <th></th>
+  </tr>
+
+<%- @inventory_manages.each do |inventory_manage| -%> 
+  <tr class="line<%= cycle("0", "1") -%>">
+    <td><%= link_to inventory_manage.display_name, inventory_manage -%> </td>
+    <td><%= inventory_manage_state(inventory_manage) -%> </td>
+    <td><%= link_to t('page.destroy'), inventory_manage, :confirm => t('page.are_you_sure'), :method => :delete -%></td>
+  </tr>
+<%- end -%> 
+</table>
+
+</div>
+</div>
+
+<div id="submenu" class="ui-corner-all">
+  <ul>
+    <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_manage')), new_inventory_manage_path -%></li>
+  </ul>
+
+</div>
+

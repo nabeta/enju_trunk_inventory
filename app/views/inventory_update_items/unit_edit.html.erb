@@ -1,0 +1,48 @@
+<div id="content_detail" class="ui-corner-all">
+<h1 class="title"><%= t('inventory_page.unit_update') -%> </h1>
+<div id="content_list">
+  <%= form_tag unit_update_inventory_manage_inventory_update_items_path do %>
+
+    <%= I18n.t('activerecord.attributes.inventory_update_items.screen_unit_description_1') -%> <br />
+    <%= I18n.t('activerecord.attributes.inventory_update_items.screen_unit_description_2') -%> <br />
+    <%= I18n.t('activerecord.attributes.inventory_update_items.screen_unit_description_3') -%> <br />
+    <br />
+
+    <%= raw error_messages -%>
+
+    <div class="field">
+      <%= I18n.t('activerecord.attributes.inventory_update_items.item_identifier') %><br />
+      <%= @inventory_update_items.item_identifier -%>
+      <%= hidden_field_tag 'item_identifier', @inventory_update_items.item_identifier -%>
+    </div>
+
+    <div class="field">
+      <%= I18n.t('activerecord.attributes.inventory_update_items.circulation_statuses') %><br />
+      <%= select_tag :circulation_status, options_for_select(CirculationStatus.all.map{|c|[c.display_name.localize,c.id]}, @inventory_update_items.circulation_status), {:include_blank => ''} %>
+      &nbsp; (<%= @item.circulation_status.display_name.localize -%>)
+    </div>
+
+    <div class="field">
+      <%= I18n.t('activerecord.attributes.inventory_update_items.shelf') %><br />
+      <%= text_field_tag :shelf, @inventory_update_items.shelf %>
+      &nbsp; (<%= @item.shelf.display_name -%>)
+    </div>
+
+    <div class="field">
+      <%= I18n.t('activerecord.attributes.inventory_update_items.skip_flag') %><br />
+      <%= check_box_tag :skip_flag, true, false %>
+    </div>
+
+    <div class="actions">
+      <%= submit_tag t('helpers.submit.update') %>
+    </div>
+  <% end %>
+  <%#= javascript_tag("$('#inventory_manage_display_name').focus()") -%>
+</div>
+</div>
+
+<div id="submenu" class="ui-corner-all">
+  <ul>
+    <li><%= link_to t('page.back_to_index'), inventory_manage_inventory_check_results_path -%> </li>
+  </ul>
+</div>

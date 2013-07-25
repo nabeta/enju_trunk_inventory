@@ -84,21 +84,27 @@ function error_select_status_types() {
     <th><%= t('activerecord.attributes.inventory_check_result.item_identifier') -%></th>
     <th><%= t('activerecord.attributes.inventory_check_result.shelf_barcodes') -%> </th>
     <th><%= t('activerecord.attributes.inventory_check_result.original_title') -%> </th>
-    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_1_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_1_short') -%> </span></th>
+    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_1_desc') -%>"><p class="inventory_result_mark"><%= t('activerecord.attributes.inventory_check_result.status_1_short') -%> </p></span></th>
     <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_2_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_2_short') -%> </span></th>
     <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_3_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_3_short') -%> </span></th>
     <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_4_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_4_short') -%> </span></th>
-    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_5_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_5_short') -%> </span></th>
-    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_6_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_6_short') -%> </span></th>
-    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_7_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_7_short') -%> </span></th>
+    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_5_desc') -%>"><p class="inventory_result_mark"><%= t('activerecord.attributes.inventory_check_result.status_5_short') -%> </p></span></th>
+    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_6_desc') -%>"><p class="inventory_result_mark"><%= t('activerecord.attributes.inventory_check_result.status_6_short') -%> </p></span></th>
+    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_7_desc') -%>"><p class="inventory_result_mark"><%= t('activerecord.attributes.inventory_check_result.status_7_short') -%> </p></span></th>
     <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_8_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_8_short') -%> </span></th>
-    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_9_desc') -%>"><%= t('activerecord.attributes.inventory_check_result.status_9_short') -%> </span></th>
+    <th><span title="<%= t('activerecord.attributes.inventory_check_result.status_9_desc') -%>"><p class="inventory_result_mark"><%= t('activerecord.attributes.inventory_check_result.status_9_short') -%> </p></span></th>
     <th><%= t('activerecord.attributes.inventory_check_result.skip_flag') -%> </th>
   </tr>
 
 <%- @inventory_check_results.each do |inventory_result| -%> 
   <tr class="line<%= cycle("0", "1") -%>">
-    <td class="inventory_result_item_identifier"><%= inventory_result.item_identifier -%> </td>
+    <td class="inventory_result_item_identifier">
+      <% if inventory_result.original_title.present? -%>
+        <%= link_to inventory_result.item_identifier, unit_edit_inventory_manage_inventory_update_items_path({:item_identifier => inventory_result.item_identifier})  -%> 
+      <% else -%>
+        <%= inventory_result.item_identifier -%> 
+      <% end -%>
+    </td>
     <td><%= inventory_result.shelf_group_names -%> </td>
     <td><%= inventory_result.original_title -%> </td>
     <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result.status_1) -%></p></td>
@@ -119,7 +125,10 @@ function error_select_status_types() {
 
 <!-- submenu start -->
 <div id="submenu" class="ui-corner-all" style="position: absolute; top: 40px; left: 693px; z-index: 0; background:#ffffff; display: none;">
-  <%= link_to t('page.back'), @inventory_manage -%>
+  <ul>
+    <li><%= link_to t('page.back'), @inventory_manage -%> </li>
+    <li><%= link_to t('inventory_page.bulk_update'), bulk_edit_inventory_manage_inventory_update_items_path -%></li> 
+  </ul>
   <br />
 </div>
 <!-- submenu end -->
