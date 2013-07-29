@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       post :unit_update, :on => :member
     end
 
+    resources :inventory_update_histories
+
     get :finish, :on => :member
     put :finished, :on => :member
   end

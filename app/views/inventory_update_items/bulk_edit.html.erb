@@ -1,29 +1,34 @@
+<%= stylesheet_link_tag "enju_trunk_inventory/application", :media => "all" %>
 <div id="content_detail" class="ui-corner-all">
 <h1 class="title"><%= t('inventory_page.bulk_update') -%> </h1>
 <div id="content_list">
   <%= form_tag bulk_update_inventory_manage_inventory_update_items_path do %>
 
-    <%= I18n.t('activerecord.attributes.inventory_update_items.screen_unit_description_1') -%> <br />
+    <%= I18n.t('activerecord.attributes.inventory_update_items.screen_description_1') -%> <br />
+    <%= I18n.t('activerecord.attributes.inventory_update_items.screen_description_2') -%> <br />
+    <%= I18n.t('activerecord.attributes.inventory_update_items.screen_description_3') -%> <br />
     <br />
 
+    <%= raw error_messages -%>
+
     <div class="field">
-      <%= I18n.t('activerecord.attributes.inventory_update_items.shelf_barcode') %><br />
-      <%= select_tag :shelf_barcode, options_for_select(@inventory_shelf_barcodes.map{|c|[c.barcode,c]}), {:include_blank => ''} %>
+      <span class="inventory_require_mark">*</span> <%= I18n.t('activerecord.attributes.inventory_update_items.shelf_barcode') %><br />
+      <%= select_tag :shelf_barcode, options_for_select(@inventory_shelf_barcodes.map{|c|[c.barcode,c.id]}), {:include_blank => ''} %>
     </div>
 
     <div class="field">
-      <%= I18n.t('activerecord.attributes.inventory_update_items.result_status') %><br />
-      <%= select_tag :result_stauts, options_for_select(@result_status.map{|c|[c.display_name,c]}), {:include_blank => ''} %>
+      <span class="inventory_require_mark">*</span> <%= I18n.t('activerecord.attributes.inventory_update_items.result_status') %><br />
+      <%= select_tag :result_stauts, options_for_select(@result_status.map{|c|[c.display_name,c.id]}, @inventory_update_items.result_status), {:include_blank => ''} %>
     </div>
 
     <div class="field">
       <%= I18n.t('activerecord.attributes.inventory_update_items.circulation_statuses') %><br />
-      <%= select_tag :shelf_category, options_for_select(CirculationStatus.all.map{|c|[c.display_name.localize,c]}), {:include_blank => ''} %>
+      <%= select_tag :circulation_status, options_for_select(CirculationStatus.all.map{|c|[c.display_name.localize,c.id]}, @inventory_update_items.circulation_status), {:include_blank => ''} %>
     </div>
 
     <div class="field">
-      <%= I18n.t('activerecord.attributes.inventory_update_items.shelf') %><br />
-      <%= text_field_tag :shelf %>
+      <%= I18n.t('activerecord.attributes.inventory_update_items.shelf_name') %><br />
+      <%= text_field_tag :shelf_name %>
     </div>
 
     <div class="field">

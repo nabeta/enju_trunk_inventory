@@ -18,3 +18,8 @@ p.inventory_result_mark {
   color: red;
   font-weight: bold;
 }
+
+span.inventory_require_mark {
+  color: red;
+  font-weight: bold;
+}

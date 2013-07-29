@@ -8,6 +8,13 @@
 
 <div id="content_list">
 
+  <% if flash[:notice] %>
+    <div id="notice">
+      <%= flash[:notice] %>
+    </div>
+    <br />
+  <% end %>
+
 <script type="text/javascript">
 $(function(){
   $("#submenu_show").click(function(){
@@ -107,16 +114,16 @@ function error_select_status_types() {
     </td>
     <td><%= inventory_result.shelf_group_names -%> </td>
     <td><%= inventory_result.original_title -%> </td>
-    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result.status_1) -%></p></td>
-    <td class="inventory_result_mark"><%= mark(inventory_result.status_2) -%> </td>
-    <td class="inventory_result_mark"><%= mark(inventory_result.status_3) -%> </td>
-    <td class="inventory_result_mark"><%= mark(inventory_result.status_4) -%> </td>
-    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result.status_5) -%></p></td>
-    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result.status_6) -%></p></td>
-    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result.status_7) -%></p></td>
-    <td class="inventory_result_mark"><%= mark(inventory_result.status_8) -%> </td>
-    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result.status_9) -%></p></td>
-    <td class="inventory_result_mark"><%= mark(inventory_result.skip_flag) -%> </td>
+    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result, :status_1) -%></p></td>
+    <td class="inventory_result_mark"><%= mark(inventory_result, :status_2) -%> </td>
+    <td class="inventory_result_mark"><%= mark(inventory_result, :status_3) -%> </td>
+    <td class="inventory_result_mark"><%= mark(inventory_result, :status_4) -%> </td>
+    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result, :status_5) -%></p></td>
+    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result, :status_6) -%></p></td>
+    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result, :status_7) -%></p></td>
+    <td class="inventory_result_mark"><%= mark(inventory_result, :status_8) -%> </td>
+    <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result, :status_9) -%></p></td>
+    <td class="inventory_result_mark"><%= mark(inventory_result, :skip_flag) -%> </td>
   </tr>
 <%- end -%> 
 </table>
@@ -128,6 +135,7 @@ function error_select_status_types() {
   <ul>
     <li><%= link_to t('page.back'), @inventory_manage -%> </li>
     <li><%= link_to t('inventory_page.bulk_update'), bulk_edit_inventory_manage_inventory_update_items_path -%></li> 
+    <li><%= link_to t('inventory_page.view_update_histories'), inventory_manage_inventory_update_histories_path -%></li> 
   </ul>
   <br />
 </div>

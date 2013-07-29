@@ -23,9 +23,9 @@
     </div>
 
     <div class="field">
-      <%= I18n.t('activerecord.attributes.inventory_update_items.shelf') %><br />
+      <%= I18n.t('activerecord.attributes.inventory_update_items.shelf_name') %><br />
       <%= text_field_tag :shelf, @inventory_update_items.shelf %>
-      &nbsp; (<%= @item.shelf.display_name -%>)
+      &nbsp; (本棚名:<%= @item.shelf.name -%> 本棚表示名:<%= @item.shelf.display_name -%>)
     </div>
 
     <div class="field">
