@@ -1,5 +1,3 @@
-require_dependency "enju_trunk_inventory/application_controller"
-
 class InventoryChecksController < ApplicationController
 
   def create 
@@ -7,7 +5,8 @@ class InventoryChecksController < ApplicationController
     begin
       @inventory_manage = InventoryManage.find(params[:inventory_manage_id])
       Asynchronized_Service.new.delay.perform(:InventoryCheck_exec, @inventory_manage.id)
-      flash[:message] = t('inventory_check.start')
+      @inventory_manage.prepare_check
+      flash[:message] = t('inventory_page.check.prepare')
     rescue Exception => e
       logger.error "Failed to send process to delayed_job: #{e}"
     end

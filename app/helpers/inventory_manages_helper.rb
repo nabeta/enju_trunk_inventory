@@ -33,6 +33,8 @@ module InventoryManagesHelper
     case inventory_manage.state
     when 0
       I18n.t('activerecord.attributes.inventory_manage.state_name.init')
+    when 6
+      I18n.t('activerecord.attributes.inventory_manage.state_name.prepare_check')
     when 7
       I18n.t('activerecord.attributes.inventory_manage.state_name.check_start')
     when 8

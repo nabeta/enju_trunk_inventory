@@ -12,6 +12,21 @@ class InventoryManage < ActiveRecord::Base
   has_many :inventory_check_data
   has_many :inventory_check_results
 
+  def check_has_error?
+    error_flag = false
+    case self.state 
+    when 7
+    else
+      error_flag = InventoryCheckResult.has_error?(self.id)
+    end
+    return error_flag
+  end
+
+  def prepare_check
+    self.state = 6
+    self.save!
+  end
+
   def combined_type_is_valid
     if self.manifestation_type_ids.present? || self.shelf_group_ids.present?
       return true 
@@ -45,6 +60,8 @@ class InventoryManage < ActiveRecord::Base
   def check
     logger.info("start check")
     check_start 
+
+    begin
 
     check_list = {}
 
@@ -93,6 +110,19 @@ class InventoryManage < ActiveRecord::Base
 
     # 結果データの作成
     generate_check_results(self.id, check_list, shelf_barcode_shelf_ids)
+
+    rescue
+      logger.fatal("an error occurred.")
+      logger.fatal($!)
+      logger.fatal($@)
+    ensure
+      logger.info("send notice mail start")
+      user_names = self.notification_dest
+      puts "@@@"
+      puts user_names
+      MessageRequest.send_notice_message('enju_trunk_inventory_check_finish', user_names)
+      logger.info("send notice mail end")
+    end
 
     check_finish
     logger.info("end check")
@@ -280,28 +310,19 @@ class InventoryManage < ActiveRecord::Base
     return notifications
   end
 
-  # import from tsv
-  def import
-    num = {:manifestation_imported => 0, :item_imported => 0, :manifestation_found => 0, :item_found => 0, :failed => 0}
-    row_num = 2
-    rows = open_import_file
-    field = rows.first
-    if [field['isbn'], field['original_title']].reject{|field| field.to_s.strip == ""}.empty?
-      raise "You should specify isbn or original_tile in the first line"
+  def self.check(id = nil)
+    unless id.nil?
+      m = InventoryManage.find(id) rescue nil
+      m.check unless m.nil?
+    else
+      raise "argument error. id is nil."
     end
-
-    rows.each_with_index do |row, index|
-      Rails.logger.info("import block start. row_num=#{row_num} index=#{index}")
-
-      next if row['dummy'].to_s.strip.present?
-      import_result = ResourceImportResult.create!(:resource_import_file => self, :body => row.fields.join("\t"))
-
-    end
-
-    self.update_attribute(:imported_at, Time.zone.now)
-    rows.close
-    return num
+  rescue Exception => e
+    puts $!
+    logger.info "#{Time.zone.now} importing resources failed! #{e}"
+    logger.info "#{Time.zone.now} #{$@}"
   end
+
 
   private
   def check_start

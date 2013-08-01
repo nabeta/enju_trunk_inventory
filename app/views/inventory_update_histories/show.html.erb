@@ -1,0 +1,40 @@
+<div id="content_detail" class="ui-corner-all">
+<h1 class="title"><%= t('page.showing', :model => t('activerecord.models.inventory_update_history')) -%></h1>
+<div id="content_list">
+
+<p>
+  <strong><%= t('activerecord.attributes.inventory_update_history.id') -%> :</strong>
+  <%= @inventory_update_history.id -%> 
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inventory_update_history.item_identifier') -%> :</strong>
+  <%= @inventory_update_history.item_identifier -%> 
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inventory_update_history.before_item') -%> :</strong>
+  <%= @inventory_update_history.pretty_before_item -%>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inventory_update_history.diffparam') -%> :</strong>
+  <%= @inventory_update_history.pretty_diffparam -%>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.inventory_update_history.created_at') -%> :</strong>
+  <%= l(@inventory_update_history.created_at) -%> 
+</p>
+
+<br />
+<br />
+
+</div>
+</div>
+
+<div id="submenu" class="ui-corner-all">
+  <ul>
+    <li><%= link_to t('page.back_to_index'), inventory_manage_inventory_update_history_path -%> </li>
+  </ul>
+</div>

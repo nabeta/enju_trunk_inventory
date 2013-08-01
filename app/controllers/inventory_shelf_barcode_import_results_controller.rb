@@ -1,5 +1,3 @@
-require_dependency "enju_trunk_inventory/application_controller"
-
 class InventoryShelfBarcodeImportResultsController < ApplicationController
   # GET /inventory_shelf_barcode_import_results
   # GET /inventory_shelf_barcode_import_results.json

@@ -1,5 +1,3 @@
-require_dependency "enju_trunk_inventory/application_controller"
-
 class InventoryCheckDataImportFilesController < ApplicationController
   # GET /inventory_check_data_import_files
   # GET /inventory_check_data_import_files.json

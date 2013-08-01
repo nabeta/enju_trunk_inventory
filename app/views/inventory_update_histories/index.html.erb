@@ -1,0 +1,29 @@
+<div id="content_detail" class="ui-corner-all">
+<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory_update_history')) -%></h1>
+<div id="content_list">
+
+<table class="index">
+  <tr>
+    <th><%= t('activerecord.attributes.inventory_check_datum.readcode') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_check_datum.created_at') -%> </th>
+    <th></th>
+  </tr>
+
+<%- @histories.each do |history| -%> 
+  <tr class="line<%= cycle("0", "1") -%>">
+    <td><%= link_to history.item_identifier, [@inventory_manage, history] -%> </td>
+    <td><%= l(history.created_at) -%> </td>
+  </tr>
+<%- end -%> 
+</table>
+
+</div>
+</div>
+
+<div id="submenu" class="ui-corner-all">
+  <ul>
+    <li><%= link_to t('page.back', :model => t('activerecord.models.inventory_check_datum')), inventory_manage_inventory_check_results_path -%></li>
+  </ul>
+
+</div>
+

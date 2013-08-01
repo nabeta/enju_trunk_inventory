@@ -4,11 +4,7 @@
 <%= form_for(@inventory_manage, :url => {:action => 'finished'}) do |f| %>
   <%= f.error_messages %>
   <div class="actions">
-    <% if @inventory_manage.errors.empty? -%> 
-      <%= f.submit %>
-    <% else %>
-      <%= f.submit :onclick => "return confirm("+I18n.t('inventory_page.confirm_has_errors')+")" %>
-    <% end %>
+    <%= f.submit %>
   </div>
 <% end %>
 </div>
@@ -16,9 +12,7 @@
 
 <div id="submenu" class="ui-corner-all">
   <ul>
-    <li><%= link_to t('page.back'), @inventory_manage -%> </li>
-    <!--
+    <li><%= link_to t('page.show'), @inventory_manage -%> </li>
     <li><%= link_to t('page.back_to_index'), inventory_manages_path -%> </li>
-    -->
   </ul>
 </div>

@@ -1,0 +1,16 @@
+<%= form_for [@inventory_manage, @inventory_check_datum] do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.hidden_field :inventory_manage_id  %>
+
+  <div class="field">
+    <abbr title="required">*</abbr>
+    <%= f.label :readcode %><br />
+    <%= f.text_field :readcode %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<%= javascript_tag("$('#inventory_check_datum_readcode').focus()") -%>

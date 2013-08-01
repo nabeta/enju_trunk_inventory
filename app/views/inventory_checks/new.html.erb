@@ -1,7 +1,11 @@
 <div id="content_detail" class="ui-corner-all">
 <h1 class="title"><%= t('page.new', :model => t('activerecord.models.inventory_check')) -%> </h1>
 <div id="content_list">
-  <%= t('inventory_page.execute_check_description') %>
+  <%= t('inventory_page.execute_check_description') %> <br />
+  <%= t('inventory_page.execute_check_description2') %> <br />
+  <%= @inventory_manage.notification_dest -%>
+  <br />
+  <br />
   <%= form_tag inventory_manage_inventory_checks_path do %>
     <%= submit_tag t('inventory_page.execute_check') %>
   <% end %>

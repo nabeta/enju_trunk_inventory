@@ -6,6 +6,7 @@
   <tr>
     <th><%= t('activerecord.attributes.inventory_manage.display_name') -%> </th>
     <th><%= t('activerecord.attributes.inventory_manage.state') -%> </th>
+    <th><%= t('activerecord.attributes.inventory_manage.created_at') -%> </th>
     <th></th>
   </tr>
 
@@ -13,6 +14,7 @@
   <tr class="line<%= cycle("0", "1") -%>">
     <td><%= link_to inventory_manage.display_name, inventory_manage -%> </td>
     <td><%= inventory_manage_state(inventory_manage) -%> </td>
+    <td style="width: 150px;"><%= l(inventory_manage.created_at) -%> </td>
     <td><%= link_to t('page.destroy'), inventory_manage, :confirm => t('page.are_you_sure'), :method => :delete -%></td>
   </tr>
 <%- end -%> 

@@ -11,25 +11,32 @@ ja:
       inventory_check_result: 点検結果
       inventory_shelf_barcode_import_file: 棚バーコード定義のインポート用ファイル
       inventory_shelf_barcode_import_result: 棚バーコード定義のインポート結果
-      inventory_update_items: 一括修正　
+      inventory_update_item: 一括修正　
+      inventory_update_history: 修正履歴
     attributes:
       inventory_manage:
         display_name: 点検名称
         manifestation_type_ids: 資料区分
         shelf_group_ids: 棚分類
         notification_dest: 処理結果通知先
+        notification_dest_description: "（ライブラリアン）"
+        notification_dest_description2: "ユーザＩＤをカンマ区切りで指定してください。"
         state: 状態
         bind_type: 棚と本棚の関係
         state_name:
           init: 初期
+          prepare_check: 点検処理要求済み
           check_start: 点検処理実行中
           check_finish: 点検処理実行済み
           finished: 完了
           undefined: 未定義
         bind_name:
           s0: '棚:本棚＝1:1'
-        finished_at: 完了日時
+        finished_at: "完了日時"
         has_error_combined_type_is_valid: "資料区分もしくは棚区分のいずれかに１つ以上のチェックが必要です。"
+        created_at: "作成日時"
+        check_started_at: "点検処理実行開始日時"
+        check_finished_at: "点検処理実行終了日時"
       inventory_shelf_group:
         name: 棚分類ID
         display_name: 棚分類名
@@ -105,13 +112,19 @@ ja:
         invalid_no_input_shelf_barcode: "棚バーコードが未入力です。"
         invalid_no_result_status: "点検結果区分が未入力です。"
         no_input: "更新値が指定されていません。"
-
+      inventory_update_history:
+        item_identifier: "所蔵情報ID"
+        before_item: "修正前所蔵情報"
+        diffparam: "変更情報"
+        created_at: "修正日時"
   inventory_page:
     execute_check: "点検実行"
     execute_check_description: "点検実行を開始します。"
+    execute_check_description2: "実行完了後に以下のユーザに通知されます。"
     search: "検索"
     check:
-      start: '点検実行'
+      prepare: "点検処理準備を行いました。まもなく点検処理が実行されます。"
+      start: "点検実行"
     no_have_inventory_check_data: "点検データが未登録です。"
     no_have_inventory_shelf_barcode: "棚バーコードが未登録です。"
     no_execute_inventory_check: "蔵書点検のチェック未処理です。"
@@ -126,6 +139,7 @@ ja:
     bulk_update: "一括修正"
     unit_update: "個別修正"
     view_update_histories: "修正履歴の確認"
+    confirm_has_errors: "エラーがありますが、よろしいですか？"
   page:
     manage: '%{model}の管理'
     confirm: '%{model}の確認'

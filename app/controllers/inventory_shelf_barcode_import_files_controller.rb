@@ -1,8 +1,4 @@
-require_dependency "enju_trunk_inventory/application_controller"
-
 class InventoryShelfBarcodeImportFilesController < ApplicationController
-
-
   # GET /inventory_shelf_barcode_import_files
   # GET /inventory_shelf_barcode_import_files.json
   def index

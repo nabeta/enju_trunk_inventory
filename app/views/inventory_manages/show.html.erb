@@ -1,55 +1,69 @@
 <div id="content_detail" class="ui-corner-all">
 <h1 class="title"><%= t('page.showing', :model => t('activerecord.models.inventory_manage')) -%></h1>
 <div id="content_list">
-
-<p>
+  <div style="color: green"><%= flash[:message] -%></div>
+  <br />
+  <p>
   <strong><%= t('activerecord.attributes.inventory_manage.display_name') -%> :</strong>
   <%= @inventory_manage.display_name -%> 
-</p>
+  </p>
 
-<p>
+  <p>
   <strong><%= t('activerecord.attributes.inventory_manage.manifestation_type_ids') -%> :</strong>
   <%= manifestation_type_names(@inventory_manage.manifestation_types) -%>
-</p>
+  </p>
 
-<p>
+  <p>
   <strong><%= t('activerecord.attributes.inventory_manage.shelf_group_ids') -%> :</strong>
   <%= shelf_group_names(@inventory_manage.shelf_groups) -%>
-</p>
+  </p>
 
-<p>
+  <p>
   <strong><%= t('activerecord.attributes.inventory_manage.notification_dest') -%> :</strong>
   <%= @inventory_manage.notification_dest -%>
-</p>
+  </p>
 
-<p>
+  <p>
   <strong><%= t('activerecord.attributes.inventory_manage.state') -%> :</strong>
   <%= inventory_manage_state(@inventory_manage) -%> 
+  <br />
+  <p>
+  <strong><%= t('activerecord.attributes.inventory_manage.bind_type') -%> :</strong>
+  <%= bind_type_name(@inventory_manage.bind_type) -%> 
+  </p>
+
+  <p>
+  <strong><%= t('activerecord.attributes.inventory_manage.check_started_at') -%> :</strong>
+  <% if @inventory_manage.check_started_at.present? %> 
+    <%= l(@inventory_manage.check_started_at) -%> 
+  <% end %>
+  </p>
+
+  <p>
+  <strong><%= t('activerecord.attributes.inventory_manage.check_finished_at') -%> :</strong>
+  <% if @inventory_manage.check_finished_at.present? %> 
+    <%= l(@inventory_manage.check_finished_at) -%> 
+  <% end %>
+  </p>
+
+  <p>
+  <strong><%= t('activerecord.attributes.inventory_manage.finished_at') -%> :</strong>
+  <% if @inventory_manage.finished_at.present? %> 
+    <%= l(@inventory_manage.finished_at) -%> 
+  <% end %>
+  </p>
+
   <br />
   <% @inventory_check_errors.each do |msg| -%>
     <%= msg -%>
   <% end -%>
-</p>
-
-<p>
-  <strong><%= t('activerecord.attributes.inventory_manage.bind_type') -%> :</strong>
-  <%= bind_type_name(@inventory_manage.bind_type) -%> 
-</p>
-
-<p>
-  <strong><%= t('activerecord.attributes.inventory_manage.finished_at') -%> :</strong>
-<% if @inventory_manage.finished_at.present? %> 
-  <%= l(@inventory_manage.finished_at) -%> 
-<% end %>
-</p>
-
-<br />
-
-<%- @inventory_notifications.each do |notification| -%> 
-  <p>
-  <%= notification.message -%>
   </p>
-<%- end -%>
+
+  <%- @inventory_notifications.each do |notification| -%> 
+    <p>
+    <%= notification.message -%>
+    </p>
+  <%- end -%>
 
 </div>
 </div>

@@ -16,6 +16,7 @@ class InventoryManagesController < ApplicationController
     @inventory_manage = InventoryManage.find(params[:id])
     @inventory_notifications = @inventory_manage.phase1_check
     @inventory_check_errors = []
+    @inventory_manage.check_has_error?
     if InventoryCheckResult.has_error?(params[:id])
       @inventory_check_errors << I18n.t("inventory_page.has_error_check_results")
     end

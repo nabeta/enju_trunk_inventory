@@ -3,12 +3,8 @@ class InventoryUpdateItemsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :check_librarian
 
-  def index
-  end
-
   def bulk_edit
     prepare_options
-
   end
 
   def bulk_update
@@ -81,6 +77,7 @@ class InventoryUpdateItemsController < ApplicationController
           history.inventory_manage_id = params[:inventory_manage_id]
           history.item_identifier = item.item_identifier
           history.before_item = @item.to_json
+          #history.diffparam = {:item => item_update.to_json, :skip_flag => params[:skip_flag]}
           history.diffparam = {:item => item_update.to_json, :skip_flag => params[:skip_flag]}
           history.save!
 

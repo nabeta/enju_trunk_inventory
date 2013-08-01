@@ -1,6 +1,7 @@
 class InventoryCheckResult < ActiveRecord::Base
   attr_accessible :inventory_manage_id, :status_1, :status_2, :status_3, :status_4, :status_5, :status_6, :status_7, :status_8, :status_9, :item_identifier, :original_title, :shelf_group_names
 
+  belongs_to :inventory_manage
   default_scope order('item_identifier')
 
   def self.has_error?(manage_id)
