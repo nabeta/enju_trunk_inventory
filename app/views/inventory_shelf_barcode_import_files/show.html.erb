@@ -56,7 +56,7 @@
     <%- if @inventory_shelf_barcode_import_file.state == 'pending' -%>
       <li><%= link_to t('activerecord.attributes.inventory_shelf_barcode_import_file.import_request'), import_request_inventory_shelf_barcode_import_file_path(@inventory_shelf_barcode_import_file.id) -%></li>
     <%- end -%>
-    <li><%= link_to t('activerecord.models.resource_import_textresult'), inventory_shelf_barcode_import_file_inventory_shelf_barcode_import_results_path(@inventory_shelf_barcode_import_file) -%></li>
+    <li><%= link_to t('activerecord.models.inventory_shelf_barcode_import_result'), inventory_shelf_barcode_import_file_inventory_shelf_barcode_import_results_path(@inventory_shelf_barcode_import_file) -%></li>
     <li><%= link_to t('page.back_to_index'), inventory_shelf_barcode_import_files_path -%></li>
   </ul>
 </div>

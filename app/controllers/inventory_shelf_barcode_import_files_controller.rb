@@ -68,13 +68,14 @@ class InventoryShelfBarcodeImportFilesController < ApplicationController
   def import_request
     begin
       @inventory_shelf_barcode_import_file = InventoryShelfBarcodeImportFile.find(params[:id])
+      @inventory_manage = InventoryManage.find(@inventory_shelf_barcode_import_file.inventory_manage_id)
       Asynchronized_Service.new.delay.perform(:InventoryShelfBarcodeImportFile_import, @inventory_shelf_barcode_import_file.id)
       flash[:message] = t('inventory_page.inventory_barcode_import_file.import_request')
     rescue Exception => e
       logger.error "Failed to send process to delayed_job: #{e}"
     end
 
-    redirect_to inventory_shelf_barcode_import_file_inventory_shelf_barcode_import_result_path
+    redirect_to inventory_shelf_barcode_import_file_inventory_shelf_barcode_import_results_path(@inventory_shelf_barcode_import_file)
   end
 
 end
