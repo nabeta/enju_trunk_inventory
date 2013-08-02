@@ -26,5 +26,6 @@
 
 <div id="submenu" class="ui-corner-all">
   <ul>
+    <%= link_to t('page.back'), url_for(:controller => :inventory_shelf_barcode_import_files, :action => :index, :inventory_manage_id => @inventory_manage_id) -%>
   </ul>
 </div>

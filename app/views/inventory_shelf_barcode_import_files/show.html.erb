@@ -57,6 +57,6 @@
       <li><%= link_to t('activerecord.attributes.inventory_shelf_barcode_import_file.import_request'), import_request_inventory_shelf_barcode_import_file_path(@inventory_shelf_barcode_import_file.id) -%></li>
     <%- end -%>
     <li><%= link_to t('activerecord.models.inventory_shelf_barcode_import_result'), inventory_shelf_barcode_import_file_inventory_shelf_barcode_import_results_path(@inventory_shelf_barcode_import_file) -%></li>
-    <li><%= link_to t('page.back_to_index'), inventory_shelf_barcode_import_files_path -%></li>
+    <li><%= link_to t('page.back_to_index'), url_for(:action => :index, :controller => :inventory_shelf_barcode_import_files, :inventory_manage_id => @inventory_manage.id) -%></li>
   </ul>
 </div>

@@ -5,7 +5,7 @@
 <table class="index">
   <tr>
     <th>Id</th>
-    <th><%= t('activerecord.attributes.inventory_shelf_barcode_import_file.patron_import_file_name') -%></th>
+    <th><%= t('activerecord.attributes.inventory_shelf_barcode_import_file.inventory_shelf_barcode_import_file_name') -%></th>
     <th><%= t('activerecord.attributes.inventory_shelf_barcode_import_file.imported_at') -%></th>
     <th><%= t('activerecord.attributes.inventory_shelf_barcode_import_file.state') -%></th>
     <th></th>
@@ -32,6 +32,6 @@
 <div id="submenu" class="ui-corner-all">
   <ul>
     <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_shelf_barcode_import_file')), url_for(:controller => :inventory_shelf_barcode_import_files, :action => :new, :inventory_manage_id => @inventory_manage.id)  -%></li>
-    <li><%= link_to t('page.back', :model => t('activerecord.models.inventory_shelf_barcode')), inventory_manage_inventory_shelf_barcodes_path(@inventory_manage) -%></li>
+    <li><%= link_to t('page.back'), @inventory_manage -%></li>
   </ul>
 </div>

@@ -7,23 +7,15 @@ class InventoryShelfBarcodeImportFilesController < ApplicationController
 
   def show
     @inventory_shelf_barcode_import_file = InventoryShelfBarcodeImportFile.find(params[:id])
-    puts "@@"
-    puts @inventory_shelf_barcode_import_file
+    @inventory_manage = InventoryManage.find(@inventory_shelf_barcode_import_file.inventory_manage_id)
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @inventory_shelf_barcode_import_file }
-    end
   end
 
   def new
     @inventory_manage_inventory_shelf_barcode_import_file = InventoryShelfBarcodeImportFile.new
     @inventory_manage_id = params[:inventory_manage_id]
+    @inventory_manage = InventoryManage.find(@inventory_manage_id)
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @inventory_shelf_barcode_import_file }
-    end
   end
 
   def edit
