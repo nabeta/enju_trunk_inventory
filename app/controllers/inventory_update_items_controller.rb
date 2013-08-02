@@ -100,20 +100,20 @@ class InventoryUpdateItemsController < ApplicationController
 
     @item = Item.find_by_item_identifier(@inventory_update_items.item_identifier)
     unless @item
-      raise "item is invalid. item_identifier=#{@inventory_update_items.item_identifier}"
+      @item = Item.new
     end
  
   end
 
   def unit_update
+    prepare_options
+    raise ActiveRecord::RecordNotFound.new("Check_data not found.") unless @inventory_check_datum
+
     @errors = []
     @item = Item.find_by_item_identifier(params[:item_identifier])
-    raise ActiveRecord::RecordNotFound.new("Item not found.") unless @item
-    #check_datum = InventoryCheckDatum.where(:barcode => params[:item_identifier])
-    check_datum = InventoryCheckResult.find_by_item_identifier(params[:item_identifier])
-    raise ActiveRecord::RecordNotFound.new("Check_data not found.") unless check_datum
-
-    prepare_options
+    unless @item
+      @item = Item.new
+    end
 
     item_update = {}
     if params[:shelf].present?
@@ -144,8 +144,8 @@ class InventoryUpdateItemsController < ApplicationController
       end
 
       if params[:skip_flag].present?
-        check_datum.skip_flag = 1
-        check_datum.save!
+        @inventory_check_datum.skip_flag = 1
+        @inventory_check_datum.save!
       end
 
       history = InventoryUpdateHistory.new
@@ -166,6 +166,8 @@ class InventoryUpdateItemsController < ApplicationController
 
   def prepare_options
     @inventory_manage = InventoryManage.find(params[:inventory_manage_id])
+    @inventory_check_datum = InventoryCheckDatum.where(:inventory_manage_id => params[:inventory_manage_id], :readcode => params[:item_identifier]).first
+    @inventory_check_result = InventoryCheckResult.where(:inventory_manage_id => params[:inventory_manage_id], :item_identifier => params[:item_identifier]).first
 
     @result_status = []
     %w(1 2 3 4 5 6 7 8).each do |c|

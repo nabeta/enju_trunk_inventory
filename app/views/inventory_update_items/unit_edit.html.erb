@@ -11,25 +11,40 @@
     <%= raw error_messages -%>
 
     <div class="field">
-      <%= I18n.t('activerecord.attributes.inventory_update_items.item_identifier') %><br />
+      <label><%= I18n.t('activerecord.attributes.inventory_check_datum.item_identifier') %></label><br />
       <%= @inventory_update_items.item_identifier -%>
       <%= hidden_field_tag 'item_identifier', @inventory_update_items.item_identifier -%>
     </div>
 
     <div class="field">
-      <%= I18n.t('activerecord.attributes.inventory_update_items.circulation_statuses') %><br />
-      <%= select_tag :circulation_status, options_for_select(CirculationStatus.all.map{|c|[c.display_name.localize,c.id]}, @inventory_update_items.circulation_status), {:include_blank => ''} %>
-      &nbsp; (<%= @item.circulation_status.display_name.localize -%>)
+      <label><%= I18n.t('activerecord.attributes.inventory_check_datum.shelf_barcode') %></label><br />
+      <%= @inventory_check_datum.shelf_name -%>
     </div>
 
     <div class="field">
-      <%= I18n.t('activerecord.attributes.inventory_update_items.shelf_name') %><br />
+      <label><%= I18n.t('activerecord.attributes.inventory_check_result.status') %></label><br />
+      <%= @inventory_check_result.display_status_name -%>
+    </div>
+
+    <% unless @item.new_record? -%>
+    <div class="field">
+      <label><%= I18n.t('activerecord.attributes.inventory_update_items.circulation_statuses') %></label><br />
+      <%= select_tag :circulation_status, options_for_select(CirculationStatus.all.map{|c|[c.display_name.localize,c.id]}, @inventory_update_items.circulation_status), {:include_blank => ''} %>
+      &nbsp; (<%= @item.circulation_status.display_name.localize -%>)
+        &nbsp;
+    </div>
+    <% end %>
+
+    <% unless @item.new_record? -%>
+    <div class="field">
+      <label><%= I18n.t('activerecord.attributes.inventory_update_items.shelf_name') %></label><br />
       <%= text_field_tag :shelf, @inventory_update_items.shelf %>
       &nbsp; (本棚名:<%= @item.shelf.name -%> 本棚表示名:<%= @item.shelf.display_name -%>)
     </div>
+    <% end %>
 
     <div class="field">
-      <%= I18n.t('activerecord.attributes.inventory_update_items.skip_flag') %><br />
+      <label><%= I18n.t('activerecord.attributes.inventory_update_items.skip_flag') %></label><br />
       <%= check_box_tag :skip_flag, true, false %>
     </div>
 

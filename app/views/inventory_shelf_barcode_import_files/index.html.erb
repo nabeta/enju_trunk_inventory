@@ -5,10 +5,9 @@
 <table class="index">
   <tr>
     <th>Id</th>
-    <th><%= t('activerecord.attributes.patron_import_file.patron_import_file_name') -%></th>
-    <th><%= t('activerecord.attributes.patron_import_file.imported_at') -%></th>
-    <th><%= t('activerecord.models.user') -%></th>
-    <th><%= t('activerecord.attributes.patron_import_file.state') -%></th>
+    <th><%= t('activerecord.attributes.inventory_shelf_barcode_import_file.patron_import_file_name') -%></th>
+    <th><%= t('activerecord.attributes.inventory_shelf_barcode_import_file.imported_at') -%></th>
+    <th><%= t('activerecord.attributes.inventory_shelf_barcode_import_file.state') -%></th>
     <th></th>
   </tr>
 
@@ -17,7 +16,6 @@
     <td><%= link_to import_file.id, import_file -%></td>
     <td><%= link_to import_file.inventory_shelf_barcode_import_file_name, import_file -%></td>
     <td><%= l(import_file.imported_at) if import_file.imported_at -%></td>
-    <td><%= link_to import_file.user.username, import_file.user if import_file.user -%></td>
     <td><%= localized_state(import_file.state) if import_file -%></td>
     <td>
       <%= link_to t('page.show'), import_file -%>
@@ -33,6 +31,7 @@
 
 <div id="submenu" class="ui-corner-all">
   <ul>
-    <li><%= link_to t('page.new', :model => t('activerecord.models.patron_import_file')), inventory_manage_inventory_check_data _path -%></li>
+    <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_shelf_barcode_import_file')), url_for(:controller => :inventory_shelf_barcode_import_files, :action => :new, :inventory_manage_id => @inventory_manage.id)  -%></li>
+    <li><%= link_to t('page.back', :model => t('activerecord.models.inventory_shelf_barcode')), inventory_manage_inventory_shelf_barcodes_path(@inventory_manage) -%></li>
   </ul>
 </div>

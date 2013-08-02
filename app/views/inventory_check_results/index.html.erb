@@ -106,7 +106,7 @@ function error_select_status_types() {
 <%- @inventory_check_results.each do |inventory_result| -%> 
   <tr class="line<%= cycle("0", "1") -%>">
     <td class="inventory_result_item_identifier">
-      <% if inventory_result.original_title.present? -%>
+      <% if true || inventory_result.original_title.present? -%>
         <%= link_to inventory_result.item_identifier, unit_edit_inventory_manage_inventory_update_items_path({:item_identifier => inventory_result.item_identifier})  -%> 
       <% else -%>
         <%= inventory_result.item_identifier -%> 

@@ -45,10 +45,23 @@ ja:
         inventory_shelf_group: 棚グループ
         shelf: 棚
         created_at: 登録日時
+      inventory_shelf_barcode_import_file:
+        inventory_shelf_barcode_import_file_name: ファイル名
+        inventory_shelf_barcode_import_content_type: Content-Type
+        inventory_shelf_barcode_import_file_size: ファイルサイズ
+        file_hash: ファイルのハッシュ
+        note: 注記
+        imported_at: インポート時刻
+        inventory_shelf_barcode_import_updated_at: 更新時刻
+        state: 状態
+        edit_mode: 編集モード
+        import_request: すぐにインポート
       inventory_check_datum:
         readcode: コード
         read_at: 読取日時
         created_at: 登録日時
+        item_identifier: 所蔵情報ID
+        shelf_barcode: 棚バーコード
       inventory_check_result:
         item_identifier: 所蔵情報ID
         original_title: タイトル
@@ -123,8 +136,10 @@ ja:
     execute_check_description2: "実行完了後に以下のユーザに通知されます。"
     search: "検索"
     check:
-      prepare: "点検処理準備を行いました。まもなく点検処理が実行されます。"
+      prepare: "点検処理の準備を行いました。まもなく点検処理が実行されます。"
       start: "点検実行"
+    inventory_barcode_import_file:
+      import_request: "棚バーコードインポート処理の準備を行いました。まもなくインポート処理が実行されます。" 
     no_have_inventory_check_data: "点検データが未登録です。"
     no_have_inventory_shelf_barcode: "棚バーコードが未登録です。"
     no_execute_inventory_check: "蔵書点検のチェック未処理です。"

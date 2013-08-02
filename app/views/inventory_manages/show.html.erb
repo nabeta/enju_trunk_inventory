@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag    "enju_trunk_inventory/application", :media => "all" %>
 <div id="content_detail" class="ui-corner-all">
 <h1 class="title"><%= t('page.showing', :model => t('activerecord.models.inventory_manage')) -%></h1>
 <div id="content_list">
@@ -55,9 +56,8 @@
 
   <br />
   <% @inventory_check_errors.each do |msg| -%>
-    <%= msg -%>
+    <p class="inventory_error"> <%= msg -%> </p>
   <% end -%>
-  </p>
 
   <%- @inventory_notifications.each do |notification| -%> 
     <p>

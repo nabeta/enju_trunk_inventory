@@ -23,3 +23,8 @@ span.inventory_require_mark {
   color: red;
   font-weight: bold;
 }
+
+p.inventory_error {
+  color: red;
+  font-weight: bold;
+}
