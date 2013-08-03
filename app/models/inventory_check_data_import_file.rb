@@ -12,6 +12,8 @@ class InventoryCheckDataImportFile < ActiveRecord::Base
   belongs_to :user, :validate => true
   has_many :inventory_check_data_import_results
 
+  validates :edit_mode, :presence => true
+
   before_create :set_digest
 
   state_machine :initial => :pending do

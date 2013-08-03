@@ -2,6 +2,10 @@
   <h1 class="title"><%= t('page.new', :model => t('activerecord.models.inventory_shelf_barcode_import_file')) -%></h1>
 <div id="content_list">
 
+  <b><%= t('inventory_page.shelf_barcode_import_notice') -%></b>
+  <br />
+  <br />
+
   <%= form_tag({:action => 'create'}, {:method => :post, :multipart => true}) do  -%>
     <% if @inventory_shelf_barcode_import_file.present? && @inventory_shelf_barcode_import_file.errors.present? %>
       <% @inventory_shelf_barcode_import_file.errors.full_messages.each do |msg| %>

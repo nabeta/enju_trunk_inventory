@@ -56,6 +56,16 @@ ja:
         state: 状態
         edit_mode: 編集モード
         import_request: すぐにインポート
+      inventory_check_data_import_file:
+        inventory_check_data_import_file_name: "ファイル名"
+        inventory_check_data_import_file_size: "ファイルサイズ"
+        inventory_check_data_import_content_type: "Content-Type"
+        file_hash: "ファイルハッシュ"
+        inventory_check_data_import: 点検データファイル
+        inventory_check_data_import_file_name: 点検データファイル名
+        description1: 編集モードの説明：「作成」選択時は、　「更新」選択時は、棚バーコードが ..
+        edit_mode: 編集モード
+        import_request: すぐにインポート
       inventory_check_datum:
         readcode: コード
         read_at: 読取日時
@@ -131,6 +141,7 @@ ja:
         diffparam: "変更情報"
         created_at: "修正日時"
   inventory_page:
+    shelf_barcode_import_notice: "棚バーコード記載ファイルは最新の１つだけが反映されます。"
     execute_check: "点検実行"
     execute_check_description: "点検実行を開始します。"
     execute_check_description2: "実行完了後に以下のユーザに通知されます。"
@@ -139,7 +150,9 @@ ja:
       prepare: "点検処理の準備を行いました。まもなく点検処理が実行されます。"
       start: "点検実行"
     inventory_barcode_import_file:
-      import_request: "棚バーコードインポート処理の準備を行いました。まもなくインポート処理が実行されます。" 
+      import_request: "棚バーコードインポート処理の準備を行いました。まもなくインポート処理がはじまります。" 
+    inventory_check_data_import_file:
+      import_request: "点検データインポート処理の準備を行いました。まもなくインポート処理がはじまります。" 
     no_have_inventory_check_data: "点検データが未登録です。"
     no_have_inventory_shelf_barcode: "棚バーコードが未登録です。"
     no_execute_inventory_check: "蔵書点検のチェック未処理です。"
