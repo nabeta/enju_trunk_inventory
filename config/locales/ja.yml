@@ -63,7 +63,9 @@ ja:
         file_hash: "ファイルハッシュ"
         inventory_check_data_import: 点検データファイル
         inventory_check_data_import_file_name: 点検データファイル名
-        description1: 編集モードの説明：「作成」選択時は、　「更新」選択時は、棚バーコードが ..
+        description1: "編集モードの説明"
+        description2: "「作成」選択時：点検データ内に同じ棚バーコードが存在する場合は、はじめに削除してから入れ替える。"
+        description3: "「更新」選択時：点検データ内に同じ棚バーコードが存在する場合は、所蔵情報コードを追加する。"
         edit_mode: 編集モード
         import_request: すぐにインポート
       inventory_check_datum:
@@ -72,6 +74,7 @@ ja:
         created_at: 登録日時
         item_identifier: 所蔵情報ID
         shelf_barcode: 棚バーコード
+        shelf_name: 棚バーコード
       inventory_check_result:
         item_identifier: 所蔵情報ID
         original_title: タイトル
@@ -168,6 +171,8 @@ ja:
     unit_update: "個別修正"
     view_update_histories: "修正履歴の確認"
     confirm_has_errors: "エラーがありますが、よろしいですか？"
+    total_count: "有効読込件数"
+    count_of_item_identifier: "所蔵コード件数"
   page:
     manage: '%{model}の管理'
     confirm: '%{model}の確認'

@@ -3,72 +3,35 @@
 <div id="content_list">
 
 <p>
-  <strong><%= t('activerecord.attributes.inventory_manage.id') -%> :</strong>
-  <%= @inventory_manage.id -%> 
+  <strong><%= t('activerecord.attributes.inventory_check_datum.id') -%> :</strong>
+  <%= @inventory_check_datum.id -%> 
 </p>
 
 <p>
-  <strong><%= t('activerecord.attributes.inventory_manage.display_name') -%> :</strong>
-  <%= @inventory_manage.display_name -%> 
+  <strong><%= t('activerecord.attributes.inventory_check_datum.readcode') -%> :</strong>
+  <%= @inventory_check_datum.readcode -%> 
 </p>
 
 <p>
-  <strong><%= t('activerecord.attributes.inventory_manage.manifestation_type_ids') -%> :</strong>
-  <%= manifestation_type_names(@inventory_manage.manifestation_types) -%>
+  <strong><%= t('activerecord.attributes.inventory_check_datum.shelf_name') -%> :</strong>
+  <%= @inventory_check_datum.shelf_name -%> 
 </p>
 
 <p>
-  <strong><%= t('activerecord.attributes.inventory_manage.shelf_group_ids') -%> :</strong>
-  <%= shelf_group_names(@inventory_manage.shelf_groups) -%>
+  <strong><%= t('activerecord.attributes.inventory_check_datum.shelf_flag') -%> :</strong>
+  <%= @inventory_check_datum.shelf_flag -%> 
 </p>
 
 <p>
-  <strong><%= t('activerecord.attributes.inventory_manage.notification_dest') -%> :</strong>
-  <%= @inventory_manage.notification_dest -%>
+  <strong><%= t('activerecord.attributes.inventory_check_datum.created_at') -%> :</strong>
+  <%= l(@inventory_check_datum.created_at) -%> 
 </p>
-
-<p>
-  <strong><%= t('activerecord.attributes.inventory_manage.state') -%> :</strong>
-  <%= inventory_manage_state(@inventory_manage) -%> 
-</p>
-
-<p>
-  <strong><%= t('activerecord.attributes.inventory_manage.bind_type') -%> :</strong>
-  <%= bind_type_name(@inventory_manage.bind_type) -%> 
-</p>
-
-<p>
-  <strong><%= t('activerecord.attributes.inventory_manage.finished_at') -%> :</strong>
-  <%= l(@inventory_manage.finished_at) -%> 
-</p>
-
-<br />
-<br />
-
-<%- @inventory_notifications.each do |notification| -%> 
-  <p>
-  <%= notification.message -%>
-  </p>
-<%- end -%>
 
 </div>
 </div>
 
 <div id="submenu" class="ui-corner-all">
   <ul>
-    <li><%= link_to t('page.edit'), edit_inventory_manage_path(@inventory_manage) -%> </li>
-    <li><%= link_to t('page.destroy'), @inventory_manage, :confirm => t('page.are_you_sure'), :method => :delete -%>
-    <li><%= link_to t('page.back_to_index'), inventory_manages_path -%> </li>
-  </ul>
-  <br />
-  <ul>
-    <li><%= link_to t('page.manage', :model => t('activerecord.models.inventory_shelf_barcode')), inventory_manage_inventory_shelf_barcodes_path(@inventory_manage) -%></li>
-    <li><%= link_to t('page.manage', :model => t('activerecord.models.inventory_check_data')), inventory_manage_inventory_check_datum_index_path(@inventory_manage) -%></li>
-    <li><%= link_to t('inventory_page.check.start'), inventory_manage_inventory_checks_path(@inventory_manage) -%></li>
-    <li><%= link_to t('page.confirm', :model => t('activerecord.models.inventory_check_result')), inventory_manage_inventory_check_results_path(@inventory_manage) -%></li>
-  </ul>
-  <br />
-  <ul>
-    <li><%= link_to t('page.finish', :model => t('activerecord.models.inventory_manage')), finish_inventory_manage_path(@inventory_manage) -%> </li>
+    <li><%= link_to t('page.back'), inventory_manage_inventory_check_data_path -%> </li>
   </ul>
 </div>

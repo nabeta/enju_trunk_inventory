@@ -2,6 +2,9 @@
 <h1 class="title"><%= t('page.listing', :model => t('activerecord.models.inventory_check_datum')) -%></h1>
 <div id="content_list">
 
+  <%= t('inventory_page.total_count') -%>:<%= @inventory_check_datum.count -%> &nbsp; &nbsp; 
+  <%= t('inventory_page.count_of_item_identifier') -%>:<%= InventoryCheckDatum.count_items(@inventory_manage_id) -%> <br />
+
 <table class="index">
   <tr>
     <th><%= t('activerecord.attributes.inventory_check_datum.readcode') -%> </th>

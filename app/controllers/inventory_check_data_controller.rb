@@ -15,7 +15,9 @@ class InventoryCheckDataController < ApplicationController
   # GET /inventory_check_data/1
   # GET /inventory_check_data/1.json
   def show
-    @inventory_check_data = InventoryCheckDatum.find(params[:id])
+    @inventory_manage_id = params[:inventory_manage_id]
+    @inventory_manage = InventoryManage.find(@inventory_manage_id)
+    @inventory_check_datum = InventoryCheckDatum.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -30,10 +32,6 @@ class InventoryCheckDataController < ApplicationController
     @inventory_manage = InventoryManage.find(@inventory_manage_id)
     @inventory_check_datum = InventoryCheckDatum.new(:inventory_manage_id => @inventory_manage_id)
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @inventory_check_datum }
-    end
   end
 
   # GET /inventory_check_data/1/edit
@@ -44,8 +42,8 @@ class InventoryCheckDataController < ApplicationController
   # POST /inventory_check_data
   # POST /inventory_check_data.json
   def create
+    @inventory_manage = InventoryManage.find(params[:inventory_manage_id])
     @inventory_check_datum = InventoryCheckDatum.new(params[:inventory_check_datum])
-    @inventory_manage = InventoryManage.find(@inventory_check_datum.id)
 
     if @inventory_check_datum.save
       redirect_to [@inventory_manage, @inventory_check_datum], notice: 'Inventory check datum was successfully created.' 

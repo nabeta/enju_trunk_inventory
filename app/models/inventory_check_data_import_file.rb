@@ -65,6 +65,11 @@ class InventoryCheckDataImportFile < ActiveRecord::Base
     num = {:shelf_check_data_imported => 0, :failed => 0}
     filename = self.inventory_check_data_import.path
 
+    edit_mode_flag = :replace_by_shelf    # replace by shelf
+    if self.edit_mode == 'update'
+      edit_mode_flag = :replace_by_item   # replace by item
+    end
+
     logger.info "#{Time.zone.now} importing filename=#{filename}"
 
     shelf_barcodes = InventoryShelfBarcode.pluck(:barcode)
@@ -89,6 +94,13 @@ class InventoryCheckDataImportFile < ActiveRecord::Base
           inventory_check_datum = InventoryCheckDatum.new
 
           if shelf_barcodes.include?(readcode)
+            if edit_mode_flag = :replace_by_shelf
+              if shelf_name != readcode 
+              # 棚コードの終わりの場合は削除しない。
+                InventoryCheckDatum.delete_all(['inventory_manage_id = ? and shelf_name = ?', self.inventory_manage_id, readcode])
+              end
+            end
+
             inventory_check_datum.shelf_flag = 1 
             shelf_name = readcode
           end
@@ -96,6 +108,10 @@ class InventoryCheckDataImportFile < ActiveRecord::Base
           inventory_check_datum.inventory_manage_id = self.inventory_manage_id 
           inventory_check_datum.readcode = readcode
           inventory_check_datum.shelf_name = shelf_name if shelf_name.present?
+
+          if edit_mode_flag == :replace_by_item
+            InventoryCheckDatum.delete_all(['inventory_manage_id = ? and readcode = ? and shelf_name = ?', self.inventory_manage_id, readcode, shelf_name])
+          end
 
           if inventory_check_datum.save!
             #import_result.inventory_shelf_barcode_import_file = inventory_shelf_barcode
