@@ -3,31 +3,21 @@ class InventoryCheckDataImportFilesController < ApplicationController
   before_filter :check_librarian
 
   def index
-    @inventory_check_data_import_files = InventoryCheckDataImportFile.page(params[:page])
+    prepare_options
+    @inventory_check_data_import_files = InventoryCheckDataImportFile.where(:inventory_manage_id => params[:inventory_manage_id]).page(params[:page])
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @inventory_check_data_import_files }
-    end
   end
 
   def show
     @inventory_check_data_import_file = InventoryCheckDataImportFile.find(params[:id])
+    @inventory_manage_id = @inventory_check_data_import_file.inventory_manage_id
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @inventory_check_data_import_file }
-    end
   end
 
   def new
     prepare_options
     @inventory_check_data_import_file = InventoryCheckDataImportFile.new(:edit_mode => 'create')
 
-    respond_to do |format|
-      format.html 
-      format.json { render json: @inventory_check_data_import_file }
-    end
   end
 
   def edit

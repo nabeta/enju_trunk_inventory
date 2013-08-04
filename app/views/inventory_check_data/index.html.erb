@@ -33,6 +33,7 @@
   <ul>
     <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_check_datum')), new_inventory_manage_inventory_check_datum_path -%></li>
     <li><%= link_to t('page.new', :model => t('activerecord.models.inventory_check_data_import_file')), url_for(:controller => :inventory_check_data_import_files, :action => :new, :inventory_manage_id => @inventory_manage_id)  -%></li>
+    <li><%= link_to t('page.listing', :model => t('activerecord.models.inventory_check_data_import_file')), url_for(:controller => :inventory_check_data_import_files, :action => :index, :inventory_manage_id => @inventory_manage_id)  -%></li>
   </ul>
 
 </div>
