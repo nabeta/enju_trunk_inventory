@@ -113,7 +113,7 @@ class InventoryCheckDataImportFile < ActiveRecord::Base
     end
 
     self.update_attribute(:imported_at, Time.zone.now)
-    #sm_complete!
+    sm_complete!
     return num
   end
 

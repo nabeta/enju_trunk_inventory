@@ -47,12 +47,12 @@ class InventoryCheckDataImportFilesController < ApplicationController
 
   def destroy
     @inventory_check_data_import_file = InventoryCheckDataImportFile.find(params[:id])
+    @inventory_manage_id = @inventory_check_data_import_file.inventory_manage_id
+    @inventory_manage = InventoryManage.find(@inventory_manage_id)
+      
     @inventory_check_data_import_file.destroy
 
-    respond_to do |format|
-      format.html { redirect_to inventory_check_data_import_files_url }
-      format.json { head :no_content }
-    end
+    redirect_to url_for(:controller => :inventory_check_data_import_files, :action => :index, :inventory_manage_id => @inventory_manage_id)
   end
 
   def import_request
