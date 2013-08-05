@@ -4,7 +4,7 @@ class InventoryCheckResultsController < ApplicationController
 
   def index
     @inventory_manage = InventoryManage.find(params[:inventory_manage_id])
-    @inventory_check_results = InventoryCheckResult.where(:inventory_manage_id => params[:inventory_manage_id])
+    @inventory_check_results = InventoryCheckResult.joins('left outer join inventory_check_data_skips on inventory_check_results.item_identifier = inventory_check_data_skips.item_identifier and inventory_check_results.inventory_manage_id = inventory_check_data_skips.inventory_manage_id').where(:inventory_manage_id => params[:inventory_manage_id]).select('inventory_check_results.*, inventory_check_data_skips.id as skip_flag2')
     @status_type_selected = []
     @item_identifier = ""
     if params[:status_types].present?
@@ -26,6 +26,11 @@ class InventoryCheckResultsController < ApplicationController
       @item_identifier = params[:item_identifier]
       q = "%#{@item_identifier}%"
       @inventory_check_results = @inventory_check_results.where(["item_identifier like ?", q])
+    end
+    if params[:shelf_name].present?
+      @shelf_name = params[:shelf_name]
+      q = "%#{@shelf_name}%"
+      @inventory_check_results = @inventory_check_results.where(["shelf_group_names like ?", q])
     end
 
     if params[:output_check_error_list] || params[:output_check_list]

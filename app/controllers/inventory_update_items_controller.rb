@@ -12,9 +12,6 @@ class InventoryUpdateItemsController < ApplicationController
 
     prepare_options
 
-    puts "@@@@"
-    puts params
-
     item_update = {}
     if params[:shelf_barcode].blank?
       @errors << I18n.t('activerecord.attributes.inventory_update_items.invalid_no_input_shelf_barcode')
@@ -85,8 +82,7 @@ class InventoryUpdateItemsController < ApplicationController
         end
 
         if params[:skip_flag].present?
-          check_datum.skip_flag = 1
-          check_datum.save!
+          InventoryCheckDataSkip.create!(:inventory_manage_id => inventory_manage_id, :item_identifier => item_identifier, :created_by => current_user.id)
         end
       end
     end
@@ -138,19 +134,21 @@ class InventoryUpdateItemsController < ApplicationController
       return
     end
 
+    inventory_manage_id = params[:inventory_manage_id]
+    item_identifier = params[:item_identifier]
+
     ActiveRecord::Base.transaction do
       if item_update.present?
         @item.update_attributes(item_update)
       end
 
       if params[:skip_flag].present?
-        @inventory_check_datum.skip_flag = 1
-        @inventory_check_datum.save!
+        InventoryCheckDataSkip.create!(:inventory_manage_id => inventory_manage_id, :item_identifier => item_identifier, :created_by => current_user.id)
       end
 
       history = InventoryUpdateHistory.new
-      history.inventory_manage_id = params[:inventory_manage_id]
-      history.item_identifier = params[:item_identifier]
+      history.inventory_manage_id = inventory_manage_id
+      history.item_identifier = item_identifier
       history.before_item = @item.to_json
       history.diffparam = {:item => item_update.to_json, :skip_flag => params[:skip_flag]}
       history.save!
@@ -170,7 +168,7 @@ class InventoryUpdateItemsController < ApplicationController
     @inventory_check_result = InventoryCheckResult.where(:inventory_manage_id => params[:inventory_manage_id], :item_identifier => params[:item_identifier]).first
 
     @result_status = []
-    %w(1 2 3 4 5 6 7 8).each do |c|
+    %w(1 2 3 4 5 6 7 8 9).each do |c|
       s = OpenStruct.new
       s.id = c
       s.display_name = I18n.t("activerecord.attributes.inventory_check_result.status_#{c}")

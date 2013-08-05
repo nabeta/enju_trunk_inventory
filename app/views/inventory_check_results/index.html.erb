@@ -71,6 +71,11 @@ function error_select_status_types() {
     <%= text_field_tag 'item_identifier', @item_identifier %>
     &nbsp; <%= t('activerecord.attributes.inventory_check_result.description_item_identifier') %>
     <br />
+    <b><%= t('activerecord.attributes.inventory_check_result.shelf_name') %></b>
+    <%= text_field_tag 'shelf_name', @shelf_name %>
+    &nbsp; <%= t('activerecord.attributes.inventory_check_result.description_shelf_name') %>
+    <br />
+ 
     <b><%= t('activerecord.attributes.inventory_check_result.status') %></b>
     <%- @status_types.each do |status_type| -%>
       <%= check_box 'status_types', status_type.id, {:checked => @status_type_selected.include?(status_type.id.to_s)}, true, false %><%= status_type.display_name -%>
@@ -123,7 +128,7 @@ function error_select_status_types() {
     <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result, :status_7) -%></p></td>
     <td class="inventory_result_mark"><%= mark(inventory_result, :status_8) -%> </td>
     <td class="inventory_result_mark"><p class="inventory_result_mark"><%= mark(inventory_result, :status_9) -%></p></td>
-    <td class="inventory_result_mark"><%= mark(inventory_result, :skip_flag) -%> </td>
+    <td class="inventory_result_mark"><%= mark(inventory_result, :skip_flag2) -%> </td>
   </tr>
 <%- end -%> 
 </table>

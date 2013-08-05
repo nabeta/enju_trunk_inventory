@@ -77,6 +77,7 @@ ja:
         shelf_name: 棚バーコード
       inventory_check_result:
         item_identifier: 所蔵情報ID
+        shelf_name: 棚バーコード
         original_title: タイトル
         status: 状態
         status_0: エラー無し
@@ -111,6 +112,7 @@ ja:
         all_deselect: 全選択解除
         error_select: エラー項目選択
         description_item_identifier: "前方一致で検索します。"
+        description_shelf_name: "前方一致で検索します。"
         skip_flag: スキップ
         shelf_barcodes: 棚バーコード
         result_on_mark: "*"

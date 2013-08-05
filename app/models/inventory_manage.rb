@@ -70,6 +70,9 @@ class InventoryManage < ActiveRecord::Base
     shelf_groups_ids = self.shelf_group_ids.split
     shelf_barcode_shelf_ids = InventoryShelfBarcode.where(:inventory_manage_id => self.id, :inventory_shelf_group_id => shelf_groups_ids).pluck(:shelf_id)
 
+    logger.info "shelf_barcode_shelf_ids:"
+    logger.info shelf_barcode_shelf_ids
+
     if shelf_barcode_shelf_ids.empty?
       raise EnjuTrunkInventoryCheckError("ShelfBarcode is empry.")
     end
@@ -143,18 +146,20 @@ class InventoryManage < ActiveRecord::Base
 
       # 棚バーコード
       code_names = ""
-      check_data = InventoryCheckDatum.where(:shelf_flag => 0, :readcode => item_identifier).pluck(:shelf_name)
+      inventory_check_datum_id = nil
+      check_data = InventoryCheckDatum.where(:inventory_manage_id => self.id, :shelf_flag => 0, :readcode => item_identifier).first
       if check_data
-        code_names = check_data.join(',')
+        code_names = check_data.shelf_name
+        inventory_check_datum_id = check_data.id
       end
 
-      r = InventoryCheckResult.new({:inventory_manage_id => self.id, :item_identifier => item_identifier, :original_title => original_title, :shelf_group_names => code_names})
+      r = InventoryCheckResult.new({:inventory_manage_id => self.id, :item_identifier => item_identifier, :original_title => original_title, :shelf_group_names => code_names, :inventory_check_datum_id => inventory_check_datum_id})
       r.save!
     end
 
     %w(status_1 status_2 status_3 status_4 status_5 status_6 status_7 status_8 status_9).each do |s|
       if check_list[s.to_sym].present?
-        InventoryCheckResult.update_all("#{s} = 1", ["item_identifier IN (?)", check_list[s.to_sym]])
+        InventoryCheckResult.update_all("#{s} = 1", ["inventory_manage_id = ? and item_identifier IN (?)", self.id, check_list[s.to_sym]])
       end
     end
 
