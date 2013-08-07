@@ -3,6 +3,12 @@
 <div id="content_list">
 <%= form_for(@inventory_manage, :url => {:action => 'finished'}) do |f| %>
   <%= f.error_messages %>
+
+  <% if @inventory_manage.errors.empty? -%> 
+    <%= I18n.t('inventory_page.confirm_message_complete_green') -%>
+    <br />
+    <br />
+  <% end -%>
   <div class="actions">
     <% if @inventory_manage.errors.empty? -%> 
       <%= f.submit %>

@@ -5,10 +5,17 @@ class InventoryUpdateItemsController < ApplicationController
 
   def bulk_edit
     prepare_options
+    @bulk_update_form = OpenStruct.new
   end
 
   def bulk_update
     @errors = []
+    @bulk_update_form = OpenStruct.new
+    @bulk_update_form.shelf_barcode = params[:shelf_barcode]
+    @bulk_update_form.result_status = params[:result_status]
+    @bulk_update_form.shelf_name = params[:shelf_name]
+    @bulk_update_form.circulation_status = params[:circulation_status]
+    @bulk_update_form.skip_flag = params[:skip_flag]
 
     prepare_options
 
@@ -19,7 +26,7 @@ class InventoryUpdateItemsController < ApplicationController
     if params[:result_status].blank?
       @errors << I18n.t('activerecord.attributes.inventory_update_items.invalid_no_result_status')
     else
-      unless params[:result_status] =~ /\d+/ 
+      unless params[:result_status] =~ /^[0-9]+$/
         @errors << I18n.t('activerecord.attributes.inventory_update_items.invalid_result_status')
       end
     end
@@ -29,8 +36,9 @@ class InventoryUpdateItemsController < ApplicationController
       return
     end
 
-    shelf_barcode = params[:shelf_barcode]
-    result_status = params[:result_status]
+    shelf_barcode = @bulk_update_form.shelf_barcode
+    result_status = @bulk_update_form.result_status
+    logger.info "key: shelf_barcode=#{shelf_barcode} result_status=#{result_status}"
     
     # check-2
     item_update = {}
@@ -51,7 +59,7 @@ class InventoryUpdateItemsController < ApplicationController
       end
     end
 
-    if item_update.empty? && params[:skip_flag].empty?
+    if item_update.blank? && params[:skip_flag].blank?
       @errors << I18n.t('activerecord.attributes.inventory_update_items.no_input')
     end
 
@@ -61,10 +69,12 @@ class InventoryUpdateItemsController < ApplicationController
     end
 
     # fetch item by condition
-    append_sql = "status_#{params[:result_status]}" 
+    append_sql = "status_#{params[:result_status]} = 1" 
 
-    records = InventoryCheckResult.where(:inventory_manage_id => @inventory_manage_id, :shelf_group_names => shelf_barcode)
-    records = results.where(append_sql)
+pp @inventory_shelf_barcodes
+    shelf_group = @inventory_shelf_barcodes.find {|s| s.id.to_s == shelf_barcode }
+    records = InventoryCheckResult.where(:inventory_manage_id => @inventory_manage.id, :shelf_group_names => shelf_group.barcode)
+    records = records.where(append_sql)
 
     ActiveRecord::Base.transaction do
       records.each do |record|
@@ -82,12 +92,13 @@ class InventoryUpdateItemsController < ApplicationController
         end
 
         if params[:skip_flag].present?
-          InventoryCheckDataSkip.create!(:inventory_manage_id => inventory_manage_id, :item_identifier => item_identifier, :created_by => current_user.id)
+          r = InventoryCheckDataSkip.find_or_initialize_by_inventory_manage_id_and_item_identifier({inventory_manage_id: @inventory_manage.id, item_identifier: record.item_identifier})
+          r.update_attributes!(:created_by => current_user.id)
         end
       end
     end
 
-    flash[:notice] =  I18n.t('activerecord.attributes.inventory_update_items.success_update')
+    flash[:notice] =  I18n.t('activerecord.attributes.inventory_update_items.success_update') + " " + I18n.t('inventory_page.update_count', {count: records.count}) 
     redirect_to inventory_manage_inventory_check_results_path
   end
 
@@ -164,6 +175,7 @@ class InventoryUpdateItemsController < ApplicationController
 
   def prepare_options
     @inventory_manage = InventoryManage.find(params[:inventory_manage_id])
+    @inventory_manage_id = @inventory_manage.id
     @inventory_check_datum = InventoryCheckDatum.where(:inventory_manage_id => params[:inventory_manage_id], :readcode => params[:item_identifier]).first
     @inventory_check_result = InventoryCheckResult.where(:inventory_manage_id => params[:inventory_manage_id], :item_identifier => params[:item_identifier]).first
 

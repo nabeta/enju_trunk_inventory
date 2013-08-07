@@ -13,12 +13,12 @@
 
     <div class="field">
       <span class="inventory_require_mark">*</span> <%= I18n.t('activerecord.attributes.inventory_update_items.shelf_barcode') %><br />
-      <%= select_tag :shelf_barcode, options_for_select(@inventory_shelf_barcodes.map{|c|[c.barcode,c.id]}), {:include_blank => ''} %>
+      <%= select_tag :shelf_barcode, options_for_select(@inventory_shelf_barcodes.map{|c|[c.barcode,c.id]}, :selected => @bulk_update_form.shelf_barcode), {:include_blank => ''} %>
     </div>
 
     <div class="field">
       <span class="inventory_require_mark">*</span> <%= I18n.t('activerecord.attributes.inventory_update_items.result_status') %><br />
-      <%= select_tag :result_stauts, options_for_select(@result_status.map{|c|[c.display_name,c.id]}, @inventory_update_items.result_status), {:include_blank => ''} %>
+      <%= select_tag :result_status, options_for_select(@result_status.map{|c|[c.display_name,c.id]}, :selected => @bulk_update_form.result_status), {:include_blank => ''} %>
     </div>
 
     <div class="field">

@@ -4,8 +4,6 @@ module InventoryCheckResultsHelper
     if v.present? 
       if v.class == InventoryCheckResult
         value = v.__send__(attribute_name)  
-        puts "@@@"
-        puts value
         if value.present? && value.to_s != "0"
           if v.try(:skip_flag) == 1
             mark_label = I18n.t('activerecord.attributes.inventory_check_result.result_skip_mark')

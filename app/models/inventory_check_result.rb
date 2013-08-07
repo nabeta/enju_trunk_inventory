@@ -30,7 +30,8 @@ class InventoryCheckResult < ActiveRecord::Base
   end
 
   def self.has_error?(manage_id)
-    error_count = InventoryCheckResult.where("inventory_manage_id = ? and (status_1 = 1 or status_5 = 1 or status_6 = 1 or status_7 = 1 or status_9 = 1)", manage_id).count
+    @inventory_check_results = InventoryCheckResult.joins('left outer join inventory_check_data_skips on inventory_check_results.item_identifier = inventory_check_data_skips.item_identifier and inventory_check_results.inventory_manage_id = inventory_check_data_skips.inventory_manage_id').where(:inventory_manage_id => manage_id).where('inventory_check_data_skips.id is null')
+    error_count = @inventory_check_results.where("status_1 = 1 or status_5 = 1 or status_6 = 1 or status_7 = 1 or status_9 = 1").count
     return (error_count > 0)?(true):(false)
   end
 
