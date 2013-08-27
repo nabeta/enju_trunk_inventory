@@ -1,3 +1,4 @@
+require 'active_attr'
 class InventoryUpdateDiffparam
   include ActiveAttr::Model
 
