@@ -94,7 +94,7 @@ class InventoryCheckDataImportFile < ActiveRecord::Base
           inventory_check_datum = InventoryCheckDatum.new
 
           if shelf_barcodes.include?(readcode)
-            if edit_mode_flag = :replace_by_shelf
+            if edit_mode_flag == :replace_by_shelf
               if shelf_name != readcode 
               # 棚コードの終わりの場合は削除しない。
                 InventoryCheckDatum.delete_all(['inventory_manage_id = ? and shelf_name = ?', self.inventory_manage_id, readcode])
