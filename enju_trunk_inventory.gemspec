@@ -16,9 +16,9 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["spec/**/*"] - Dir["spec/dummy/log/*"] - Dir["spec/dummy/solr/{data,pids}/*"]
 
-  s.add_dependency "rails", "~> 3.2.13"
+  s.add_dependency "rails", "~> 3.2.15"
   s.add_dependency "enju_core", "~> 0.1.1.pre4"
-  s.add_dependency 'paperclip', '2.8'
+  s.add_dependency 'paperclip', '~> 3.5'
   s.add_dependency 'state_machine'
   s.add_dependency 'enju_trunk_frbr', '~> 1.1.0'
   s.add_dependency 'active_attr'
